@@ -17,8 +17,8 @@ return new class () extends Migration
     {
         Schema::create('locatacao', function (Blueprint $table): void {
             $table->id('lot_id');
-            $table->foreignIdFor(Person::class)->constrained('pessoa');
-            $table->foreignIdFor(Unit::class)->constrained('unidade');
+            $table->foreignIdFor(Person::class, 'pes_id')->constrained('pessoa');
+            $table->foreignIdFor(Unit::class, 'unid_id')->constrained('unidade');
             $table->date('lot_data_lotacao');
             $table->date('lot_data_remocao');
             $table->string('lot_portaria', 100);

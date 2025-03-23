@@ -20,7 +20,7 @@ return new class () extends Migration
             $table->string('end_logradouro', 200);
             $table->integer('end_numero');
             $table->string('end_bairro', 100);
-            $table->foreignIdFor(City::class)->constrained('cidade');
+            $table->foreignIdFor(City::class, 'cid_id')->constrained('cidade');
         });
     }
 

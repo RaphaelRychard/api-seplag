@@ -16,7 +16,7 @@ return new class () extends Migration
     {
         Schema::create('foto_pessoa', function (Blueprint $table): void {
             $table->id('fp_id');
-            $table->foreignIdFor(Person::class)->constrained('pessoa');
+            $table->foreignIdFor(Person::class, 'pes_id')->constrained('pessoa');
             $table->date('fp_data');
             $table->date('fp_bucket');
             $table->string('fp_hash', 50);
