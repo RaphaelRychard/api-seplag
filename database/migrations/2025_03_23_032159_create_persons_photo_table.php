@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('foto_pessoa', function (Blueprint $table) {
+        Schema::create('foto_pessoa', function (Blueprint $table): void {
             $table->id('fp_id')->primary();
             $table->foreignId('pes_id')->constrained('pessoa', 'pes_id')->onDelete('cascade');
             $table->date('fp_data');
-            $table->date('fp_bucket', 50);
+            $table->date('fp_bucket');
             $table->string('fp_hash', 50);
         });
     }

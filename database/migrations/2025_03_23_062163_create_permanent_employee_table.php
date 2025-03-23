@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('servidor_efetivo', function (Blueprint $table) {
+        Schema::create('servidor_efetivo', function (Blueprint $table): void {
             $table->id('id')->primary();
             $table->foreignId('pes_id')->constrained('pessoa', 'pes_id');
             $table->string('se_matricula', 20);

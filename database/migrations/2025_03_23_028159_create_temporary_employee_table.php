@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('servidor_temporario', function (Blueprint $table) {
+        Schema::create('servidor_temporario', function (Blueprint $table): void {
             $table->id('st_id');
             $table->foreignId('pes_id')->constrained('pessoa', 'pes_id')->onDelete('cascade');
             $table->date('st_data_admissao');

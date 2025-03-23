@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cidade', function (Blueprint $table) {
+        Schema::create('cidade', function (Blueprint $table): void {
             $table->id('cid_id')->primary();
             $table->string('cid_name', 200);
             $table->char('cid_uf', 12);

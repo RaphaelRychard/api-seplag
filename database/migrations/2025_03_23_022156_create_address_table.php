@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('endereco', function (Blueprint $table) {
+        Schema::create('endereco', function (Blueprint $table): void {
             $table->id('end_id')->primary();
             $table->string('end_tipo_logradouro', 50);
             $table->string('end_logradouro', 200);
