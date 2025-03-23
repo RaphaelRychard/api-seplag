@@ -1,8 +1,8 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
+    "name": "api/seplag",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "Projeto prático implementação back-end",
     "keywords": [
         "laravel",
         "framework"
@@ -20,6 +20,7 @@
         "laravel/sail": "^1.41",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
+        "pestphp/pest": "^3.7",
         "phpunit/phpunit": "^11.5.3",
         "rector/rector": "^2.0"
     },
@@ -54,6 +55,16 @@
         "dev": [
             "Composer\\Config::disableProcessTimeout",
             "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" --names=server,queue,logs"
+        ],
+        "lint": "pint",
+        "rector": "rector",
+        "test:pint": "pint --test",
+        "test:rector": "rector --dry-run",
+        "test:pest": "pest --parallel --compact",
+        "test": [
+          "@test:pint",
+          "@test:rector",
+          "@test:pest"
         ]
     },
     "extra": {
