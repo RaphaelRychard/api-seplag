@@ -1,0 +1,23 @@
+services:
+  minio:
+    image: quay.io/minio/minio
+    container_name: minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: myadmin
+      MINIO_ROOT_PASSWORD: mysecurepassword
+    volumes:
+      - ~/docker/minio/data:/data
+    command: server /data --console-address ":9001"
+
+  pg:
+    container_name: api-seplag
+    image: bitnami/postgresql:latest
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=seplag
