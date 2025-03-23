@@ -14,7 +14,7 @@ return new class () extends Migration
     public function up(): void
     {
         Schema::create('pessoa', function (Blueprint $table): void {
-            $table->id('pes_id')->primary();
+            $table->id('pes_id');
             $table->string('pes_nome', 200);
             $table->date('pes_data_nascimento');
             $table->string('pes_sexo', 9);

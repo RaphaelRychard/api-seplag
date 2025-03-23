@@ -2,6 +2,7 @@
 
 declare(strict_types = 1);
 
+use App\Models\Person;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,12 +14,11 @@ return new class () extends Migration
      */
     public function up(): void
     {
-        Schema::create('cidade', function (Blueprint $table): void {
-            $table->id('cid_id')->primary();
-            $table->string('cid_name', 200);
-            $table->char('cid_uf', 12);
-            $table->integer('end_numero');
-            $table->string('end_bairro', 100);
+        Schema::create('servidor_temporario', function (Blueprint $table): void {
+            $table->id('st_id');
+            $table->foreignIdFor(Person::class)->constrained('pessoa');
+            $table->date('st_data_admissao');
+            $table->date('st_data_demissao');
         });
     }
 
@@ -27,6 +27,6 @@ return new class () extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cidade');
+        Schema::dropIfExists('servidor_temporario');
     }
 };

@@ -13,10 +13,12 @@ return new class () extends Migration
      */
     public function up(): void
     {
-        Schema::create('unidade', function (Blueprint $table): void {
-            $table->id('unid_id')->primary();
-            $table->string('unid_name', 200);
-            $table->string('unid_sigla', 200);
+        Schema::create('cidade', function (Blueprint $table): void {
+            $table->id('cid_id');
+            $table->string('cid_name', 200);
+            $table->char('cid_uf', 12);
+            $table->integer('end_numero');
+            $table->string('end_bairro', 100);
         });
     }
 
@@ -25,6 +27,6 @@ return new class () extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('unidade');
+        Schema::dropIfExists('cidade');
     }
 };

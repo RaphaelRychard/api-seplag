@@ -13,11 +13,10 @@ return new class () extends Migration
      */
     public function up(): void
     {
-        Schema::create('servidor_temporario', function (Blueprint $table): void {
-            $table->id('st_id');
-            $table->foreignId('pes_id')->constrained('pessoa', 'pes_id')->onDelete('cascade');
-            $table->date('st_data_admissao');
-            $table->date('st_data_demissao');
+        Schema::create('unidade', function (Blueprint $table): void {
+            $table->id('unid_id');
+            $table->string('unid_name', 200);
+            $table->string('unid_sigla', 200);
         });
     }
 
@@ -26,6 +25,6 @@ return new class () extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('servidor_temporario');
+        Schema::dropIfExists('unidade');
     }
 };
