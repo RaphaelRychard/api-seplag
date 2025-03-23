@@ -1,3 +1,3 @@
 <?php
 
-use Illuminate\Support\Facades\Artisan;
+declare(strict_types = 1);
