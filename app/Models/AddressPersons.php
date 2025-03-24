@@ -7,16 +7,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PermanentEmployee extends Model
+class AddressPersons extends Model
 {
-    /** @use HasFactory<\Database\Factories\PermanentEmployeeFactory> */
+    /** @use HasFactory<\Database\Factories\AddressPersonsFactory> */
     use HasFactory;
 
     public $incrementing = false;
 
     protected $primaryKey = null;
 
-    protected $table = 'servidor_efetivo';
+    protected $table = 'pessoa_endereco';
 
     public $timestamps = false;
 }

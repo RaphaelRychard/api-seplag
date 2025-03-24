@@ -15,10 +15,8 @@ return new class () extends Migration
     {
         Schema::create('cidade', function (Blueprint $table): void {
             $table->id('cid_id');
-            $table->string('cid_name', 200);
+            $table->string('cid_nome', 200);
             $table->char('cid_uf', 12);
-            $table->integer('end_numero');
-            $table->string('end_bairro', 100);
         });
     }
 

@@ -18,7 +18,7 @@ return new class () extends Migration
         Schema::create('pessoa_endereco', function (Blueprint $table): void {
             $table->foreignIdFor(Person::class, 'pes_id')->constrained('pessoa');
             $table->foreignIdFor(Address::class, 'end_id')->constrained('endereco');
-            $table->unique(['pes_id', 'end_id']);
+            $table->primary(['pes_id', 'end_id']);
         });
     }
 

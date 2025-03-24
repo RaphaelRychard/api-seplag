@@ -19,7 +19,7 @@ return new class () extends Migration
             $table->foreignIdFor(Unit::class, 'unid_id')->constrained('unidade');
             $table->foreignIdFor(Address::class, 'end_id')->constrained('endereco');
 
-            $table->unique(['unid_id', 'end_id']);
+            $table->primary(['unid_id', 'end_id']);
         });
     }
 

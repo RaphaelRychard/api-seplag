@@ -18,7 +18,7 @@ return new class () extends Migration
             $table->id('fp_id');
             $table->foreignIdFor(Person::class, 'pes_id')->constrained('pessoa');
             $table->date('fp_data');
-            $table->date('fp_bucket');
+            $table->string('fp_bucket', 50);
             $table->string('fp_hash', 50);
         });
     }

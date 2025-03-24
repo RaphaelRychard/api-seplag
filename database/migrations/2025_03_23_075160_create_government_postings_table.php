@@ -22,6 +22,8 @@ return new class () extends Migration
             $table->date('lot_data_lotacao');
             $table->date('lot_data_remocao');
             $table->string('lot_portaria', 100);
+
+            $table->uniqid(['pes_id', 'unid_id']);
         });
     }
 
