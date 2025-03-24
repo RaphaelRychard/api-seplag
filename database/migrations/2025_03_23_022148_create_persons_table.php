@@ -18,8 +18,8 @@ return new class () extends Migration
             $table->string('pes_nome', 200);
             $table->date('pes_data_nascimento');
             $table->string('pes_sexo', 9);
-            $table->string('per_mae', 200);
-            $table->string('per_pai', 200);
+            $table->string('pes_mae', 200);
+            $table->string('pes_pai', 200);
         });
     }
 

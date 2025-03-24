@@ -2,11 +2,18 @@
 
 declare(strict_types = 1);
 
-use App\Models\User;
+use App\Http\Controllers\PersonController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn (): array => [config('app.name')]);
 
-Route::get('/users', function () {
-    return User::paginate();
+Route::prefix('/api')->name('api.')->group(function () {
+    Route::get('/persons', [PersonController::class, 'index'])
+        ->name('persons.index');
+
+    Route::get('/persons/{person}', [PersonController::class, 'show'])
+        ->name('persons.show');
+
+    Route::post('/persons', [PersonController::class, 'store'])
+        ->name('persons.store');
 });
