@@ -16,4 +16,7 @@ Route::prefix('/api')->name('api.')->group(function () {
 
     Route::post('/persons', [PersonController::class, 'store'])
         ->name('persons.store');
+
+    Route::put('/persons/{person}', [PersonController::class, 'update'])
+        ->name('persons.update');
 });
