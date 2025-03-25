@@ -24,11 +24,11 @@ class StorePersonRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'pes_nome'            => ['required' , 'min:3' , 'max:200'],
-            'pes_data_nascimento' => ['required' , 'date'],
-            'pes_sexo'            => ['required' , 'min:3' , 'max:200'],
-            'pes_mae'             => ['required' , 'min:3' , 'max:200'],
-            'pes_pai'             => ['required' , 'min:3' , 'max:200'],
+            'nome'            => ['required' , 'min:3' , 'max:200'],
+            'data_nascimento' => ['required' , 'date'],
+            'sexo'            => ['required' , 'min:3' , 'max:200'],
+            'mae'             => ['required' , 'min:3' , 'max:200'],
+            'pai'             => ['required' , 'min:3' , 'max:200'],
         ];
     }
 }

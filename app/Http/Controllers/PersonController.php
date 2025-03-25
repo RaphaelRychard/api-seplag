@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers;
 
+use App\Http\Mappers\PersonMapper;
 use App\Http\Requests\StorePersonRequest;
 use App\Http\Resources\PersonResource;
 use App\Models\Person;
@@ -24,9 +25,10 @@ class PersonController extends Controller
 
     public function store(StorePersonRequest $request)
     {
-        $data = $request->validated();
+        $data   = $request->validated();
+        $mapper = PersonMapper::mapper($data);
 
-        $person = Person::create($data);
+        $person = Person::create($mapper);
 
         return PersonResource::make($person);
     }

@@ -17,12 +17,12 @@ class PersonResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'pes_id'              => $this->pes_id,
-            'pes_nome'            => $this->pes_nome,
-            'pes_data_nascimento' => $this->pes_data_nascimento,
-            'pes_sexo'            => $this->pes_sexo,
-            'pes_mae'             => $this->pes_mae,
-            'pes_pai'             => $this->pes_pai,
+            'id'              => $this->pes_id,
+            'nome'            => $this->pes_nome,
+            'data_nascimento' => $this->pes_data_nascimento,
+            'sexo'            => $this->pes_sexo,
+            'mae'             => $this->pes_mae,
+            'pai'             => $this->pes_pai,
         ];
     }
 }
