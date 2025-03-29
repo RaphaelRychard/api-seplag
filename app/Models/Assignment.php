@@ -7,14 +7,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class GovernmentPosting extends Model
+class Assignment extends Model
 {
-    /** @use HasFactory<\Database\Factories\GovernmentPostingFactory> */
+    /** @use HasFactory<\Database\Factories\Assignment> */
     use HasFactory;
 
-    protected $primaryKey = 'lot_id';
 
-    protected $table = 'locatacao';
+    protected $table = 'lotacao';
 
     public $timestamps = false;
 }

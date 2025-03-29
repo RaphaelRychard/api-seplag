@@ -32,8 +32,8 @@ class UnitFactory extends Factory
         ];
 
         return [
-            'unid_name'  => fake()->randomElement(array_values($unitSeplag)),
-            'unid_sigla' => fake()->randomElement(array_keys($unitSeplag)),
+            'name'  => fake()->randomElement(array_values($unitSeplag)),
+            'sigla' => fake()->randomElement(array_keys($unitSeplag)),
         ];
     }
 }

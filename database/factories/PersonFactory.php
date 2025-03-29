@@ -25,9 +25,9 @@ class PersonFactory extends Factory
         ];
 
         return [
-            "pes_nome"            => fake()->name(),
-            "pes_data_nascimento" => fake()->date(),
-            "pes_sexo"            => fake()->randomElement($sex),
+            "nome"            => fake()->name(),
+            "data_nascimento" => fake()->date(),
+            "sexo"            => fake()->randomElement($sex),
             "per_mae"             => fake()->name(),
             "per_pai"             => fake()->name(),
         ];

@@ -16,8 +16,8 @@ return new class () extends Migration
     {
         Schema::create('servidor_temporario', function (Blueprint $table): void {
             $table->foreignIdFor(Person::class, 'pes_id')->constrained('pessoa');
-            $table->date('st_data_admissao');
-            $table->date('st_data_demissao');
+            $table->date('data_admissao');
+            $table->date('data_demissao');
         });
     }
 

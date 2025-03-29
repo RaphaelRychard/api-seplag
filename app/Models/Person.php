@@ -16,5 +16,4 @@ class Person extends Model
 
     public $timestamps = false;
 
-    protected $primaryKey = 'pes_id';
 }

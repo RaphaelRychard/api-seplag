@@ -33,7 +33,7 @@ class AddressFactory extends Factory
             'end_logradouro'      => fake()->streetAddress(),
             'end_numero'          => fake()->buildingNumber(),
             'end_bairro'          => fake()->cityPrefix(),
-            'cid_id'              => City::factory(),
+            'id'              => City::factory(),
         ];
     }
 }

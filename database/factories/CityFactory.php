@@ -19,8 +19,8 @@ class CityFactory extends Factory
     public function definition(): array
     {
         return [
-            'cid_nome' => fake()->city(),
-            'cid_uf'   => fake()->stateAbbr(),
+            'nome' => fake()->city(),
+            'uf'   => fake()->stateAbbr(),
         ];
     }
 }

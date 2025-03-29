@@ -14,12 +14,12 @@ return new class () extends Migration
     public function up(): void
     {
         Schema::create('pessoa', function (Blueprint $table): void {
-            $table->id('pes_id');
-            $table->string('pes_nome', 200);
-            $table->date('pes_data_nascimento');
-            $table->string('pes_sexo', 9);
-            $table->string('pes_mae', 200);
-            $table->string('pes_pai', 200);
+            $table->id();
+            $table->string('nome', 200);
+            $table->date('data_nascimento');
+            $table->string('sexo', 9);
+            $table->string('mae', 200);
+            $table->string('pai', 200);
         });
     }
 

@@ -15,13 +15,13 @@ return new class () extends Migration
      */
     public function up(): void
     {
-        Schema::create('locatacao', function (Blueprint $table): void {
-            $table->id('lot_id');
+        Schema::create('lotacao', function (Blueprint $table): void {
+            $table->id();
             $table->foreignIdFor(Person::class, 'pes_id')->constrained('pessoa');
             $table->foreignIdFor(Unit::class, 'unid_id')->constrained('unidade');
-            $table->date('lot_data_lotacao');
-            $table->date('lot_data_remocao');
-            $table->string('lot_portaria', 100);
+            $table->date('data_lotacao');
+            $table->date('data_remocao');
+            $table->string('portaria', 100);
 
             $table->unique(['pes_id', 'unid_id']);
         });
@@ -32,6 +32,6 @@ return new class () extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('locatacao');
+        Schema::dropIfExists('lotacao');
     }
 };

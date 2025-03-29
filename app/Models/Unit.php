@@ -16,5 +16,4 @@ class Unit extends Model
 
     public $timestamps = false;
 
-    protected $primaryKey = 'unid_id';
 }

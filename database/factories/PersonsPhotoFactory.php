@@ -20,7 +20,7 @@ class PersonsPhotoFactory extends Factory
     public function definition(): array
     {
         return [
-            'pes_id'    => Person::factory(),
+            'id'    => Person::factory(),
             'fp_data'   => fake()->date(),
             'fp_bucket' => fake()->word(),
             'fp_hash'   => fake()->hash(),

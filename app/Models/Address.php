@@ -12,7 +12,6 @@ class Address extends Model
     /** @use HasFactory<\Database\Factories\AddressFactory> */
     use HasFactory;
 
-    protected $primaryKey = 'end_id';
 
     protected $table = 'endereco';
 

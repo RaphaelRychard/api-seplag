@@ -12,7 +12,6 @@ class PersonsPhoto extends Model
     /** @use HasFactory<\Database\Factories\PersonsPhotoFactory> */
     use HasFactory;
 
-    protected $primaryKey = 'fp_id';
 
     protected $table = 'foto_pessoa';
 

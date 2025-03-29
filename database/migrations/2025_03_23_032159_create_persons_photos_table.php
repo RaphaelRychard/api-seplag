@@ -15,11 +15,11 @@ return new class () extends Migration
     public function up(): void
     {
         Schema::create('foto_pessoa', function (Blueprint $table): void {
-            $table->id('fp_id');
+            $table->id('id');
             $table->foreignIdFor(Person::class, 'pes_id')->constrained('pessoa');
-            $table->date('fp_data');
-            $table->string('fp_bucket', 50);
-            $table->string('fp_hash', 50);
+            $table->date('data');
+            $table->string('bucket', 50);
+            $table->string('hash', 50);
         });
     }
 

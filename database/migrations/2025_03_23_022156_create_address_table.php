@@ -15,11 +15,11 @@ return new class () extends Migration
     public function up(): void
     {
         Schema::create('endereco', function (Blueprint $table): void {
-            $table->id('end_id');
-            $table->string('end_tipo_logradouro', 50);
-            $table->string('end_logradouro', 200);
-            $table->integer('end_numero');
-            $table->string('end_bairro', 100);
+          $table->id();
+            $table->string('tipo_logradouro', 50);
+            $table->string('logradouro', 200);
+            $table->integer('numero');
+            $table->string('bairro', 100);
             $table->foreignIdFor(City::class, 'cid_id')->constrained('cidade');
         });
     }
