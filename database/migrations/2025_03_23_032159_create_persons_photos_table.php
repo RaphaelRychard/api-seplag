@@ -15,7 +15,7 @@ return new class () extends Migration
     public function up(): void
     {
         Schema::create('foto_pessoa', function (Blueprint $table): void {
-            $table->id('id');
+            $table->id();
             $table->foreignIdFor(Person::class, 'pes_id')->constrained('pessoa');
             $table->date('data');
             $table->string('bucket', 50);

@@ -12,7 +12,6 @@ class PersonsPhoto extends Model
     /** @use HasFactory<\Database\Factories\PersonsPhotoFactory> */
     use HasFactory;
 
-
     protected $table = 'foto_pessoa';
 
     public $timestamps = false;

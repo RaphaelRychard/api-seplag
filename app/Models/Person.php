@@ -16,4 +16,8 @@ class Person extends Model
 
     public $timestamps = false;
 
+    public function permanentServant()
+    {
+        return $this->hasOne(PermanentServants::class, 'pes_id');
+    }
 }

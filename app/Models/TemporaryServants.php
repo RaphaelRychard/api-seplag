@@ -7,14 +7,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TemporaryEmployee extends Model
+class TemporaryServants extends Model
 {
-    /** @use HasFactory<\Database\Factories\TemporaryEmployeeFactory> */
+    /** @use HasFactory<\Database\Factories\TemporaryServantsFactory> */
     use HasFactory;
-
-    public $incrementing = false;
-
-    protected $primaryKey = null;
 
     protected $table = 'servidor_temporario';
 

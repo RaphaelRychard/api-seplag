@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-use App\Http\Controllers\AllocationController;
+use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\PermanentServantsController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\TemporaryServantsController;
@@ -27,6 +27,6 @@ Route::name('api.')->middleware('auth:sanctum')->group(function () {
     Route::apiResource('/units', UnitController::class)
         ->only(['index', 'show' , 'store', 'update']);
 
-    Route::apiResource('/allocations', AllocationController::class)
+    Route::apiResource('/assignment', AssignmentController::class)
         ->only(['index', 'show' , 'store', 'update']);
 });

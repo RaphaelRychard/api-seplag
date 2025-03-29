@@ -15,5 +15,4 @@ class Unit extends Model
     protected $table = 'unidade';
 
     public $timestamps = false;
-
 }

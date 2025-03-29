@@ -12,7 +12,6 @@ class Assignment extends Model
     /** @use HasFactory<\Database\Factories\Assignment> */
     use HasFactory;
 
-
     protected $table = 'lotacao';
 
     public $timestamps = false;

@@ -12,10 +12,6 @@ class AddressUnit extends Model
     /** @use HasFactory<\Database\Factories\AddressUnitFactory> */
     use HasFactory;
 
-    public $incrementing = false;
-
-    protected $primaryKey = null;
-
     protected $table = 'unidade_endereco';
 
     public $timestamps = false;

@@ -7,16 +7,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PermanentEmployee extends Model
+class PermanentServants extends Model
 {
-    /** @use HasFactory<\Database\Factories\PermanentEmployeeFactory> */
+    /** @use HasFactory<\Database\Factories\PermanentServantsFactory> */
     use HasFactory;
-
-    public $incrementing = false;
-
-    protected $primaryKey = null;
 
     protected $table = 'servidor_efetivo';
 
     public $timestamps = false;
+
+    public function person()
+    {
+        return $this->belongsTo(Person::class, 'pes_id');
+    }
 }

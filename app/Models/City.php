@@ -12,7 +12,6 @@ class City extends Model
     /** @use HasFactory<\Database\Factories\CityFactory> */
     use HasFactory;
 
-
     protected $table = 'cidade';
 
     public $timestamps = false;
