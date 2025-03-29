@@ -4,24 +4,40 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreatePermanentServantRequest;
+use App\Http\Requests\StorePermanentServantsRequest;
+use App\Http\Requests\UpdatePermanentServantsRequest;
 use App\Http\Resources\PermanentServantResource;
-use App\Http\Services\CreatePermanentServantService;
+use App\Models\PermanentServants;
 
 class PermanentServantsController extends Controller
 {
-    protected $createPermanentServantService;
-
-    public function __construct(CreatePermanentServantService $createPermanentServantService)
+    public function index()
     {
-        $this->createPermanentServantService = $createPermanentServantService;
+        return PermanentServantResource::collection(
+            PermanentServants::all(),
+        );
     }
 
-    public function store(CreatePermanentServantRequest $request)
+    public function show(PermanentServants $permanentServants)
     {
-        $data   = $request->validated();
-        $result = $this->createPermanentServantService->create($data);
+        return PermanentServantResource::make($permanentServants);
+    }
 
-        return new PermanentServantResource($result);
+    public function store(StorePermanentServantsRequest $request)
+    {
+        $data = $request->validated();
+
+        $permanentServants = PermanentServants::create($data);
+
+        return PermanentServantResource::make($permanentServants);
+    }
+
+    public function update(UpdatePermanentServantsRequest $request, PermanentServants $permanentServants)
+    {
+        $data = $request->validated();
+
+        $permanentServants->update($data);
+
+        return PermanentServantResource::make($permanentServants);
     }
 }

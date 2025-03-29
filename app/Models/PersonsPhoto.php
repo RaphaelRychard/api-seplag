@@ -15,4 +15,9 @@ class PersonsPhoto extends Model
     protected $table = 'foto_pessoa';
 
     public $timestamps = false;
+
+    public function person()
+    {
+        return $this->belongsTo(Person::class, 'pes_id');
+    }
 }

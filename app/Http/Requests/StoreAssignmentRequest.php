@@ -24,7 +24,7 @@ class StoreAssignmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'pes_id'       => ['required', 'string', 'exists:pessoa,id', 'unique:pessoa,id'],
+            'pes_id'       => ['required', 'string', 'exists:pessoa,id', 'unique:lotacao,pes_id,NULL,id,unid_id,' . $this->unid_id],
             'unid_id'      => ['required', 'string', 'exists:unidade,id'],
             'data_lotacao' => ['required', 'date'],
             'data_remocao' => ['required', 'date'],

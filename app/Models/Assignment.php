@@ -15,4 +15,14 @@ class Assignment extends Model
     protected $table = 'lotacao';
 
     public $timestamps = false;
+
+    public function person()
+    {
+        return $this->belongsTo(Person::class, 'pes_id');
+    }
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class, 'unid_id');
+    }
 }

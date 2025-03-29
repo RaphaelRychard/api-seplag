@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -11,7 +13,7 @@ class StorePermanentServantsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,8 @@ class StorePermanentServantsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'pes_id'       => ['required'],
+            'se_matricula' => ['required', 'string', 'max:255'],
         ];
     }
 }

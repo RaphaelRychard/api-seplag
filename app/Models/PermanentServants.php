@@ -20,4 +20,9 @@ class PermanentServants extends Model
     {
         return $this->belongsTo(Person::class, 'pes_id');
     }
+
+    public function getUnitOfLotacao()
+    {
+        return $this->person->assignment ? $this->person->assignment->unit : null;
+    }
 }

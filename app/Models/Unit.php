@@ -15,4 +15,9 @@ class Unit extends Model
     protected $table = 'unidade';
 
     public $timestamps = false;
+
+    public function assignment()
+    {
+        return $this->hasOne(Assignment::class, 'unid_id');
+    }
 }

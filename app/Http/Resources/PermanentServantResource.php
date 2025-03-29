@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -18,12 +19,11 @@ class PermanentServantResource extends JsonResource
     {
         return [
             'id'              => $this->id,
+            'pes_id'          => $this->person->id,
             'nome'            => $this->person->nome,
-            'data_nascimento' => $this->person->data_nascimento,
-            'sexo'            => $this->person->sexo,
-            'mae'             => $this->person->mae,
-            'pai'             => $this->person->pai,
-            'se_matricula'    => $this->se_matricula,
+            'idade'           => Carbon::parse($this->person->data_nascimento)->age,
+            'fotografia'      => $this->person->personsPhoto,
+            'unidade_lotacao' => $this->getUnitOfLotacao(),
         ];
     }
 }

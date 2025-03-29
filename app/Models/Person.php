@@ -20,4 +20,14 @@ class Person extends Model
     {
         return $this->hasOne(PermanentServants::class, 'pes_id');
     }
+
+    public function assignment()
+    {
+        return $this->hasOne(Assignment::class, 'pes_id');
+    }
+
+    public function personsPhoto()
+    {
+        return $this->hasOne(PersonsPhoto::class, 'pes_id');
+    }
 }
