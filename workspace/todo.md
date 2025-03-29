@@ -5,7 +5,7 @@ Vamos revisar e ajustar o checklist:
 Segue um checklist sequencial e direto para o projeto em PHP:
 
 1. **Preparação do Ambiente**  
-   - [ ] Configurar o Docker Compose com:
+   - [x] Configurar o Docker Compose com:
      - Container PostgreSQL (última versão);
      - Container Min.IO para armazenamento S3.
    - [ ] Criar o repositório no GitHub com README.md contendo seus dados e instruções de execução.
@@ -27,7 +27,7 @@ Segue um checklist sequencial e direto para o projeto em PHP:
      - [ ] Servidor Efetivo;
      - [ ] Servidor Temporário;
      - [x] Unidade;
-     - [ ] Lotação.
+     - [x] Lotação.
    - [ ] Incluir e editar dados das tabelas relacionadas.
    - [ ] Endpoint para consulta de servidores efetivos:
      - Parametrizado por `unid_id`.
