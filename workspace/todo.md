@@ -8,7 +8,7 @@ Segue um checklist sequencial e direto para o projeto em PHP:
    - [x] Configurar o Docker Compose com:
      - Container PostgreSQL (última versão);
      - Container Min.IO para armazenamento S3.
-   - [ ] Criar o repositório no GitHub com README.md contendo seus dados e instruções de execução.
+   - [x] Criar o repositório no GitHub com README.md contendo seus dados e instruções de execução.
 
 2. **Autenticação & Autorização**  
    - [x] Implementar mecanismo de autenticação e autorização.
@@ -21,14 +21,14 @@ Segue um checklist sequencial e direto para o projeto em PHP:
    - [x] Garantir que os dados sejam salvos no PostgreSQL.
 
 4. **CRUDs e Endpoints Específicos**  
-   - [ ] Criar CRUD para:
+   - [x] Criar CRUD para:
      - [x] Cadastrar dados pessoais;
-     - [ ] Servidor Efetivo;
+     - [x] Servidor Efetivo;
      - [ ] Servidor Temporário;
      - [x] Unidade;
      - [x] Lotação.
-   - [ ] Incluir e editar dados das tabelas relacionadas.
-   - [ ] Endpoint para consulta de servidores efetivos:
+   - [x] Incluir e editar dados das tabelas relacionadas.
+   - [x] Endpoint para consulta de servidores efetivos:
      - Parametrizado por `unid_id`.
      - Retornar: Nome, idade, unidade de lotação e fotografia.
    - [ ] Endpoint para consulta do endereço funcional:
