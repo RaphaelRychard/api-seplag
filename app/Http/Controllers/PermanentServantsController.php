@@ -4,14 +4,24 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePermanentServantsRequest;
+use App\Http\Requests\StorePermanentServantRequest;
 use App\Http\Requests\UpdatePermanentServantsRequest;
+use App\Http\Resources\PermanentServantDetailResource;
 use App\Http\Resources\PermanentServantResource;
+use App\Http\Resources\UpdatePermanentServantResource;
+use App\Http\Services\PermanentServantServices;
 use App\Models\PermanentServants;
 use Illuminate\Http\Request;
 
 class PermanentServantsController extends Controller
 {
+    protected $permanentServantServices;
+
+    public function __construct(PermanentServantServices $permanentServantServices)
+    {
+        $this->permanentServantServices = $permanentServantServices;
+    }
+
     public function index(Request $request)
     {
         ds()->clear();
@@ -50,24 +60,27 @@ class PermanentServantsController extends Controller
 
     public function show(PermanentServants $permanentServants)
     {
-        return PermanentServantResource::make($permanentServants);
+        ds()->clear();
+        ds()->queriesOn();
+        ds($permanentServants);
+
+        return PermanentServantDetailResource::make($permanentServants);
     }
 
-    public function store(StorePermanentServantsRequest $request)
+    public function store(StorePermanentServantRequest $request)
     {
-        $data = $request->validated();
+        $data   = $request->validated();
+        $result = $this->permanentServantServices->create($data);
 
-        $permanentServants = PermanentServants::create($data);
-
-        return PermanentServantResource::make($permanentServants);
+        return new PermanentServantResource($result);
     }
 
     public function update(UpdatePermanentServantsRequest $request, PermanentServants $permanentServants)
     {
         $data = $request->validated();
 
-        $permanentServants->update($data);
+        $result = $this->permanentServantServices->update($permanentServants, $data);
 
-        return PermanentServantResource::make($permanentServants);
+        return new UpdatePermanentServantResource($result);
     }
 }

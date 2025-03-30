@@ -24,7 +24,12 @@ class UpdatePermanentServantsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nome'            => ['required', 'string', 'max:255'],
+            'data_nascimento' => ['required', 'date'],
+            'sexo'            => ['required', 'string'],
+            'mae'             => ['required', 'string'],
+            'pai'             => ['required', 'string'],
+            'se_matricula'    => ['required', 'string', 'max:255'],
         ];
     }
 }

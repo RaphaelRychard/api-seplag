@@ -5,7 +5,6 @@ declare(strict_types = 1);
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\PermanentServantsController;
-use App\Http\Controllers\PersonController;
 use App\Http\Controllers\TemporaryServantsController;
 use App\Http\Controllers\UnitController;
 use Illuminate\Http\Request;
@@ -16,11 +15,12 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::name('api.')->middleware('auth:sanctum')->group(function () {
-    Route::apiResource('/persons', PersonController::class)
-        ->only(['index', 'show' , 'store', 'update']);
-
     Route::apiResource('/permanent-servants', PermanentServantsController::class)
-        ->only(['index', 'show' , 'store', 'update']);
+        ->only(['index', 'store']);
+
+    Route::get('/permanent-servants/{permanentServants}', [PermanentServantsController::class, 'show']);
+
+    Route::put('/permanent-servants/{permanentServants}', [PermanentServantsController::class, 'update']);
 
     Route::apiResource('/temporary-servants', TemporaryServantsController::class)
         ->only(['index', 'show' , 'store', 'update']);

@@ -6,7 +6,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePermanentServantsRequest extends FormRequest
+class StorePermanentServantRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,12 @@ class StorePermanentServantsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'pes_id'       => ['required'],
-            'se_matricula' => ['required', 'string', 'max:255'],
+            'nome'            => ['required', 'string', 'max:255'],
+            'data_nascimento' => ['required', 'date'],
+            'sexo'            => ['required', 'string'],
+            'mae'             => ['required', 'string'],
+            'pai'             => ['required', 'string'],
+            'se_matricula'    => ['required', 'string', 'max:255'],
         ];
     }
 }
