@@ -9,8 +9,10 @@ services:
       MINIO_ROOT_USER: myadmin
       MINIO_ROOT_PASSWORD: mysecurepassword
     volumes:
-      - ~/docker/minio/data:/data
+      - ./docker/minio/data:/data  # Usando um diretório relativo dentro do seu projeto
     command: server /data --console-address ":9001"
+    networks:
+      - api-network
 
   pg:
     container_name: api-seplag
@@ -21,3 +23,14 @@ services:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
       - POSTGRES_DB=seplag
+    volumes:
+      - pg_data:/bitnami/postgresql/data
+    networks:
+      - api-network
+
+volumes:
+  pg_data:
+
+networks:
+  api-network:
+    driver: bridge
