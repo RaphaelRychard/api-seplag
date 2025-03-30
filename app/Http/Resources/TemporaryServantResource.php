@@ -21,7 +21,7 @@ class TemporaryServantResource extends JsonResource
     {
         return [
             'id'              => $this->id,
-            'pes_id'          => $this->person->pes_id,
+            'pes_id'          => $this->pes_id,
             'nome'            => $this->person->nome,
             'idade'           => Carbon::parse($this->person->data_nascimento)->age,
             'fotografia'      => $this->getFotoUrl(),
