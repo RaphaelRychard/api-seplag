@@ -13,27 +13,25 @@ class FileUploadController extends Controller
 {
     public function upload(FileUploadRequest $request)
     {
-        // Realiza o upload
-        $file = $request->file('file');
+        $file      = $request->file('file');
+        $extension = $file->getClientOriginalExtension();
+        $hash      = md5_file($file->getRealPath()) . '.' . $extension;
 
-        $hash = md5_file($file->getRealPath());
+        $path = $file->storeAs('uploads', $hash, 'minio');
 
         $bucket = config('filesystems.disks.minio.bucket');
-
-        $path = $file->store('uploads', 'minio');
 
         $personsPhoto = PersonsPhoto::create([
             'pes_id' => $request->pes_id,
             'data'   => now()->format('Y-m-d'),
             'bucket' => $bucket,
             'hash'   => $hash,
-            'path'   => $path,
         ]);
 
         return new FileResource((object)[
             'id'   => $personsPhoto->id,
             'path' => $path,
-            'url'  => Storage::disk('minio')->temporaryUrl($path, now()->addMinutes(5)),
+            'url'  => Storage::disk('minio')->temporaryUrl("uploads/{$hash}", now()->addMinutes(5)),
         ]);
     }
 }

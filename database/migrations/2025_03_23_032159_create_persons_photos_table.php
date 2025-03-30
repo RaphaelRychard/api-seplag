@@ -20,7 +20,6 @@ return new class () extends Migration
             $table->date('data');
             $table->string('bucket', 50);
             $table->string('hash', 50);
-            $table->string('path')->nullable();
         });
     }
 

@@ -18,21 +18,30 @@ class PermanentServantResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $photo   = $this->person->personsPhoto;
-        $fotoUrl = null;
-
-        if ($photo && ! empty($photo->path)) {
-            $fotoUrl = Storage::disk('minio')
-                ->temporaryUrl($photo->path, now()->addMinutes(5));
-        }
-
         return [
             'id'              => $this->id,
             'pes_id'          => $this->person->pes_id,
             'nome'            => $this->person->nome,
             'idade'           => Carbon::parse($this->person->data_nascimento)->age,
-            'fotografia'      => $fotoUrl,
+            'fotografia'      => $this->getFotoUrl(),
             'unidade_lotacao' => $this->getUnitOfLotacao(),
         ];
+    }
+
+    /**
+     * Obtém a URL temporária da fotografia.
+     */
+    private function getFotoUrl(): ?string
+    {
+        $photo = $this->person->personsPhoto;
+
+        if ($photo && ! empty($photo->hash)) {
+            $filePath = "uploads/{$photo->hash}"; // Ajuste a extensão conforme necessário
+
+            return Storage::disk('minio')
+                ->temporaryUrl($filePath, now()->addMinutes(5));
+        }
+
+        return null;
     }
 }
