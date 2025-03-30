@@ -22,6 +22,9 @@ Route::name('api.')->middleware('auth:sanctum')->group(function () {
     Route::apiResource('/permanent-servants', PermanentServantsController::class)
         ->only(['index', 'show' , 'store', 'update']);
 
+    Route::apiResource('/temporary-servants', TemporaryServantsController::class)
+        ->only(['index', 'show' , 'store', 'update']);
+
     Route::apiResource('/units', UnitController::class)
         ->only(['index', 'show' , 'store', 'update']);
 
