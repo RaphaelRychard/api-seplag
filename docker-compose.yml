@@ -23,10 +23,6 @@ services:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
       - POSTGRES_DB=seplag
-    volumes:
-      - pg_data:/bitnami/postgresql/data
-    networks:
-      - api-network
 
 volumes:
   pg_data:

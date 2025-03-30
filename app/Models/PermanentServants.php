@@ -25,4 +25,10 @@ class PermanentServants extends Model
     {
         return $this->person->assignment ? $this->person->assignment->unit : null;
     }
+
+    // No modelo PermanentServants
+    public function unidade_lotacao()
+    {
+        return $this->belongsTo(Unit::class, 'unid_id'); // Ajuste o nome da relação conforme seu esquema
+    }
 }
