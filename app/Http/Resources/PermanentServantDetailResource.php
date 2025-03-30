@@ -16,6 +16,7 @@ class PermanentServantDetailResource extends JsonResource
      *
      * @return array<string, mixed>
      */
+    #[\Override]
     public function toArray(Request $request): array
     {
         return [
@@ -24,8 +25,8 @@ class PermanentServantDetailResource extends JsonResource
             'nome'       => $this->person->nome,
             'idade'      => Carbon::parse($this->person->data_nascimento)->age,
             'fotografia' => $this->getFotoUrl(),
-            'unidade'    => UnitResource::make($this->person->assignment->unit),
-            'lotacao'    => AssignmentResource::make($this->person->assignment),
+            'unidade'    => optional($this->person->assignment)->unit,
+            'lotacao'    => optional($this->person)->assignment,
         ];
     }
 

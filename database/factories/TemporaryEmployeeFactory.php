@@ -20,7 +20,7 @@ class TemporaryEmployeeFactory extends Factory
     public function definition(): array
     {
         return [
-            'id'           => Person::factory(),
+            'id'               => Person::factory(),
             'st_data_admissao' => fake()->dateTimeBetween('-10 years', 'now'),
             'st_data_demissao' => fake()->dateTimeBetween('-1 years', 'now'),
         ];

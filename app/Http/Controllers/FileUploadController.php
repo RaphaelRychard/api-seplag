@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 
 class FileUploadController extends Controller
 {
-    public function upload(FileUploadRequest $request)
+    public function upload(FileUploadRequest $request): FileResource
     {
         $file      = $request->file('file');
         $extension = $file->getClientOriginalExtension();

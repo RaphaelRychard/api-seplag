@@ -10,11 +10,9 @@ use App\Http\Controllers\UnitController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+Route::get('/user', fn (Request $request) => $request->user())->middleware('auth:sanctum');
 
-Route::name('api.')->middleware('auth:sanctum')->group(function () {
+Route::name('api.')->middleware('auth:sanctum')->group(function (): void {
     Route::apiResource('/permanent-servants', PermanentServantsController::class)
         ->only(['index', 'store']);
 
@@ -23,7 +21,11 @@ Route::name('api.')->middleware('auth:sanctum')->group(function () {
     Route::put('/permanent-servants/{permanentServants}', [PermanentServantsController::class, 'update']);
 
     Route::apiResource('/temporary-servants', TemporaryServantsController::class)
-        ->only(['index', 'show' , 'store', 'update']);
+        ->only(['index', 'store']);
+
+    Route::get('/temporary-servants/{temporaryServants}', [TemporaryServantsController::class, 'show']);
+
+    Route::put('/temporary-servants/{temporaryServants}', [TemporaryServantsController::class, 'update']);
 
     Route::apiResource('/units', UnitController::class)
         ->only(['index', 'show' , 'store', 'update']);

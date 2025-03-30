@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Storage;
 
-class PermanentServantResource extends JsonResource
+class TemporaryServantDetailResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -20,12 +20,13 @@ class PermanentServantResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'              => $this->id,
-            'pes_id'          => $this->person->pes_id,
-            'nome'            => $this->person->nome,
-            'idade'           => Carbon::parse($this->person->data_nascimento)->age,
-            'fotografia'      => $this->getFotoUrl(),
-            'unidade_lotacao' => $this->getUnitOfLotacao(),
+            'id'         => $this->id,
+            'pes_id'     => $this->pes_id,
+            'nome'       => $this->person->nome,
+            'idade'      => Carbon::parse($this->person->data_nascimento)->age,
+            'fotografia' => $this->getFotoUrl(),
+            'unidade'    => optional($this->person->assignment)->unit,
+            'lotacao'    => optional($this->person)->assignment,
         ];
     }
 

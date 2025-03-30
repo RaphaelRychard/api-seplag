@@ -4,11 +4,11 @@ declare(strict_types = 1);
 
 namespace App\Http\Services;
 
-use App\Models\PermanentServants;
 use App\Models\Person;
+use App\Models\TemporaryServants;
 use Illuminate\Support\Facades\DB;
 
-class PermanentServantServices
+class TemporaryServantServices
 {
     public function create(array $data)
     {
@@ -21,17 +21,18 @@ class PermanentServantServices
                 'pai'             => $data['pai'],
             ]);
 
-            return PermanentServants::create([
-                'se_matricula' => $data['se_matricula'],
-                'pes_id'       => $person->id,
+            return TemporaryServants::create([
+                'pes_id'        => $person->id,
+                'data_admissao' => $data['data_admissao'],
+                'data_demissao' => $data['data_demissao'],
             ]);
         });
     }
 
-    public function update(PermanentServants $permanentServant, array $data)
+    public function update(TemporaryServants $temporaryServants, array $data)
     {
-        return DB::transaction(function () use ($permanentServant, $data): PermanentServants {
-            $permanentServant->person->update([
+        return DB::transaction(function () use ($temporaryServants, $data): TemporaryServants {
+            $temporaryServants->person->update([
                 'nome'            => $data['nome'],
                 'data_nascimento' => $data['data_nascimento'],
                 'sexo'            => $data['sexo'],
@@ -39,11 +40,12 @@ class PermanentServantServices
                 'pai'             => $data['pai'],
             ]);
 
-            $permanentServant->update([
-                'se_matricula' => $data['se_matricula'],
+            $temporaryServants->update([
+                'data_admissao' => $data['data_admissao'],
+                'data_demissao' => $data['data_demissao'],
             ]);
 
-            return $permanentServant;
+            return $temporaryServants;
         });
     }
 }

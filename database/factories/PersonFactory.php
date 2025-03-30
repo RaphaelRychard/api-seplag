@@ -28,8 +28,8 @@ class PersonFactory extends Factory
             "nome"            => fake()->name(),
             "data_nascimento" => fake()->date(),
             "sexo"            => fake()->randomElement($sex),
-            "per_mae"             => fake()->name(),
-            "per_pai"             => fake()->name(),
+            "per_mae"         => fake()->name(),
+            "per_pai"         => fake()->name(),
         ];
     }
 }

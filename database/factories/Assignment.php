@@ -22,7 +22,7 @@ class AssignmentFactory extends Factory
     {
         return [
             'id'           => Person::factory(),
-            'unid_id'          => Unit::factory(),
+            'unid_id'      => Unit::factory(),
             'data_lotacao' => fake()->dateTimeBetween('-10 years', 'now'),
             'data_remocao' => fake()->dateTimeBetween('-1 years', 'now'),
             'portaria'     => fake()->numerify('Portaria ####'),

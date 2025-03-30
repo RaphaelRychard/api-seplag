@@ -20,7 +20,7 @@ class PermanentEmployeeFactory extends Factory
     public function definition(): array
     {
         return [
-            'id'       => Person::factory(),
+            'id'           => Person::factory(),
             'se_matricula' => fake()->randomNumber(8, true),
         ];
     }

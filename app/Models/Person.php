@@ -21,6 +21,11 @@ class Person extends Model
         return $this->hasOne(PermanentServants::class, 'pes_id');
     }
 
+    public function temporaryServant()
+    {
+        return $this->hasOne(TemporaryServants::class, 'pes_id');
+    }
+
     public function assignment()
     {
         return $this->hasOne(Assignment::class, 'pes_id');

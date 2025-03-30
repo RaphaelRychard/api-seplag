@@ -15,23 +15,17 @@ use Illuminate\Http\Request;
 
 class PermanentServantsController extends Controller
 {
-    protected $permanentServantServices;
-
-    public function __construct(PermanentServantServices $permanentServantServices)
+    public function __construct(protected PermanentServantServices $permanentServantServices)
     {
-        $this->permanentServantServices = $permanentServantServices;
     }
 
     public function index(Request $request)
     {
-        ds()->clear();
-        ds()->queriesOn();
-
         $query = PermanentServants::query();
 
         $query->when(
             $request->has('unid_id'),
-            fn ($query) => $query->whereHas('person.assignment.unit', function ($q) use ($request) {
+            fn ($query) => $query->whereHas('person.assignment.unit', function ($q) use ($request): void {
                 $q->where('id', $request->query('unid_id'));
             })
         );
@@ -60,14 +54,10 @@ class PermanentServantsController extends Controller
 
     public function show(PermanentServants $permanentServants)
     {
-        ds()->clear();
-        ds()->queriesOn();
-        ds($permanentServants);
-
         return PermanentServantDetailResource::make($permanentServants);
     }
 
-    public function store(StorePermanentServantRequest $request)
+    public function store(StorePermanentServantRequest $request): PermanentServantResource
     {
         $data   = $request->validated();
         $result = $this->permanentServantServices->create($data);
@@ -75,7 +65,7 @@ class PermanentServantsController extends Controller
         return new PermanentServantResource($result);
     }
 
-    public function update(UpdatePermanentServantsRequest $request, PermanentServants $permanentServants)
+    public function update(UpdatePermanentServantsRequest $request, PermanentServants $permanentServants): UpdatePermanentServantResource
     {
         $data = $request->validated();
 
