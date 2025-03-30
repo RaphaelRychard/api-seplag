@@ -13,9 +13,19 @@ class UnitController extends Controller
 {
     public function index()
     {
-        return UnitResource::collection(
-            Unit::all(),
-        );
+        $paginatedResults = Unit::paginate(10);
+
+        return response()->json([
+            'data'       => UnitResource::collection($paginatedResults),
+            'pagination' => [
+                'total'        => $paginatedResults->total(),
+                'per_page'     => $paginatedResults->perPage(),
+                'current_page' => $paginatedResults->currentPage(),
+                'last_page'    => $paginatedResults->lastPage(),
+                'from'         => $paginatedResults->firstItem(),
+                'to'           => $paginatedResults->lastItem(),
+            ],
+        ]);
     }
 
     public function show(Unit $unit)
