@@ -3,6 +3,7 @@
 declare(strict_types = 1);
 
 use App\Http\Controllers\AssignmentController;
+use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\PermanentServantsController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\TemporaryServantsController;
@@ -29,4 +30,6 @@ Route::name('api.')->middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('/assignment', AssignmentController::class)
         ->only(['index', 'show' , 'store', 'update']);
+
+    Route::post('upload', [FileUploadController::class, 'upload']);
 });

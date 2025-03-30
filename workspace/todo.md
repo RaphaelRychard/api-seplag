@@ -13,8 +13,7 @@ Segue um checklist sequencial e direto para o projeto em PHP:
 2. **Autenticação & Autorização**  
    - [x] Implementar mecanismo de autenticação e autorização.
    - [x] Definir expiração de 5 minutos para a sessão com opção de renovação.
-
-   - [ ] Restringir o acesso aos endpoints para o domínio onde o serviço está hospedado.
+   - [x] Restringir o acesso aos endpoints para o domínio onde o serviço está hospedado.
 
 3. **Implementação da API REST**  
    - [x] Definir rotas utilizando os verbos: **POST**, **PUT**, **GET**.
@@ -36,8 +35,8 @@ Segue um checklist sequencial e direto para o projeto em PHP:
      - Baseado em parte do nome do servidor efetivo.
   
 5. **Upload e Recuperação de Imagens**  
-   - [ ] Realizar upload de uma ou mais fotografias para o Min.IO.
-   - [ ] Recuperar as imagens através de links temporários com expiração de 5 minutos.
+   - [x] Realizar upload de uma ou mais fotografias para o Min.IO.
+   - [x] Recuperar as imagens através de links temporários com expiração de 5 minutos.
 
 6. **Finalização**  
    - [ ] Adicionar todas as dependências necessárias.
