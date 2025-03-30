@@ -654,7 +654,7 @@ Este projeto está licenciado sob a [MIT License](LICENSE).
 
 - **Nome:** Seu Nome
 - **Contato:** seu.email@exemplo.com
-- **GitHub:** [seu-usuario](https://github.com/seu-usuario)
+- **GitHub:** [raphaelrychard](https://github.com/raphael rychard)
 
 ---
 
