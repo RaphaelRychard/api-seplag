@@ -125,7 +125,7 @@ A API está documentada no Postman e pode ser acessada diretamente no link abaix
 **Exemplo de visualização da documentação:**
 
 
-![Postman Preview](image.png)
+![Postman Preview](./workspace/image.png)
 
 ---
 
