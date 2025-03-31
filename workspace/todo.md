@@ -17,14 +17,14 @@ Segue um checklist sequencial e direto para o projeto em PHP:
 
 3. **Implementação da API REST**  
    - [x] Definir rotas utilizando os verbos: **POST**, **PUT**, **GET**.
-   - [ ] Adicionar recursos de paginação em todas as consultas.
+   - [x] Adicionar recursos de paginação em todas as consultas.
    - [x] Garantir que os dados sejam salvos no PostgreSQL.
 
 4. **CRUDs e Endpoints Específicos**  
    - [x] Criar CRUD para:
      - [x] Cadastrar dados pessoais;
      - [x] Servidor Efetivo;
-     - [ ] Servidor Temporário;
+     - [x] Servidor Temporário;
      - [x] Unidade;
      - [x] Lotação.
    - [x] Incluir e editar dados das tabelas relacionadas.

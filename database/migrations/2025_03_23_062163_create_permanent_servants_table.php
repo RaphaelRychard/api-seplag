@@ -17,7 +17,7 @@ return new class () extends Migration
         Schema::create('servidor_efetivo', function (Blueprint $table): void {
             $table->id();
             $table->foreignIdFor(Person::class, 'pes_id')->constrained('pessoa');
-            $table->string('se_matricula', 20);
+            $table->string('se_matricula', 20)->unique();
         });
     }
 

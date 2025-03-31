@@ -29,7 +29,12 @@ class StorePermanentServantRequest extends FormRequest
             'sexo'            => ['required', 'string'],
             'mae'             => ['required', 'string'],
             'pai'             => ['required', 'string'],
-            'se_matricula'    => ['required', 'string', 'max:255'],
+            'se_matricula'    => [
+                'required',
+                'string',
+                'max:255',
+                'unique:servidor_efetivo,se_matricula',
+            ],
         ];
     }
 }
