@@ -20,6 +20,9 @@ Route::name('api.')->middleware('auth:sanctum')->group(function (): void {
 
     Route::put('/permanent-servants/{permanentServants}', [PermanentServantsController::class, 'update']);
 
+
+
+
     Route::apiResource('/temporary-servants', TemporaryServantsController::class)
         ->only(['index', 'store']);
 

@@ -22,23 +22,32 @@ class PermanentServantsController extends Controller
     public function index(Request $request)
     {
         $query = PermanentServants::query();
-
+    
+        // Filtro por unidade (se fornecido)
         $query->when(
             $request->has('unid_id'),
             fn ($query) => $query->whereHas('person.assignment.unit', function ($q) use ($request): void {
                 $q->where('id', $request->query('unid_id'));
             })
         );
-
+    
+        // Filtro por parte do nome do servidor efetivo
+        $query->when(
+            $request->has('nome'),
+            fn ($query) => $query->whereHas('person', function ($q) use ($request): void {
+                $q->where('nome', 'like', '%' . $request->query('nome') . '%');
+            })
+        );
+    
+        // Carrega relações dinamicamente, se necessário
         $query->when(
             $request->has('with'),
             fn ($query) => $query->with(explode(',', $request->query('with')))
         );
-
+    
         $perPage = $request->query('per_page', 10);
-
         $paginatedResults = $query->paginate($perPage);
-
+    
         return response()->json([
             'data'       => PermanentServantResource::collection($paginatedResults),
             'pagination' => [
@@ -51,6 +60,8 @@ class PermanentServantsController extends Controller
             ],
         ]);
     }
+    
+
 
     public function show(PermanentServants $permanentServants)
     {

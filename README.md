@@ -1,67 +1,57 @@
-### Seplag API
+# Seplag API
 
 Uma API REST desenvolvida para gerenciar os dados da SEPLAG, conforme o diagrama de banco de dados e as orientações do edital. 
-A solução implementa um CRUD para Servidor Efetivo, Servidor Temporário, Unidade e Lotação, além de endpoints específicos para consultas e upload de fotografias utilizando Min.IO.
+A solução implementa um CRUD para Servidores Efetivos, Servidores Temporários, Unidades e Lotações, além de endpoints específicos para consultas e upload de fotografias utilizando Min.IO.
 
 ---
 
 ## Sumário
 
-- [Sumário](#sumário)
-- [Visão Geral](#visão-geral)
-- [Requisitos Específicos](#requisitos-específicos)
-- [Requisitos e Dependências](#requisitos-e-dependências)
-- [Instalação](#instalação)
-  - [Com Docker Compose](#com-docker-compose)
-  - [Sem Docker](#sem-docker)
-- [Uso](#uso)
-- [Endpoints](#endpoints)
-  - [Autenticação](#autenticação)
-  - [Servidores Efetivos e Temporários](#servidores-efetivos-e-temporários)
-  - [Unidades](#unidades)
-  - [Lotação](#lotação)
-  - [Consultas Específicas](#consultas-específicas)
-  - [Upload de Fotografias](#upload-de-fotografias)
-- [Exemplos de Erros](#exemplos-de-erros)
-- [Contribuição](#contribuição)
-- [Licença](#licença)
-- [Dados do Desenvolvedor](#dados-do-desenvolvedor)
+- [Seplag API](#seplag-api)
+  - [Sumário](#sumário)
+  - [Visão Geral](#visão-geral)
+  - [Requisitos](#requisitos)
+  - [Instalação](#instalação)
+    - [Com Docker Compose](#com-docker-compose)
+    - [Sem Docker](#sem-docker)
+  - [Uso](#uso)
+    - [Autenticação](#autenticação)
+    - [Documentação no Postman](#documentação-no-postman)
+  - [Endpoints](#endpoints)
+    - [Servidores Efetivos e Temporários](#servidores-efetivos-e-temporários)
+    - [Unidades](#unidades)
+    - [Lotações](#lotações)
+  - [Contribuição](#contribuição)
+  - [Licença](#licença)
+  - [Dados do Desenvolvedor](#dados-do-desenvolvedor)
 
 ---
 
 ## Visão Geral
 
-A Seplag API foi desenvolvida utilizando PHP (Laravel) para gerenciar operações de CRUD e consultas referentes a:
+A **Seplag API** foi desenvolvida utilizando **PHP (Laravel)** para gerenciar operações de CRUD e consultas referentes a:
 
-- **Servidor Efetivo**
-- **Servidor Temporário**
-- **Unidade**
-- **Lotação**
+- **Servidores Efetivos**
+- **Servidores Temporários**
+- **Unidades**
+- **Lotações**
 
 Além disso, foram implementados endpoints para:
 
 - Consultar servidores efetivos lotados em determinada unidade.
 - Consultar o endereço funcional a partir do nome do servidor.
-- Realizar upload de fotografias para o Min.IO, gerando links temporários de acesso.
+- Realizar upload de fotografias para o **Min.IO**, gerando links temporários de acesso.
 
 ---
 
-## Requisitos Específicos
+## Requisitos
 
-- **CRUD Completo** para todas as entidades mencionadas.
-- **Endpoints de consulta** por unidade e nome.
-- **Upload de fotografias** com recuperação via links temporários.
-- **Versionamento e Documentação** no GitHub, sem commits após o prazo de entrega.
-
----
-
-## Requisitos e Dependências
-
-- **PHP:** Versão 8 ou superior.
-- **Composer:** Gerenciador de dependências do PHP.
-- **Docker & Docker Compose:** Para ambiente isolado.
-- **Banco de Dados:** MySQL/PostgreSQL compatível com Laravel.
-- **Min.IO Client:** Para armazenamento de imagens.
+- **PHP:** Versão 8.3
+- **Laravel:** Versão 12
+- **Composer:** Gerenciador de dependências do PHP
+- **Docker & Docker Compose:** Para ambiente isolado
+- **Banco de Dados:** PostgreSQL
+- **Min.IO Client:** Para armazenamento de imagens
 
 ---
 
@@ -78,10 +68,12 @@ Além disso, foram implementados endpoints para:
    ```bash
    cp .env.example .env
    ```
-3. Ajuste o `.env` e suba os containers:
+3. Ajuste as configurações no `.env` e suba os containers:
    ```bash
-   docker-compose up --build
+   docker-compose up -d
    ```
+
+---
 
 ### Sem Docker
 
@@ -107,68 +99,100 @@ Além disso, foram implementados endpoints para:
 
 ## Uso
 
-Para testar os endpoints, utilize Postman ou cURL. Para autenticação, inclua `Authorization: Bearer {token}` nos cabeçalhos.
-
----
-
-## Endpoints
+Para testar os endpoints, utilize **Postman** ou **cURL**. Para autenticação, inclua `Authorization: Bearer {token}` nos cabeçalhos.
 
 ### Autenticação
 
-- **[POST] /api/register** - Registra um novo usuário.
-- **[POST] /api/login** - Autentica e retorna um token JWT.
-- **[GET] /api/user** - Retorna dados do usuário autenticado.
+Exemplo de login via `cURL`:
+```bash
+curl -X POST "http://localhost/api/login" \
+     -H "Content-Type: application/json" \
+     -d '{"email": "user@example.com", "password": "senha123"}'
+```
 
-### Servidores Efetivos e Temporários
+Sim, é possível incorporar o preview diretamente na documentação, como uma imagem ou um link de visualização do Postman.
 
-- **[POST] /api/permanent-servants** - Registra um servidor efetivo.
-- **[GET] /api/permanent-servants** - Lista todos os servidores efetivos.
-- **[GET] /api/permanent-servants/{id}** - Retorna um servidor específico.
-- **[PUT] /api/permanent-servants/{id}** - Atualiza um servidor efetivo.
-
-### Unidades
-
-- **[POST] /api/units** - Cria uma unidade.
-- **[GET] /api/units** - Lista todas as unidades.
-- **[GET] /api/units/{id}** - Retorna uma unidade específica.
-- **[PUT] /api/units/{id}** - Atualiza uma unidade.
-
-### Lotação
-
-- **[POST] /api/assignment** - Registra uma nova lotação.
-- **[GET] /api/assignment** - Lista todas as lotações.
-- **[GET] /api/assignment/{id}** - Retorna uma lotação específica.
-- **[PUT] /api/assignment/{id}** - Atualiza uma lotação.
-
-### Consultas Específicas
-
-- **[GET] /api/servers/by-unit** - Retorna servidores por unidade.
-- **[GET] /api/address/by-name** - Retorna o endereço funcional.
-
-### Upload de Fotografias
-
-- **[POST] /api/upload** - Envia uma ou mais imagens.
+Aqui está a versão atualizada da documentação, incluindo o preview de como acessá-la no Postman:
 
 ---
 
-## Exemplos de Erros
+### Documentação no Postman
 
-- **400 – Requisição Inválida**
-- **401 – Não Autorizado**
-- **404 – Recurso Não Encontrado**
-- **500 – Erro Interno do Servidor**
+A API está documentada no Postman e pode ser acessada diretamente no link abaixo:
+
+- [Documentação no Postman](https://documenter.getpostman.com/view/32616805/2sB2cPkR88)
+
+**Exemplo de visualização da documentação:**
+
+
+![Postman Preview](image.png)
+
+---
+
+Com isso, o link da documentação no Postman está bem destacado, e inclui uma visualização para quem preferir ver um preview. Se precisar de mais ajustes ou outro formato, só me avisar! 😄
+
+## Endpoints
+
+### Servidores Efetivos e Temporários
+
+- **[GET] /api/permanent-servants** - Listar servidores efetivos com filtros opcionais:
+  - `per_page`: Quantidade de itens por página.
+  - `page`: Página atual.
+  - `unid_id`: Filtrar por unidade.
+  - `nome`: Filtrar por nome.
+  
+  **Exemplo:**
+  ```bash
+  {{url}}/api/permanent-servants?per_page=10&page=1&unid_id=1&nome=Kunde
+  ```
+
+- **[GET] /api/temporary-servants** - Listar servidores temporários com filtros opcionais:
+  - `per_page`: Quantidade de itens por página.
+  - `page`: Página atual.
+  - `unid_id`: Filtrar por unidade.
+  
+  **Exemplo:**
+  ```bash
+  {{url}}/api/temporary-servants?per_page=10&page=1&unid_id=1
+  ```
+
+- **[POST] /api/permanent-servants** - Criar um servidor efetivo.
+- **[GET] /api/permanent-servants/{id}** - Retornar um servidor específico.
+- **[PUT] /api/permanent-servants/{id}** - Atualizar um servidor efetivo.
+- **[DELETE] /api/permanent-servants/{id}** - Remover um servidor efetivo.
+
+### Unidades
+
+- **[POST] /api/units** - Criar uma unidade.
+- **[GET] /api/units** - Listar todas as unidades.
+- **[GET] /api/units/{id}** - Retornar uma unidade específica.
+- **[PUT] /api/units/{id}** - Atualizar uma unidade.
+- **[DELETE] /api/units/{id}** - Remover uma unidade.
+
+### Lotações
+
+- **[POST] /api/assignment** - Criar uma lotação.
+- **[GET] /api/assignment** - Listar todas as lotações.
+- **[GET] /api/assignment/{id}** - Retornar uma lotação específica.
+- **[PUT] /api/assignment/{id}** - Atualizar uma lotação.
+- **[DELETE] /api/assignment/{id}** - Remover uma lotação.
 
 ---
 
 ## Contribuição
 
-Sugestões e melhorias são bem-vindas! Envie um pull request ou abra uma issue no GitHub.
+Sugestões e melhorias são bem-vindas! Envie um **pull request** ou abra uma **issue** no GitHub.
+
+---
 
 ## Licença
 
 Este projeto está licenciado sob a [MIT License](LICENSE).
 
+---
+
 ## Dados do Desenvolvedor
 
 - **Nome:** Raphael Rychard
 - **GitHub:** [RaphaelRychard](https://github.com/RaphaelRychard)
+
