@@ -193,6 +193,11 @@ Este projeto está licenciado sob a [MIT License](LICENSE).
 
 ## Dados do Desenvolvedor
 
-- **Nome:** Raphael Rychard
+- **Nome:** Raphael Rychard Soares de Almeida Souza
 - **GitHub:** [RaphaelRychard](https://github.com/RaphaelRychard)
+
+## Dados de inscrição
+- **Minha inscrição**: PSS 02/2025/SEPLAG (Analista de TI - Perfil Junior, Pleno e Sênior)
+- **Número da inscrição**: 8463
+- **Perfil: DESENVOLVEDOR PHP** - JÚNIOR
 
