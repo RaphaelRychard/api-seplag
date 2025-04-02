@@ -54,9 +54,6 @@ class TemporaryServantsController extends Controller
 
     public function show(TemporaryServants $temporaryServants)
     {
-        ds()->clear();
-        ds($temporaryServants);
-
         return TemporaryServantDetailResource::make($temporaryServants);
     }
 
