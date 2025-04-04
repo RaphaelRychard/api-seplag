@@ -21,7 +21,7 @@ it('should be able to edit a unit', function (): void {
     ];
 
     $sut = putJson(route('api.units.update', $unit->id), $updateData);
-    $sut->assertStatus(200);
+    $sut->assertOk();
 
     assertDatabaseHas('unidade', [
         'id'   => $unit->id,
@@ -38,7 +38,7 @@ it('should not allow editing a unit with duplicate sigla', function (): void {
         'sigla' => 'DUPLICADA',
     ]);
 
-    $sut->assertStatus(422);
+    $sut->assertUnprocessable();
 
     assertDatabaseHas('unidade', [
         'id'    => $unitA->id,

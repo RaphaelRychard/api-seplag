@@ -8,7 +8,7 @@ use function Pest\Laravel\getJson;
 
 beforeEach(fn () => login());
 
-it('should be able to show a unit', function (): void {
+it('should be able to get unit details when a valid ID is provided', function (): void {
     $unit = Unit::factory()->create([
         'nome'  => 'Unidade Exemplo',
         'sigla' => 'UEX',
@@ -24,8 +24,7 @@ it('should be able to show a unit', function (): void {
         ]);
 });
 
-it('should return 404 when trying to show a non-existent unit', function (): void {
-    $sut = getJson(route('api.units.show', 9999));
-
-    $sut->assertStatus(404);
+it('should not be able to fetch a unit with an invalid ID', function (): void {
+    getJson(route('api.units.show', 9999))
+        ->assertNotFound();
 });
