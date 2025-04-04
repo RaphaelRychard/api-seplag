@@ -52,9 +52,9 @@ class TemporaryServantsController extends Controller
         ]);
     }
 
-    public function show(TemporaryServants $temporaryServants)
+    public function show(TemporaryServants $temporaryServant)
     {
-        return TemporaryServantDetailResource::make($temporaryServants);
+        return TemporaryServantDetailResource::make($temporaryServant);
     }
 
     public function store(StoreTemporaryServantRequest $request): TemporaryServantResource
@@ -65,11 +65,11 @@ class TemporaryServantsController extends Controller
         return new TemporaryServantResource($result);
     }
 
-    public function update(UpdateTemporaryServantRequest $request, TemporaryServants $temporaryServants): UpdateTemporaryServantResource
+    public function update(UpdateTemporaryServantRequest $request, TemporaryServants $temporaryServant): UpdateTemporaryServantResource
     {
         $data = $request->validated();
 
-        $result = $this->temporaryServantServices->update($temporaryServants, $data);
+        $result = $this->temporaryServantServices->update($temporaryServant, $data);
 
         return new UpdateTemporaryServantResource($result);
     }

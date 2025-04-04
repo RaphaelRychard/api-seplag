@@ -28,7 +28,7 @@ class FileUploadController extends Controller
             'hash'   => $hash,
         ]);
 
-        return new FileResource((object)[
+        return new FileResource((object) [
             'id'   => $personsPhoto->id,
             'path' => $path,
             'url'  => Storage::disk('minio')->temporaryUrl("uploads/{$hash}", now()->addMinutes(5)),

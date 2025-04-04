@@ -19,20 +19,20 @@ class UnitFactory extends Factory
     public function definition(): array
     {
         $unitSeplag = [
-            "GAB"  => "Gabinete do Secretário de Estado de Planejamento e Gestão",
-            "STI"  => "Superintendência de Tecnologia da Informação Setorial",
-            "SES"  => "Superintendência de Estudos Socioeconômicos",
-            "CSST" => "Conselho de Saúde e Segurança no Trabalho",
-            "NAP"  => "Núcleo de Ações Prioritárias",
-            "OUV"  => "Ouvidoria Setorial",
-            "USCI" => "Unidade Setorial de Controle Interno",
-            "SGFP" => "Superintendência de Gestão de Folha de Pagamento",
-            "SAP"  => "Superintendência de Arquivo Público",
-            "SPP"  => "Superintendência de Patrimônio Público",
+            'GAB'  => 'Gabinete do Secretário de Estado de Planejamento e Gestão',
+            'STI'  => 'Superintendência de Tecnologia da Informação Setorial',
+            'SES'  => 'Superintendência de Estudos Socioeconômicos',
+            'CSST' => 'Conselho de Saúde e Segurança no Trabalho',
+            'NAP'  => 'Núcleo de Ações Prioritárias',
+            'OUV'  => 'Ouvidoria Setorial',
+            'USCI' => 'Unidade Setorial de Controle Interno',
+            'SGFP' => 'Superintendência de Gestão de Folha de Pagamento',
+            'SAP'  => 'Superintendência de Arquivo Público',
+            'SPP'  => 'Superintendência de Patrimônio Público',
         ];
 
         return [
-            'name'  => fake()->randomElement(array_values($unitSeplag)),
+            'nome'  => fake()->randomElement(array_values($unitSeplag)),
             'sigla' => fake()->randomElement(array_keys($unitSeplag)),
         ];
     }

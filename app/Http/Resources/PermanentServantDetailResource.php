@@ -27,12 +27,12 @@ class PermanentServantDetailResource extends JsonResource
             'fotografia' => $this->getFotoUrl(),
             'unidade'    => optional($this->person->assignment)->unit,
             'lotacao'    => [
-                "id"           => optional($this->person)->assignment->id,
-                "pes_id"       => optional($this->person)->assignment->pes_id,
-                "unid_id"      => optional($this->person)->assignment->unid_id,
-                "data_lotacao" => optional($this->person)->assignment->data_lotacao,
-                "data_remocao" => optional($this->person)->assignment->data_remocao,
-                "portaria"     => optional($this->person)->assignment->portaria,
+                'id'           => optional($this->person->assignment)->id,
+                'pes_id'       => optional($this->person->assignment)->pes_id,
+                'unid_id'      => optional($this->person->assignment)->unid_id,
+                'data_lotacao' => optional($this->person->assignment)->data_lotacao,
+                'data_remocao' => optional($this->person->assignment)->data_remocao,
+                'portaria'     => optional($this->person->assignment)->portaria,
             ],
         ];
     }
@@ -45,7 +45,7 @@ class PermanentServantDetailResource extends JsonResource
         $photo = $this->person->personsPhoto;
 
         if ($photo && ! empty($photo->hash)) {
-            $filePath = "uploads/{$photo->hash}"; // Ajuste a extensão conforme necessário
+            $filePath = "uploads/{$photo->hash}";
 
             return Storage::disk('minio')
                 ->temporaryUrl($filePath, now()->addMinutes(5));

@@ -27,12 +27,12 @@ class TemporaryServantDetailResource extends JsonResource
             'fotografia' => $this->getFotoUrl(),
             'unidade'    => optional($this->person->assignment)->unit,
             'lotacao'    => [
-                "id"           => optional($this->person)->assignment->id,
-                "pes_id"       => optional($this->person)->assignment->pes_id,
-                "unid_id"      => optional($this->person)->assignment->unid_id,
-                "data_lotacao" => optional($this->person)->assignment->data_lotacao,
-                "data_remocao" => optional($this->person)->assignment->data_remocao,
-                "portaria"     => optional($this->person)->assignment->portaria,
+                'id'           => optional($this->person->assignment)->id,
+                'pes_id'       => optional($this->person->assignment)->pes_id,
+                'unid_id'      => optional($this->person->assignment)->unid_id,
+                'data_lotacao' => optional($this->person->assignment)->data_lotacao,
+                'data_remocao' => optional($this->person->assignment)->data_remocao,
+                'portaria'     => optional($this->person->assignment)->portaria,
             ],
         ];
     }
