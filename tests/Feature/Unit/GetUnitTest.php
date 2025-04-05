@@ -4,9 +4,10 @@ declare(strict_types = 1);
 
 use App\Models\Unit;
 
+use Illuminate\Contracts\Auth\Authenticatable;
 use function Pest\Laravel\getJson;
 
-beforeEach(fn () => login());
+beforeEach(fn (): Authenticatable => login());
 
 it('should be able to get unit details when a valid ID is provided', function (): void {
     $unit = Unit::factory()->create([

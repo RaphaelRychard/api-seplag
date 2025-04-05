@@ -15,7 +15,9 @@ use Illuminate\Http\Request;
 
 class PermanentServantsController extends Controller
 {
-    public function __construct(protected PermanentServantServices $permanentServantServices) {}
+    public function __construct(protected PermanentServantServices $permanentServantServices)
+    {
+    }
 
     public function index(Request $request)
     {

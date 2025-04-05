@@ -8,7 +8,7 @@ use Illuminate\Support\Carbon;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\patchJson;
 
-beforeEach(fn () => login());
+beforeEach(fn (): \Illuminate\Contracts\Auth\Authenticatable => login());
 
 it('should be able to remove (end) an assignment', function (): void {
     $assignment = Assignment::factory()->create([

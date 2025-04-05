@@ -30,7 +30,7 @@ class RemoveAssignmentRequest extends FormRequest
 
     public function withValidator($validator): void
     {
-        $validator->after(function ($validator) {
+        $validator->after(function ($validator): void {
             $assignment = $this->route('assignment');
 
             if ($assignment->data_remocao !== null) {

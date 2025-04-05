@@ -4,9 +4,10 @@ declare(strict_types = 1);
 
 use App\Models\Unit;
 
+use Illuminate\Contracts\Auth\Authenticatable;
 use function Pest\Laravel\getJson;
 
-beforeEach(fn () => login());
+beforeEach(fn (): Authenticatable => login());
 
 it('should be able to fetch all units', function (): void {
     $units = Unit::factory(10)->create();
@@ -14,7 +15,7 @@ it('should be able to fetch all units', function (): void {
     $sut = getJson(route('api.units.index'));
     $sut->assertOk();
 
-    $units->each(function ($unit) use ($sut) {
+    $units->each(function ($unit) use ($sut): void {
         $sut->assertJsonFragment([
             'id'    => $unit->id,
             'nome'  => $unit->nome,

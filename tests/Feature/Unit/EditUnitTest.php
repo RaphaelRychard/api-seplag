@@ -4,10 +4,11 @@ declare(strict_types = 1);
 
 use App\Models\Unit;
 
+use Illuminate\Contracts\Auth\Authenticatable;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\putJson;
 
-beforeEach(fn () => login());
+beforeEach(fn (): Authenticatable => login());
 
 it('should be able to edit a unit', function (): void {
     $unit = Unit::factory()->create([

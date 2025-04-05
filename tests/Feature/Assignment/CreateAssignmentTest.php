@@ -7,10 +7,11 @@ use App\Models\Person;
 
 use App\Models\Unit;
 
+use Illuminate\Contracts\Auth\Authenticatable;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\postJson;
 
-beforeEach(fn () => login());
+beforeEach(fn (): Authenticatable => login());
 
 it('should be able to create new assignment', function (): void {
     $person = Person::factory()->create();
@@ -84,7 +85,7 @@ it('should not allow person to be assigned to multiple active units', function (
     $sut->assertJsonValidationErrors(['pes_id']);
 });
 
-it('should be able to assign a person to a new unit if previously removed from another', function () {
+it('should be able to assign a person to a new unit if previously removed from another', function (): void {
     $person = Person::factory()->create();
     $unit1  = Unit::factory()->create();
     $unit2  = Unit::factory()->create();
@@ -117,7 +118,7 @@ it('should be able to assign a person to a new unit if previously removed from a
     $this->assertDatabaseCount('lotacao', 2);
 });
 
-it('should not allow new assignment if previous one is still active', function () {
+it('should not allow new assignment if previous one is still active', function (): void {
     $person = Person::factory()->create();
     $unit1  = Unit::factory()->create();
     $unit2  = Unit::factory()->create();
