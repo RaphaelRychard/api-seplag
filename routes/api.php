@@ -25,5 +25,6 @@ Route::name('api.')->middleware('auth:sanctum')->group(function (): void {
     Route::patch('/assignment/{assignment}/remove', [AssignmentController::class, 'remove'])
         ->name('assignment.remove');
 
-    Route::post('upload', [FileUploadController::class, 'upload']);
+    Route::post('/photograph', [FileUploadController::class, 'upload'])
+        ->name('photograph.upload');
 });

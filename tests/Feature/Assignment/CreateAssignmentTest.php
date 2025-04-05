@@ -8,6 +8,7 @@ use App\Models\Person;
 use App\Models\Unit;
 
 use Illuminate\Contracts\Auth\Authenticatable;
+
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\postJson;
 
@@ -115,7 +116,7 @@ it('should be able to assign a person to a new unit if previously removed from a
         'portaria'     => 'PORT-2222',
     ])->assertStatus(201);
 
-    $this->assertDatabaseCount('lotacao', 2);
+    expect(DB::table('lotacao')->count())->toBe(2);
 });
 
 it('should not allow new assignment if previous one is still active', function (): void {
