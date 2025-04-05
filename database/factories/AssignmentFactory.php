@@ -21,10 +21,10 @@ class AssignmentFactory extends Factory
     public function definition(): array
     {
         return [
-            'id'           => Person::factory(),
+            'pes_id'       => Person::factory(),
             'unid_id'      => Unit::factory(),
             'data_lotacao' => fake()->dateTimeBetween('-10 years', 'now'),
-            'data_remocao' => fake()->dateTimeBetween('-1 years', 'now'),
+            'data_remocao' => null,
             'portaria'     => fake()->numerify('Portaria ####'),
         ];
     }

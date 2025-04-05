@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreAssignmentRequest extends FormRequest
 {
@@ -24,10 +25,15 @@ class StoreAssignmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'pes_id'       => ['required', 'string', 'exists:pessoa,id', 'unique:lotacao,pes_id,NULL,id,unid_id,' . $this->unid_id],
+            'pes_id' => [
+                'required',
+                'string',
+                'exists:pessoa,id',
+                Rule::unique('lotacao')->whereNull('data_remocao'),
+            ],
             'unid_id'      => ['required', 'string', 'exists:unidade,id'],
             'data_lotacao' => ['required', 'date'],
-            'data_remocao' => ['required', 'date'],
+            'data_remocao' => ['nullable', 'date', 'after_or_equal:data_lotacao'],
             'portaria'     => ['required', 'string', 'min:3', 'max:100'],
         ];
     }

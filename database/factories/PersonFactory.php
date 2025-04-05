@@ -25,11 +25,11 @@ class PersonFactory extends Factory
         ];
 
         return [
-            "nome"            => fake()->name(),
-            "data_nascimento" => fake()->date(),
-            "sexo"            => fake()->randomElement($sex),
-            "per_mae"         => fake()->name(),
-            "per_pai"         => fake()->name(),
+            'nome'            => fake()->name(),
+            'data_nascimento' => fake()->date(),
+            'sexo'            => fake()->randomElement($sex),
+            'mae'             => fake()->name(),
+            'pai'             => fake()->name(),
         ];
     }
 }

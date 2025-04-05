@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Assignment extends Model
 {
-    /** @use HasFactory<\Database\Factories\Assignment> */
+    /** @use HasFactory<\Database\Factories\AssignmentFactory> */
     use HasFactory;
 
     protected $table = 'lotacao';

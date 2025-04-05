@@ -15,15 +15,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lotacao', function (Blueprint $table): void {
+        Schema::create('lotacao', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Person::class, 'pes_id')->constrained('pessoa');
             $table->foreignIdFor(Unit::class, 'unid_id')->constrained('unidade');
             $table->date('data_lotacao');
-            $table->date('data_remocao');
+            $table->date('data_remocao')->nullable();
             $table->string('portaria', 100);
 
-            $table->unique(['pes_id', 'unid_id']);
+            // Índice único composto para pes_id e data_remocao
+            $table->unique(['pes_id', 'data_remocao']);
         });
     }
 

@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RemoveAssignmentRequest;
 use App\Http\Requests\StoreAssignmentRequest;
 use App\Http\Requests\UpdateAssignmentRequest;
 use App\Http\Resources\AssignmentResource;
@@ -49,5 +50,15 @@ class AssignmentController extends Controller
         $assignment->update($data);
 
         return AssignmentResource::make($assignment);
+    }
+
+    public function remove(RemoveAssignmentRequest $request, Assignment $assignment)
+    {
+        $data = $request->validated();
+
+        $assignment->update($data);
+
+        return (new AssignmentResource($assignment))
+            ->additional(['mensagem' => 'Remoção feita com sucesso.']);
     }
 }

@@ -6,7 +6,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateAssignmentRequest extends FormRequest
+class RemoveAssignmentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,18 @@ class UpdateAssignmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'data_lotacao' => ['required', 'date'],
-            'portaria'     => ['required', 'string', 'min:3', 'max:100'],
+            'data_remocao' => ['required', 'date'],
         ];
+    }
+
+    public function withValidator($validator): void
+    {
+        $validator->after(function ($validator) {
+            $assignment = $this->route('assignment');
+
+            if ($assignment->data_remocao !== null) {
+                $validator->errors()->add('data_remocao', 'O assignment já foi removido.');
+            }
+        });
     }
 }
