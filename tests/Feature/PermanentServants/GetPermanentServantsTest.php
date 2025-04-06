@@ -13,7 +13,7 @@ use function Pest\Laravel\getJson;
 
 beforeEach(fn () => login());
 
-it('deve retornar os dados detalhados de um servidor permanente', function () {
+it('should be able to return detailed information of a permanent servant', function () {
     Storage::fake('minio');
 
     $unit = Unit::factory()->create(['nome' => 'Unidade Central']);
@@ -63,4 +63,70 @@ it('deve retornar os dados detalhados de um servidor permanente', function () {
             ],
         ])
         ->assertJsonPath('data.fotografia', fn ($url) => str_contains($url, 'foto123.jpg'));
+});
+
+it('should be able to return null for unit and assignment when there is no active assignment', function () {
+    $person = Person::factory()->create([
+        'nome'            => 'Maria Souza',
+        'data_nascimento' => now()->subYears(40),
+    ]);
+
+    PersonsPhoto::factory()->create([
+        'pes_id' => $person->id,
+        'hash'   => 'foto_maria.jpg',
+    ]);
+
+    Assignment::factory()->create([
+        'pes_id'       => $person->id,
+        'unid_id'      => Unit::factory()->create()->id,
+        'data_lotacao' => '2015-05-10',
+        'data_remocao' => now()->toDateString(), // já foi removido
+    ]);
+
+    $servant = PermanentServants::factory()->create(['pes_id' => $person->id]);
+
+    $sut = getJson(route('api.permanent-servants.show', $servant->id));
+
+    $sut->assertOk()
+        ->assertJson([
+            'data' => [
+                'id'      => $servant->id,
+                'pes_id'  => $person->id,
+                'nome'    => 'Maria Souza',
+                'unidade' => null,
+                'lotacao' => null,
+            ],
+        ])
+        ->assertJsonPath('data.fotografia', fn ($url) => str_contains($url, 'foto_maria.jpg'));
+});
+
+it('should be able to return null photo when person has no photo registered', function () {
+    $unit = Unit::factory()->create();
+
+    $person = Person::factory()->create([
+        'nome'            => 'Carlos Mendes',
+        'data_nascimento' => now()->subYears(50),
+    ]);
+
+    Assignment::factory()->create([
+        'pes_id'       => $person->id,
+        'unid_id'      => $unit->id,
+        'portaria'     => '456/2021',
+        'data_lotacao' => '2021-02-02',
+        'data_remocao' => null,
+    ]);
+
+    $servant = PermanentServants::factory()->create(['pes_id' => $person->id]);
+
+    $sut = getJson(route('api.permanent-servants.show', $servant->id));
+
+    $sut->assertOk()
+        ->assertJson([
+            'data' => [
+                'id'         => $servant->id,
+                'pes_id'     => $person->id,
+                'nome'       => 'Carlos Mendes',
+                'fotografia' => null,
+            ],
+        ]);
 });
