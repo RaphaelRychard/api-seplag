@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\Storage;
 
 use function Pest\Laravel\getJson;
 
-beforeEach(fn () => login());
+beforeEach(fn (): Illuminate\Contracts\Auth\Authenticatable => login());
 
-it('should be able to return detailed information of a permanent servant', function () {
+it('should be able to return detailed information of a permanent servant', function (): void {
     Storage::fake('minio');
 
     $unit = Unit::factory()->create(['nome' => 'Unidade Central']);
@@ -62,10 +62,10 @@ it('should be able to return detailed information of a permanent servant', funct
                 ],
             ],
         ])
-        ->assertJsonPath('data.fotografia', fn ($url) => str_contains($url, 'foto123.jpg'));
+        ->assertJsonPath('data.fotografia', fn ($url): bool => str_contains((string) $url, 'foto123.jpg'));
 });
 
-it('should be able to return null for unit and assignment when there is no active assignment', function () {
+it('should be able to return null for unit and assignment when there is no active assignment', function (): void {
     $person = Person::factory()->create([
         'nome'            => 'Maria Souza',
         'data_nascimento' => now()->subYears(40),
@@ -80,7 +80,7 @@ it('should be able to return null for unit and assignment when there is no activ
         'pes_id'       => $person->id,
         'unid_id'      => Unit::factory()->create()->id,
         'data_lotacao' => '2015-05-10',
-        'data_remocao' => now()->toDateString(), // já foi removido
+        'data_remocao' => now()->toDateString(),
     ]);
 
     $servant = PermanentServants::factory()->create(['pes_id' => $person->id]);
@@ -97,10 +97,10 @@ it('should be able to return null for unit and assignment when there is no activ
                 'lotacao' => null,
             ],
         ])
-        ->assertJsonPath('data.fotografia', fn ($url) => str_contains($url, 'foto_maria.jpg'));
+        ->assertJsonPath('data.fotografia', fn ($url): bool => str_contains((string) $url, 'foto_maria.jpg'));
 });
 
-it('should be able to return null photo when person has no photo registered', function () {
+it('should be able to return null photo when person has no photo registered', function (): void {
     $unit = Unit::factory()->create();
 
     $person = Person::factory()->create([

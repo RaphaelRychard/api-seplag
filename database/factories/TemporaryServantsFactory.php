@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Database\Factories;
 
@@ -20,7 +20,7 @@ class TemporaryServantsFactory extends Factory
     public function definition(): array
     {
         return [
-            'pes_id' => Person::factory(),
+            'pes_id'        => Person::factory(),
             'data_admissao' => fake()->dateTimeBetween('-10 years', 'now'),
             'data_demissao' => fake()->dateTimeBetween('-1 years', 'now'),
         ];

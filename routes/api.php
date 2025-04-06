@@ -3,8 +3,8 @@
 declare(strict_types = 1);
 
 use App\Http\Controllers\AssignmentController;
-use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\PermanentServantsController;
+use App\Http\Controllers\PhotographUploadController;
 use App\Http\Controllers\TemporaryServantsController;
 use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +25,6 @@ Route::name('api.')->middleware('auth:sanctum')->group(function (): void {
     Route::patch('/assignment/{assignment}/remove', [AssignmentController::class, 'remove'])
         ->name('assignment.remove');
 
-    Route::post('/photograph', [FileUploadController::class, 'upload'])
+    Route::post('/photograph', [PhotographUploadController::class, 'upload'])
         ->name('photograph.upload');
 });

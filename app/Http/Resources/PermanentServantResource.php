@@ -41,7 +41,7 @@ class PermanentServantResource extends JsonResource
         $photo = $this->person->personsPhoto;
 
         if ($photo && ! empty($photo->hash)) {
-            $filePath = "uploads/{$photo->hash}"; // Ajuste a extensão conforme necessário
+            $filePath = "uploads/{$photo->hash}";
 
             return Storage::disk('minio')
                 ->temporaryUrl($filePath, now()->addMinutes(5));

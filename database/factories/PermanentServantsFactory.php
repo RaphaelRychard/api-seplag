@@ -21,7 +21,7 @@ class PermanentServantsFactory extends Factory
     public function definition(): array
     {
         return [
-            'pes_id'           => Person::factory(),
+            'pes_id'       => Person::factory(),
             'se_matricula' => fake()->randomNumber(8, true),
         ];
     }

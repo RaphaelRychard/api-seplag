@@ -21,9 +21,9 @@ class PersonsPhotoFactory extends Factory
     {
         return [
             'pes_id' => Person::factory(),
-            'data'   => fake()->date(),
-            'bucket' => fake()->word(),
-            'hash'   => hash('sha1', fake()->uuid()),
+            'data'   => now()->toDateString(),
+            'bucket' => 'servidores',
+            'hash'   => 'foto_' . fake()->unique()->uuid() . '.jpg',
         ];
     }
 }

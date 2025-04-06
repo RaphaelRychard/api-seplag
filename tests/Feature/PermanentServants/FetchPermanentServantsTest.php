@@ -52,7 +52,7 @@ it('should be able to fetch permanent servants with pagination and filters', fun
 });
 
 it('should be able to paginate permanent servants', function (): void {
-    Person::factory()->count(15)->create()->each(function ($person) {
+    Person::factory()->count(15)->create()->each(function ($person): void {
         PermanentServants::factory()->create(['pes_id' => $person->id]);
     });
 
@@ -64,7 +64,7 @@ it('should be able to paginate permanent servants', function (): void {
 });
 
 it('should be able to return empty data and correct pagination when no permanent servant matches filters', function (): void {
-    Person::factory()->count(5)->create()->each(function ($person) {
+    Person::factory()->count(5)->create()->each(function ($person): void {
         PermanentServants::factory()->create(['pes_id' => $person->id]);
     });
 
@@ -99,7 +99,7 @@ it('should be able to filter permanent servants by name', function (): void {
 });
 
 it('should be able to filter permanent servants by partial name among many records', function (): void {
-    Person::factory()->count(15)->create()->each(function ($person) {
+    Person::factory()->count(15)->create()->each(function ($person): void {
         PermanentServants::factory()->create(['pes_id' => $person->id]);
     });
 
@@ -117,7 +117,7 @@ it('should be able to filter permanent servants by unit id among many records', 
     $unitA = Unit::factory()->create(['nome' => 'Unidade Alfa']);
     $unitB = Unit::factory()->create(['nome' => 'Unidade Beta']);
 
-    Person::factory()->count(10)->create()->each(function ($person) use ($unitB) {
+    Person::factory()->count(10)->create()->each(function ($person) use ($unitB): void {
         Assignment::factory()->create(['pes_id' => $person->id, 'unid_id' => $unitB->id]);
         PermanentServants::factory()->create(['pes_id' => $person->id]);
     });
@@ -145,7 +145,7 @@ it('should be able to filter permanent servants by name and unit id simultaneous
     Assignment::factory()->create(['pes_id' => $joao2->id, 'unid_id' => $unitB->id]);
     PermanentServants::factory()->create(['pes_id' => $joao2->id]);
 
-    Person::factory()->count(5)->create()->each(function ($person) use ($unitA) {
+    Person::factory()->count(5)->create()->each(function ($person) use ($unitA): void {
         Assignment::factory()->create(['pes_id' => $person->id, 'unid_id' => $unitA->id]);
         PermanentServants::factory()->create(['pes_id' => $person->id]);
     });
@@ -184,7 +184,7 @@ it('should be able to return fotografia URL if hash exists', function (): void {
     $sut->assertOk()
         ->assertJsonPath('data.0.nome', 'Foto Teste')
         ->assertJson(
-            fn ($json) => $json->where('data.0.fotografia', fn ($url) => str_contains($url, 'teste-hash'))
+            fn ($json) => $json->where('data.0.fotografia', fn ($url): bool => str_contains((string) $url, 'teste-hash'))
                 ->etc()
         );
 });
