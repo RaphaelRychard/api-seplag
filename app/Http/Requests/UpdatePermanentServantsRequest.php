@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdatePermanentServantsRequest extends FormRequest
 {
@@ -33,7 +34,7 @@ class UpdatePermanentServantsRequest extends FormRequest
                 'required',
                 'string',
                 'max:255',
-                'unique:servidor_efetivo,se_matricula',
+                Rule::unique('servidor_efetivo', 'se_matricula')->ignore($this->route('permanent_servant')),
             ],
         ];
     }

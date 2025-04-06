@@ -25,15 +25,19 @@ class TemporaryServantDetailResource extends JsonResource
             'nome'       => $this->person->nome,
             'idade'      => Carbon::parse($this->person->data_nascimento)->age,
             'fotografia' => $this->getFotoUrl(),
-            'unidade'    => optional($this->person->assignment)->unit,
-            'lotacao'    => [
-                'id'           => optional($this->person->assignment)->id,
-                'pes_id'       => optional($this->person->assignment)->pes_id,
-                'unid_id'      => optional($this->person->assignment)->unid_id,
-                'data_lotacao' => optional($this->person->assignment)->data_lotacao,
-                'data_remocao' => optional($this->person->assignment)->data_remocao,
-                'portaria'     => optional($this->person->assignment)->portaria,
-            ],
+            'unidade'    => optional($this->person->assignment)->unit?->only([
+                'id',
+                'nome',
+                'sigla',
+            ]),
+            'lotacao' => optional($this->person->assignment)?->only([
+                'id',
+                'pes_id',
+                'unid_id',
+                'data_lotacao',
+                'data_remocao',
+                'portaria',
+            ]),
         ];
     }
 

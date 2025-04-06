@@ -16,8 +16,8 @@ class Unit extends Model
 
     public $timestamps = false;
 
-    public function assignment()
+    public function assignments()
     {
-        return $this->hasOne(Assignment::class, 'unid_id');
+        return $this->hasMany(Assignment::class, 'unid_id');
     }
 }

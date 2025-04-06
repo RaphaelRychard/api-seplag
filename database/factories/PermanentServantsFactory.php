@@ -4,13 +4,14 @@ declare(strict_types = 1);
 
 namespace Database\Factories;
 
+use App\Models\PermanentServants;
 use App\Models\Person;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PermanentEmployee>
+ * @extends Factory<PermanentServants>
  */
-class PermanentEmployeeFactory extends Factory
+class PermanentServantsFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,7 +21,7 @@ class PermanentEmployeeFactory extends Factory
     public function definition(): array
     {
         return [
-            'id'           => Person::factory(),
+            'pes_id'           => Person::factory(),
             'se_matricula' => fake()->randomNumber(8, true),
         ];
     }

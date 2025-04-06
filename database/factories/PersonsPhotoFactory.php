@@ -20,10 +20,10 @@ class PersonsPhotoFactory extends Factory
     public function definition(): array
     {
         return [
-            'id'        => Person::factory(),
-            'fp_data'   => fake()->date(),
-            'fp_bucket' => fake()->word(),
-            'fp_hash'   => fake()->hash(),
+            'pes_id' => Person::factory(),
+            'data'   => fake()->date(),
+            'bucket' => fake()->word(),
+            'hash'   => hash('sha1', fake()->uuid()),
         ];
     }
 }

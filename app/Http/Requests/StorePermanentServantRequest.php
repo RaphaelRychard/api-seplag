@@ -26,7 +26,7 @@ class StorePermanentServantRequest extends FormRequest
         return [
             'nome'            => ['required', 'string', 'max:255'],
             'data_nascimento' => ['required', 'date'],
-            'sexo'            => ['required', 'string'],
+            'sexo'            => ['required', 'string', 'in:Masculino,Feminino,Outros'],
             'mae'             => ['required', 'string'],
             'pai'             => ['required', 'string'],
             'se_matricula'    => [

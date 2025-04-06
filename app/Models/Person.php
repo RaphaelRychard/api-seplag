@@ -28,7 +28,8 @@ class Person extends Model
 
     public function assignment()
     {
-        return $this->hasOne(Assignment::class, 'pes_id');
+        return $this->hasOne(Assignment::class, 'pes_id')
+            ->whereNull('data_remocao');
     }
 
     public function personsPhoto()

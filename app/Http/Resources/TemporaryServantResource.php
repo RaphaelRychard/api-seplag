@@ -25,7 +25,11 @@ class TemporaryServantResource extends JsonResource
             'nome'            => $this->person->nome,
             'idade'           => Carbon::parse($this->person->data_nascimento)->age,
             'fotografia'      => $this->getFotoUrl(),
-            'unidade_lotacao' => $this->getUnitOfLotacao(),
+            'unidade_lotacao' => optional($this->person->assignment)->unit?->only([
+                'id',
+                'nome',
+                'sigla',
+            ]),
         ];
     }
 
@@ -34,10 +38,10 @@ class TemporaryServantResource extends JsonResource
      */
     private function getFotoUrl(): ?string
     {
-        $photo = $this->person->personsPhoto;
+        $photo = $this->person->personsPhoto ?? null;
 
         if ($photo && ! empty($photo->hash)) {
-            $filePath = "uploads/{$photo->hash}"; // Ajuste a extensão conforme necessário
+            $filePath = "uploads/{$photo->hash}";
 
             return Storage::disk('minio')
                 ->temporaryUrl($filePath, now()->addMinutes(5));
