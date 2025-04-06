@@ -5,6 +5,7 @@ declare(strict_types = 1);
 use App\Models\Unit;
 
 use Illuminate\Contracts\Auth\Authenticatable;
+
 use function Pest\Laravel\getJson;
 
 beforeEach(fn (): Authenticatable => login());

@@ -10,7 +10,7 @@ use function Pest\Laravel\getJson;
 
 beforeEach(fn (): Authenticatable => login());
 
-it('should return assignment details when given a valid ID', function () {
+it('should return assignment details when given a valid ID', function (): void {
     $assignment = Assignment::factory()->create([
         'data_lotacao' => '2024-10-01',
         'data_remocao' => '2025-01-01',
@@ -30,7 +30,7 @@ it('should return assignment details when given a valid ID', function () {
         ]);
 });
 
-it('should return 404 when assignment does not exist', function () {
+it('should return 404 when assignment does not exist', function (): void {
     $response = getJson(route('api.assignment.show', 9999));
 
     $response->assertNotFound();

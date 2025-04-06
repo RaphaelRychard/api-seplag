@@ -3,12 +3,13 @@
 declare(strict_types = 1);
 
 use App\Models\Assignment;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Carbon;
 
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\patchJson;
 
-beforeEach(fn (): \Illuminate\Contracts\Auth\Authenticatable => login());
+beforeEach(fn (): Authenticatable => login());
 
 it('should be able to remove (end) an assignment', function (): void {
     $assignment = Assignment::factory()->create([

@@ -9,7 +9,7 @@ use function Pest\Laravel\getJson;
 
 beforeEach(fn (): Authenticatable => login());
 
-it('should be able to fetch a paginated list of assignments with correct structure and pagination', function () {
+it('should be able to fetch a paginated list of assignments with correct structure and pagination', function (): void {
     Assignment::factory()->count(15)->create();
 
     $sut = getJson(route('api.assignment.index'));
@@ -41,7 +41,7 @@ it('should be able to fetch a paginated list of assignments with correct structu
         ]);
 });
 
-it('should be able to limit results to 10 per page by default', function () {
+it('should be able to limit results to 10 per page by default', function (): void {
     Assignment::factory()->count(25)->create();
 
     $sut = getJson(route('api.assignment.index'));
@@ -50,7 +50,7 @@ it('should be able to limit results to 10 per page by default', function () {
     expect(count($sut->json('data')))->toBe(10);
 });
 
-it('should be able to return an empty list when no assignments exist', function () {
+it('should be able to return an empty list when no assignments exist', function (): void {
     $sut = getJson(route('api.assignment.index'));
 
     $sut->assertOk()
@@ -67,7 +67,7 @@ it('should be able to return an empty list when no assignments exist', function 
         ]);
 });
 
-it('should be able to return 10 items on page 1 and 5 items on page 2', function () {
+it('should be able to return 10 items on page 1 and 5 items on page 2', function (): void {
     Assignment::factory()->count(15)->create();
 
     $page1 = getJson(route('api.assignment.index', ['page' => 1]));

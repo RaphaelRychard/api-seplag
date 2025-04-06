@@ -3,6 +3,7 @@
 declare(strict_types = 1);
 
 use Illuminate\Contracts\Auth\Authenticatable;
+
 use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\postJson;

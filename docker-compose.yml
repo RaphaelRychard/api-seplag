@@ -9,7 +9,7 @@ services:
       MINIO_ROOT_USER: myadmin
       MINIO_ROOT_PASSWORD: mysecurepassword
     volumes:
-      - ./docker/minio/data:/data  # Usando um diretório relativo dentro do seu projeto
+      - ./docker/minio/data:/data  
     command: server /data --console-address ":9001"
     networks:
       - api-network

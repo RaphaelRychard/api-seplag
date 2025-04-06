@@ -9,7 +9,7 @@ use function Pest\Laravel\putJson;
 
 beforeEach(fn (): Authenticatable => login());
 
-it('should update an assignment with valid data', function () {
+it('should update an assignment with valid data', function (): void {
     $assignment = Assignment::factory()->create();
 
     $payload = [
@@ -33,7 +33,7 @@ it('should update an assignment with valid data', function () {
     ]);
 });
 
-it('should return validation errors when data is missing or invalid', function () {
+it('should return validation errors when data is missing or invalid', function (): void {
     $assignment = Assignment::factory()->create();
 
     $response = putJson(route('api.assignment.update', $assignment->id), []);
@@ -42,7 +42,7 @@ it('should return validation errors when data is missing or invalid', function (
         ->assertJsonValidationErrors(['data_lotacao', 'portaria']);
 });
 
-it('should return validation error when portaria is too short', function () {
+it('should return validation error when portaria is too short', function (): void {
     $assignment = Assignment::factory()->create();
 
     $response = putJson(route('api.assignment.update', $assignment->id), [

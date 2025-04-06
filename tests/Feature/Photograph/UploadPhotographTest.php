@@ -11,7 +11,7 @@ use function Pest\Laravel\postJson;
 
 beforeEach(fn (): Authenticatable => login());
 
-it('should upload a valid image file', function () {
+it('should upload a valid image file', function (): void {
     Storage::fake('minio');
 
     $file   = UploadedFile::fake()->create('photo.jpg', 100, 'image/jpeg');
@@ -30,14 +30,14 @@ it('should upload a valid image file', function () {
         ->assertExists('uploads/' . md5_file($file->getRealPath()) . '.jpg');
 });
 
-it('should return validation errors if file and pes_id are missing', function () {
+it('should return validation errors if file and pes_id are missing', function (): void {
     $response = postJson(route('api.photograph.upload'), []);
 
     $response->assertUnprocessable()
         ->assertJsonValidationErrors(['file', 'pes_id']);
 });
 
-it('should return validation error if pes_id does not exist', function () {
+it('should return validation error if pes_id does not exist', function (): void {
     Storage::fake('minio');
 
     $file = UploadedFile::fake()->create('photo.jpg', 100, 'image/jpeg');
@@ -51,7 +51,7 @@ it('should return validation error if pes_id does not exist', function () {
         ->assertJsonValidationErrors(['pes_id']);
 });
 
-it('should fail if file type is not allowed', function () {
+it('should fail if file type is not allowed', function (): void {
     Storage::fake('minio');
 
     $file   = UploadedFile::fake()->create('file.pdf', 1000, 'application/pdf');
@@ -66,7 +66,7 @@ it('should fail if file type is not allowed', function () {
         ->assertJsonValidationErrors(['file']);
 });
 
-it('should fail if the file exceeds the maximum allowed size', function () {
+it('should fail if the file exceeds the maximum allowed size', function (): void {
     Storage::fake('minio');
 
     $content = file_get_contents(__DIR__ . '/../../Fixtures/big_image_6000.jpg');
@@ -82,7 +82,7 @@ it('should fail if the file exceeds the maximum allowed size', function () {
         ->assertJsonValidationErrors(['file']);
 });
 
-it('should fail if file mimetype does not match allowed types', function () {
+it('should fail if file mimetype does not match allowed types', function (): void {
     Storage::fake('minio');
 
     $content = file_get_contents(__DIR__ . '/../../Fixtures/Edital.pdf');
@@ -99,7 +99,7 @@ it('should fail if file mimetype does not match allowed types', function () {
         ->assertJsonValidationErrors(['file']);
 });
 
-it('should return a temporary URL for the uploaded file', function () {
+it('should return a temporary URL for the uploaded file', function (): void {
     Storage::fake('minio');
 
     $content = file_get_contents(__DIR__ . '/../../Fixtures/small_image_640.jpg');
@@ -113,5 +113,5 @@ it('should return a temporary URL for the uploaded file', function () {
     ]);
 
     $response->assertCreated()
-        ->assertJsonPath('data.url', fn ($url) => str_contains($url, '/uploads/'));
+        ->assertJsonPath('data.url', fn ($url): bool => str_contains((string) $url, '/uploads/'));
 });
