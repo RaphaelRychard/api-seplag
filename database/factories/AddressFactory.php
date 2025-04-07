@@ -29,11 +29,11 @@ class AddressFactory extends Factory
         ];
 
         return [
-            'end_tipo_logradouro' => fake()->randomElement($addressType),
-            'end_logradouro'      => fake()->streetAddress(),
-            'end_numero'          => fake()->buildingNumber(),
-            'end_bairro'          => fake()->cityPrefix(),
-            'id'                  => City::factory(),
+            'tipo_logradouro' => fake()->randomElement($addressType),
+            'logradouro'      => fake()->streetAddress(),
+            'numero'          => fake()->buildingNumber(),
+            'bairro'          => fake()->cityPrefix(),
+            'cid_id'          => City::factory(),
         ];
     }
 }

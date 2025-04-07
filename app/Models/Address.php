@@ -15,4 +15,9 @@ class Address extends Model
     protected $table = 'endereco';
 
     public $timestamps = false;
+
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'cid_id');
+    }
 }

@@ -15,4 +15,9 @@ class AddressUnit extends Model
     protected $table = 'unidade_endereco';
 
     public $timestamps = false;
+
+    public function address()
+    {
+        return $this->belongsTo(Address::class, 'end_id');
+    }
 }

@@ -22,4 +22,9 @@ class Unit extends Model
     {
         return $this->hasMany(Assignment::class, 'unid_id');
     }
+
+    public function addressUnit()
+    {
+        return $this->hasOne(AddressUnit::class, 'unid_id');
+    }
 }

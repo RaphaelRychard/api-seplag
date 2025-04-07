@@ -3,6 +3,7 @@
 declare(strict_types = 1);
 
 use App\Http\Controllers\AssignmentController;
+use App\Http\Controllers\FunctionalAddressController;
 use App\Http\Controllers\PermanentServantsController;
 use App\Http\Controllers\PhotographUploadController;
 use App\Http\Controllers\TemporaryServantsController;
@@ -27,4 +28,7 @@ Route::name('api.')->middleware('auth:sanctum')->group(function (): void {
 
     Route::post('/photograph', [PhotographUploadController::class, 'upload'])
         ->name('photograph.upload');
+
+    Route::get('/functional-address/search', [FunctionalAddressController::class, 'search'])
+        ->name('functional-address.search');
 });
