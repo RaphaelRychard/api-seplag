@@ -31,10 +31,9 @@ Seplag API é uma solução back-end robusta desenvolvida em Laravel, que oferec
         - [Upload de Fotografia](#upload-de-fotografia)
     - [Endereços Funcionais](#endereços-funcionais)
         - [Buscar Endereços Funcionais](#buscar-endereços-funcionais)
-5. [Coleção Postman](#coleção-postman)
-6. [Testes Automatizados](#testes-automatizados)
-7. [Changelog](#changelog)
-8. [Observações Importantes](#observações-importantes)
+5. [Testes Automatizados](#testes-automatizados)
+6. [Changelog](#changelog)
+7. [Observações Importantes](#observações-importantes)
 
 ---
 
