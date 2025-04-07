@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace App\Http\Controllers;
 
 use App\Http\Requests\FileUploadRequest;
-use App\Http\Resources\PhotographUploadResource;
+use App\Http\Resources\UploadPhotographResource;
 use App\Models\PersonsPhoto;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
@@ -31,7 +31,7 @@ class PhotographUploadController extends Controller
 
         $temporaryUrl = Storage::disk('minio')->temporaryUrl("uploads/{$hash}", now()->addMinutes(5));
 
-        return (new PhotographUploadResource((object)[
+        return (new UploadPhotographResource((object)[
             'id'   => $personsPhoto->id,
             'path' => $path,
             'url'  => $temporaryUrl,

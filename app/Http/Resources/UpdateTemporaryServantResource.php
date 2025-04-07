@@ -23,7 +23,8 @@ class UpdateTemporaryServantResource extends JsonResource
             'sexo'            => $this->person->sexo,
             'mae'             => $this->person->mae,
             'pai'             => $this->person->pai,
-            'se_matricula'    => $this->se_matricula,
+            'data_admissao'   => $this->data_admissao,
+            'data_demissao'   => $this->data_demissao,
         ];
     }
 }

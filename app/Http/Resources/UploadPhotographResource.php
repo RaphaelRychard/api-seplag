@@ -7,7 +7,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PhotographUploadResource extends JsonResource
+class UploadPhotographResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

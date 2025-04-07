@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Storage;
 
-class GetPermanentServantResource extends JsonResource
+class FetchPermanentServantResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

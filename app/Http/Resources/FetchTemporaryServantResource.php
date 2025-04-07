@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Storage;
 
-class TemporaryServantDetailResource extends JsonResource
+class FetchTemporaryServantResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -20,23 +20,15 @@ class TemporaryServantDetailResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'         => $this->id,
-            'pes_id'     => $this->pes_id,
-            'nome'       => $this->person->nome,
-            'idade'      => Carbon::parse($this->person->data_nascimento)->age,
-            'fotografia' => $this->getFotoUrl(),
-            'unidade'    => optional($this->person->assignment)->unit?->only([
+            'id'              => $this->id,
+            'pes_id'          => $this->pes_id,
+            'nome'            => $this->person->nome,
+            'idade'           => Carbon::parse($this->person->data_nascimento)->age,
+            'fotografia'      => $this->getFotoUrl(),
+            'unidade_lotacao' => optional($this->person->assignment)->unit?->only([
                 'id',
                 'nome',
                 'sigla',
-            ]),
-            'lotacao' => optional($this->person->assignment)?->only([
-                'id',
-                'pes_id',
-                'unid_id',
-                'data_lotacao',
-                'data_remocao',
-                'portaria',
             ]),
         ];
     }
@@ -46,7 +38,7 @@ class TemporaryServantDetailResource extends JsonResource
      */
     private function getFotoUrl(): ?string
     {
-        $photo = $this->person->personsPhoto;
+        $photo = $this->person->personsPhoto ?? null;
 
         if ($photo && ! empty($photo->hash)) {
             $filePath = "uploads/{$photo->hash}";

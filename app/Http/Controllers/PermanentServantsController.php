@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePermanentServantRequest;
 use App\Http\Requests\UpdatePermanentServantsRequest;
 use App\Http\Resources\DetailsPermanentServantResource;
-use App\Http\Resources\GetPermanentServantResource;
+use App\Http\Resources\FetchPermanentServantResource;
 use App\Http\Resources\StorePermanentServantResource;
 use App\Http\Resources\UpdatePermanentServantResource;
 use App\Http\Services\PermanentServantServices;
@@ -48,7 +48,7 @@ class PermanentServantsController extends Controller
         $paginatedResults = $query->paginate($perPage);
 
         return response()->json([
-            'data'       => GetPermanentServantResource::collection($paginatedResults),
+            'data'       => FetchPermanentServantResource::collection($paginatedResults),
             'pagination' => [
                 'total'        => $paginatedResults->total(),
                 'per_page'     => $paginatedResults->perPage(),

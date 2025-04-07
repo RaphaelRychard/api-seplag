@@ -6,8 +6,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTemporaryServantRequest;
 use App\Http\Requests\UpdateTemporaryServantRequest;
-use App\Http\Resources\TemporaryServantDetailResource;
-use App\Http\Resources\TemporaryServantResource;
+use App\Http\Resources\DetailsTemporaryServantResource;
+use App\Http\Resources\FetchTemporaryServantResource;
+use App\Http\Resources\StoreTemporaryServantResource;
 use App\Http\Resources\UpdateTemporaryServantResource;
 use App\Http\Services\TemporaryServantServices;
 use App\Models\TemporaryServants;
@@ -41,7 +42,7 @@ class TemporaryServantsController extends Controller
         $paginatedResults = $query->paginate($perPage);
 
         return response()->json([
-            'data'       => TemporaryServantResource::collection($paginatedResults),
+            'data'       => FetchTemporaryServantResource::collection($paginatedResults),
             'pagination' => [
                 'total'        => $paginatedResults->total(),
                 'per_page'     => $paginatedResults->perPage(),
@@ -53,17 +54,17 @@ class TemporaryServantsController extends Controller
         ]);
     }
 
-    public function show(TemporaryServants $temporaryServant): TemporaryServantDetailResource
+    public function show(TemporaryServants $temporaryServant): DetailsTemporaryServantResource
     {
-        return TemporaryServantDetailResource::make($temporaryServant);
+        return DetailsTemporaryServantResource::make($temporaryServant);
     }
 
-    public function store(StoreTemporaryServantRequest $request): TemporaryServantResource
+    public function store(StoreTemporaryServantRequest $request): StoreTemporaryServantResource
     {
         $data   = $request->validated();
         $result = $this->temporaryServantServices->create($data);
 
-        return new TemporaryServantResource($result);
+        return new StoreTemporaryServantResource($result);
     }
 
     public function update(UpdateTemporaryServantRequest $request, TemporaryServants $temporaryServant): UpdateTemporaryServantResource
