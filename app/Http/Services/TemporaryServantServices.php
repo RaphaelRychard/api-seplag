@@ -7,9 +7,13 @@ namespace App\Http\Services;
 use App\Models\Person;
 use App\Models\TemporaryServants;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class TemporaryServantServices
 {
+    /**
+     * @throws Throwable
+     */
     public function create(array $data)
     {
         return DB::transaction(function () use ($data) {
@@ -29,6 +33,9 @@ class TemporaryServantServices
         });
     }
 
+    /**
+     * @throws Throwable
+     */
     public function update(TemporaryServants $temporaryServants, array $data)
     {
         return DB::transaction(function () use ($temporaryServants, $data): TemporaryServants {

@@ -4,19 +4,21 @@ declare(strict_types = 1);
 
 namespace App\Models;
 
+use Database\Factories\TemporaryServantsFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TemporaryServants extends Model
 {
-    /** @use HasFactory<\Database\Factories\TemporaryServantsFactory> */
+    /** @use HasFactory<TemporaryServantsFactory> */
     use HasFactory;
 
     protected $table = 'servidor_temporario';
 
     public $timestamps = false;
 
-    public function person()
+    public function person(): BelongsTo
     {
         return $this->belongsTo(Person::class, 'pes_id');
     }

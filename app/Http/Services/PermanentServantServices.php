@@ -7,9 +7,13 @@ namespace App\Http\Services;
 use App\Models\PermanentServants;
 use App\Models\Person;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class PermanentServantServices
 {
+    /**
+     * @throws Throwable
+     */
     public function create(array $data)
     {
         return DB::transaction(function () use ($data) {
@@ -28,6 +32,9 @@ class PermanentServantServices
         });
     }
 
+    /**
+     * @throws Throwable
+     */
     public function update(PermanentServants $permanentServant, array $data)
     {
         return DB::transaction(function () use ($permanentServant, $data): PermanentServants {

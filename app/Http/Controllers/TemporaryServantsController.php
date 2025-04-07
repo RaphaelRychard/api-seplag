@@ -11,6 +11,7 @@ use App\Http\Resources\TemporaryServantResource;
 use App\Http\Resources\UpdateTemporaryServantResource;
 use App\Http\Services\TemporaryServantServices;
 use App\Models\TemporaryServants;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class TemporaryServantsController extends Controller
@@ -19,7 +20,7 @@ class TemporaryServantsController extends Controller
     {
     }
 
-    public function index(Request $request)
+    public function index(Request $request): JsonResponse
     {
         $query = TemporaryServants::query();
 
@@ -52,7 +53,7 @@ class TemporaryServantsController extends Controller
         ]);
     }
 
-    public function show(TemporaryServants $temporaryServant)
+    public function show(TemporaryServants $temporaryServant): TemporaryServantDetailResource
     {
         return TemporaryServantDetailResource::make($temporaryServant);
     }

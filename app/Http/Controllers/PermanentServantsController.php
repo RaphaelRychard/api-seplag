@@ -12,6 +12,7 @@ use App\Http\Resources\StorePermanentServantResource;
 use App\Http\Resources\UpdatePermanentServantResource;
 use App\Http\Services\PermanentServantServices;
 use App\Models\PermanentServants;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class PermanentServantsController extends Controller
@@ -20,7 +21,7 @@ class PermanentServantsController extends Controller
     {
     }
 
-    public function index(Request $request)
+    public function index(Request $request): JsonResponse
     {
         $query = PermanentServants::query();
 
@@ -59,7 +60,7 @@ class PermanentServantsController extends Controller
         ]);
     }
 
-    public function show(PermanentServants $permanentServant)
+    public function show(PermanentServants $permanentServant): DetailsPermanentServantResource
     {
         return DetailsPermanentServantResource::make($permanentServant);
     }

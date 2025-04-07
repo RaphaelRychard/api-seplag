@@ -29,12 +29,12 @@ class AssignmentController extends Controller
         ]);
     }
 
-    public function show(Assignment $assignment)
+    public function show(Assignment $assignment): AssignmentResource
     {
         return AssignmentResource::make($assignment);
     }
 
-    public function store(StoreAssignmentRequest $request)
+    public function store(StoreAssignmentRequest $request): AssignmentResource
     {
         $data = $request->validated();
 
@@ -43,7 +43,7 @@ class AssignmentController extends Controller
         return AssignmentResource::make($assignment);
     }
 
-    public function update(UpdateAssignmentRequest $request, Assignment $assignment)
+    public function update(UpdateAssignmentRequest $request, Assignment $assignment): AssignmentResource
     {
         $data = $request->validated();
 
@@ -52,7 +52,7 @@ class AssignmentController extends Controller
         return AssignmentResource::make($assignment);
     }
 
-    public function remove(RemoveAssignmentRequest $request, Assignment $assignment)
+    public function remove(RemoveAssignmentRequest $request, Assignment $assignment): AssignmentResource
     {
         $data = $request->validated();
 

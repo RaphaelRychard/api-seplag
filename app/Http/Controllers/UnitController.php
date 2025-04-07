@@ -8,10 +8,11 @@ use App\Http\Requests\StoreUnitRequest;
 use App\Http\Requests\UpdateUnitRequest;
 use App\Http\Resources\UnitResource;
 use App\Models\Unit;
+use Illuminate\Http\JsonResponse;
 
 class UnitController extends Controller
 {
-    public function index()
+    public function index(): JsonResponse
     {
         $paginatedResults = Unit::paginate(10);
 
@@ -28,12 +29,12 @@ class UnitController extends Controller
         ]);
     }
 
-    public function show(Unit $unit)
+    public function show(Unit $unit): UnitResource
     {
         return UnitResource::make($unit);
     }
 
-    public function store(StoreUnitRequest $request)
+    public function store(StoreUnitRequest $request): UnitResource
     {
         $data = $request->validated();
 
@@ -42,7 +43,7 @@ class UnitController extends Controller
         return UnitResource::make($unit);
     }
 
-    public function update(UpdateUnitRequest $request, Unit $unit)
+    public function update(UpdateUnitRequest $request, Unit $unit): UnitResource
     {
         $data = $request->validated();
 
