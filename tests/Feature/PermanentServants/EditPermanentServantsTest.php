@@ -18,7 +18,7 @@ it('should be able to edit a permanent servant', function (): void {
     $data = [
         'nome'            => 'Nome Atualizado',
         'data_nascimento' => '1980-01-01',
-        'sexo'            => 'Outro',
+        'sexo'            => 'Outros',
         'mae'             => 'Mãe Atualizada',
         'pai'             => 'Pai Atualizado',
         'se_matricula'    => 'SEF-2025099',
@@ -31,7 +31,7 @@ it('should be able to edit a permanent servant', function (): void {
             'data' => [
                 'nome'            => 'Nome Atualizado',
                 'data_nascimento' => '1980-01-01',
-                'sexo'            => 'Outro',
+                'sexo'            => 'Outros',
                 'mae'             => 'Mãe Atualizada',
                 'pai'             => 'Pai Atualizado',
                 'se_matricula'    => 'SEF-2025099',
@@ -41,7 +41,7 @@ it('should be able to edit a permanent servant', function (): void {
     assertDatabaseHas('pessoa', [
         'nome'            => 'Nome Atualizado',
         'data_nascimento' => '1980-01-01',
-        'sexo'            => 'Outro',
+        'sexo'            => 'Outros',
         'mae'             => 'Mãe Atualizada',
         'pai'             => 'Pai Atualizado',
     ]);

@@ -22,4 +22,9 @@ class TemporaryServants extends Model
     {
         return $this->belongsTo(Person::class, 'pes_id');
     }
+
+    public function assignment()
+    {
+        return $this->hasOne(Assignment::class, 'pes_id', 'pes_id');
+    }
 }

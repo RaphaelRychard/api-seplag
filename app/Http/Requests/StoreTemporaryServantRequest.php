@@ -24,13 +24,13 @@ class StoreTemporaryServantRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome'            => ['required', 'string', 'max:255'],
+            'nome'            => ['required', 'string', 'min:3', 'max:255'],
             'data_nascimento' => ['required', 'date'],
-            'sexo'            => ['required', 'string'],
-            'mae'             => ['required', 'string'],
-            'pai'             => ['required', 'string'],
+            'sexo'            => ['required', 'string', 'in:Masculino,Feminino,Outros'],
+            'mae'             => ['required', 'string', 'min:3', 'max:255'],
+            'pai'             => ['required', 'string', 'min:3', 'max:255'],
             'data_admissao'   => ['required', 'date'],
-            'data_demissao'   => ['required', 'date'],
+            'data_demissao'   => ['required', 'date', 'after_or_equal:data_admissao'],
         ];
     }
 }
