@@ -428,15 +428,6 @@ Todas as requisições que gerem erros retornarão uma resposta similar ao exemp
 
 ---
 
-
-## **Coleção Postman**
-
-Uma coleção Postman com todos os endpoints da API está disponível para facilitar os testes. Faça o download e importe-a no Postman para começar a usá-la:
-
-[Baixar Coleção Postman](#)
-
----
-
 ## **Testes Automatizados**
 
 O projeto foi desenvolvido com suporte a testes automatizados utilizando **Pest**.
