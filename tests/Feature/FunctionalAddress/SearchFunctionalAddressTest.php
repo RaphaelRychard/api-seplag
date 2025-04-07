@@ -13,7 +13,6 @@ use Illuminate\Contracts\Auth\Authenticatable;
 
 use function Pest\Laravel\getJson;
 
-
 beforeEach(fn (): Authenticatable => login());
 
 it('should return validation error when nome parameter is missing', function (): void {
@@ -195,5 +194,5 @@ it('should return correct second page when paginating results', function (): voi
 
     $sut->assertOk();
     expect($sut->json('data'))->toHaveCount(3)
-        ->and($sut->json('pagination.current_page'))->toBe(2); // 8 total: 5 na página 1 e 3 na página 2
+        ->and($sut->json('pagination.current_page'))->toBe(2);
 });
