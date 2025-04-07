@@ -27,6 +27,7 @@ it('should be able to fetch permanent servants with pagination and filters', fun
         'with'     => 'person',
     ]));
 
+    ds($sut->json());
     $sut->assertOk()
         ->assertJsonStructure([
             'data' => [
