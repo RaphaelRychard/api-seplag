@@ -22,12 +22,24 @@ it('should be able to create a new permanent servant', function (): void {
     $sut = postJson(route('api.permanent-servants.store'), $data);
     $sut->assertCreated();
 
+    expect($sut->json('data'))->toMatchArray([
+        'id'           => $sut->json('data.id'),
+        'pes_id'       => $sut->json('data.pes_id'),
+        'se_matricula' => 'SEF-2025001',
+    ]);
+
     assertDatabaseHas('pessoa', [
+        'id'              => $sut->json('data.pes_id'),
         'nome'            => 'João da Silva',
         'data_nascimento' => '1990-05-20',
+        'sexo'            => 'Masculino',
+        'mae'             => 'Maria Silva',
+        'pai'             => 'José da Silva',
     ]);
 
     assertDatabaseHas('servidor_efetivo', [
+        'id'           => $sut->json('data.id'),
+        'pes_id'       => $sut->json('data.pes_id'),
         'se_matricula' => 'SEF-2025001',
     ]);
 });
@@ -72,12 +84,21 @@ it('should be able to create servant with sexo as Masculino', function (): void 
         'se_matricula'    => 'SEF-2025006',
     ];
 
-    postJson(route('api.permanent-servants.store'), $data)
-        ->assertCreated();
+    $sut = postJson(route('api.permanent-servants.store'), $data);
+    $sut->assertCreated();
+
+    expect($sut->json('data'))->toMatchArray([
+        'id'           => $sut->json('data.id'),
+        'pes_id'       => $sut->json('data.pes_id'),
+        'se_matricula' => 'SEF-2025006',
+    ]);
 
     assertDatabaseHas('pessoa', [
-        'nome' => 'Lucas Alves',
-        'sexo' => 'Masculino',
+        'nome'            => 'Lucas Alves',
+        'data_nascimento' => '1991-01-15',
+        'sexo'            => 'Masculino',
+        'mae'             => 'Clara Alves',
+        'pai'             => 'João Alves',
     ]);
 });
 
