@@ -75,7 +75,8 @@ Antes de configurar e executar o projeto, certifique-se de que as dependências 
 
 ## **Configuração do Ambiente**
 
-O ambiente pode ser configurado utilizando Docker Compose ou de forma manual.
+O ambiente deve ser configurado utilizando Docker Compose, pois a aplicação depende do **MinIO** como serviço de
+armazenamento e outras dependências que são gerenciadas via Docker. Confira os passos abaixo:
 
 ### **Com Docker Compose**
 
@@ -95,45 +96,31 @@ O ambiente pode ser configurado utilizando Docker Compose ou de forma manual.
    docker-compose up -d
    ```
 
-4. Execute as migrações:
+    - Isso configurará automaticamente o container da aplicação, o banco de dados PostgreSQL e o serviço MinIO
+      necessários para o funcionamento da aplicação.
+
+
+4. Configure o bucket no MinIO:
+    - Acesse o painel do MinIO em [http://localhost:9001](http://localhost:9001) (usuário e senha definidos no `.env`).
+    - Crie um bucket com o nome definido na variável `AWS_BUCKET` do arquivo `.env`.
+
+
+5. Execute as migrações:
    ```bash
    php artisan migrate
    ```
 
-5. Gere a chave da aplicação:
+6. Gere a chave da aplicação:
    ```bash
    php artisan key:generate
    ```
 
-A `API` estará disponível em [http://localhost:8000](http://localhost:8000).
-
----
-
-### **Sem Docker**
-
-1. Configure o ambiente:
-   ```bash
-   cp .env.example .env
-   ```
-
-2. Instale as dependências com o Composer:
-   ```bash
-   composer install
-   ```
-
-3. Configure o banco de dados PostgreSQL no arquivo `.env`.
-
-4. Execute as migrações:
-   ```bash
-   php artisan migrate
-   ```
-
-5. Suba o servidor local:
+7. Iniciar o servidor local:
    ```bash
    php artisan serve
    ```
 
-A API estará disponível em [http://localhost:8000](http://localhost:8000).
+#### A `API` estará disponível em [http://localhost:8000](http://localhost:8000).
 
 ---
 
