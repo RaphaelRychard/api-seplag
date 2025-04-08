@@ -2,7 +2,10 @@
 
 ## **Descrição Geral**
 
-Seplag API é uma solução back-end robusta desenvolvida em Laravel, que oferece recursos completos para o gerenciamento de servidores efetivos, temporários, unidades administrativas e operações relacionadas, como lotação e upload de fotografias. O sistema utiliza autenticação via **Laravel Sanctum** e segue práticas avançadas de segurança e desenvolvimento.
+Seplag API é uma solução back-end robusta desenvolvida em Laravel, que oferece recursos completos para o gerenciamento
+de servidores efetivos, temporários, unidades administrativas e operações relacionadas, como lotação e upload de
+fotografias. O sistema utiliza autenticação via **Laravel Sanctum** e segue práticas avançadas de segurança e
+desenvolvimento.
 
 ---
 
@@ -32,8 +35,9 @@ Seplag API é uma solução back-end robusta desenvolvida em Laravel, que oferec
     - [Endereços Funcionais](#endereços-funcionais)
         - [Buscar Endereços Funcionais](#buscar-endereços-funcionais)
 5. [Testes Automatizados](#testes-automatizados)
-6. [Changelog](#changelog)
-7. [Observações Importantes](#observações-importantes)
+6. [Configurações para Diferentes Ambientes](#configurações-para-diferentes-ambientes)
+7. [Changelog](#changelog)
+8. [Observações Importantes](#observações-importantes)
 
 ---
 
@@ -41,12 +45,12 @@ Seplag API é uma solução back-end robusta desenvolvida em Laravel, que oferec
 
 - **Nome**: Raphael Rychard Soares de Almeida Souza
 - **E-mail**: raph.rych@gmail.com
-- **Concurso**: SEPLAG - Sistema de Gerenciamento Administrativo - PSS 02/2025/SEPLAG (Analista de TI - Perfil Junior, Pleno e Sênior)
+- **Concurso**: SEPLAG - Sistema de Gerenciamento Administrativo - PSS 02/2025/SEPLAG (Analista de TI - Perfil Junior,
+  Pleno e Sênior)
 - **Identificador**: 8463
 - **Perfil**: DESENVOLVEDOR PHP - JÚNIOR
 
 ---
-
 
 ## **Requisitos do Sistema**
 
@@ -93,15 +97,15 @@ O ambiente pode ser configurado utilizando Docker Compose ou de forma manual.
 
 4. Execute as migrações:
    ```bash
-   docker exec -it seplag-app php artisan migrate
+   php artisan migrate
    ```
 
 5. Gere a chave da aplicação:
    ```bash
-   docker exec -it seplag-app php artisan key:generate
+   php artisan key:generate
    ```
 
-A API estará disponível em [http://localhost:8000](http://localhost:8000).
+A `API` estará disponível em [http://localhost:8000](http://localhost:8000).
 
 ---
 
@@ -128,7 +132,8 @@ A API estará disponível em [http://localhost:8000](http://localhost:8000).
    ```bash
    php artisan serve
    ```
-   A API estará disponível em [http://localhost:8000](http://localhost:8000).
+
+A API estará disponível em [http://localhost:8000](http://localhost:8000).
 
 ---
 
@@ -136,9 +141,23 @@ A API estará disponível em [http://localhost:8000](http://localhost:8000).
 
 ## Autenticação
 
+---
+
 ### **Login**
+
 `POST /api/login`
 
+- **Uso do Token**:  
+  Após o login, utilize o token retornado em **todas as requisições autenticadas** adicionando o cabeçalho:
+
+  ```http
+  Authorization: Bearer SEU_TOKEN_AQUI
+  ```
+
+---
+
+Mesma coisa em **Registro**, já que ele também retorna token.  
+É só isso — simples e direto, só pra ninguém esquecer de usar o header certo.
 Realiza o login do usuário, retornando um token de autenticação.
 
 - **Requisição**:
@@ -163,6 +182,7 @@ Realiza o login do usuário, retornando um token de autenticação.
 ---
 
 ### **Registro**
+
 `POST /api/register`
 
 Permite criar um novo usuário.
@@ -194,6 +214,7 @@ Permite criar um novo usuário.
 ## Servidores Efetivos
 
 ### **Listar Servidores Efetivos**
+
 `GET /api/permanent-servants`
 
 Retorna uma listagem paginada de servidores efetivos com base nos filtros aplicados.
@@ -236,6 +257,7 @@ Retorna uma listagem paginada de servidores efetivos com base nos filtros aplica
 ---
 
 ### **Inserir Servidor Efetivo**
+
 `POST /api/permanent-servants`
 
 Adiciona um novo servidor efetivo.
@@ -269,9 +291,11 @@ Adiciona um novo servidor efetivo.
 ## Servidores Temporários
 
 ### **Listar Servidores Temporários**
+
 `GET /api/temporary-servants`
 
-Funciona de forma semelhante ao endpoint de listagem de servidores efetivos, mas opera sobre a tabela e o modelo de servidores temporários.
+Funciona de forma semelhante ao endpoint de listagem de servidores efetivos, mas opera sobre a tabela e o modelo de
+servidores temporários.
 
 - **Resposta**:
     - Validação realizada no controlador: `TemporaryServantsController.php`.
@@ -282,6 +306,7 @@ Funciona de forma semelhante ao endpoint de listagem de servidores efetivos, mas
 ## Lotações
 
 ### **Atualizar Lotação de Funcionário**
+
 `PUT /api/assignments/{id}`
 
 Atualiza os dados da lotação de um funcionário.
@@ -310,6 +335,7 @@ Atualiza os dados da lotação de um funcionário.
 ---
 
 ### **Remover Lotação de Funcionário**
+
 `PATCH /api/assignment/{assignment}/remove`
 
 Remove um funcionário de sua lotação atual.
@@ -331,6 +357,7 @@ Remove um funcionário de sua lotação atual.
 ## Unidades
 
 ### **Listar Unidades**
+
 `GET /api/units`
 
 Retorna as unidades disponíveis com paginação.
@@ -349,6 +376,7 @@ Retorna as unidades disponíveis com paginação.
 ## Fotografias
 
 ### **Upload de Fotografia**
+
 `POST /api/photograph`
 
 Faz o upload de uma fotografia para um funcionário específico.
@@ -379,6 +407,7 @@ Faz o upload de uma fotografia para um funcionário específico.
 ## Endereços Funcionais
 
 ### **Buscar Endereços Funcionais**
+
 `GET /api/functional-address/search`
 
 Realiza uma busca de endereços funcionais com base nos parâmetros fornecidos.
@@ -402,21 +431,26 @@ Realiza uma busca de endereços funcionais com base nos parâmetros fornecidos.
       }
       ```
 
+---
+
 ## **Respostas de Erro**
 
 Todas as requisições que gerem erros retornarão uma resposta similar ao exemplo abaixo:
 
 ```json
 {
-  "message": "Erro descritivo",
-  "errors": {
-    "campo": ["Descrição do erro no campo"]
-  },
-  "status": 400
+    "message": "Erro descritivo",
+    "errors": {
+        "campo": [
+            "Descrição do erro no campo"
+        ]
+    },
+    "status": 400
 }
 ```
 
 **Códigos de Status Comuns**:
+
 - `200`: Sucesso.
 - `201`: Criado.
 - `400`: Erro de validação.
@@ -441,14 +475,114 @@ O projeto foi desenvolvido com suporte a testes automatizados utilizando **Pest*
 
 3. Execute os testes:
    ```bash
-   ./vendor/bin/pest
+   php artisan test
    ```
+
+---
+
+### Configurações para Diferentes Ambientes
+
+#### Exemplo Mínimo de Arquivos de Ambiente
+
+```ini
+# .env.development
+APP_ENV = development
+APP_DEBUG = true
+APP_URL = http://localhost:8000
+
+# Banco de dados para desenvolvimento
+DB_CONNECTION = pgsql
+DB_HOST = 127.0.0.1
+DB_PORT = 5432
+DB_DATABASE = dev_db
+DB_USERNAME = usuario_dev
+DB_PASSWORD = senha_dev
+
+# Configuração do Minio (com variáveis separadas)
+FILESYSTEM_DISK = minio
+MINIO_ENDPOINT = http://localhost:9000
+MINIO_KEY = fbsTUsEB4GvFdkf4686N
+MINIO_SECRET = hGYIXxty8eUvPccj5iJtwS5spr3ts3uuSCXPjZjt
+MINIO_REGION = us-east-1
+MINIO_BUCKET = my-bucket
+
+```
+
+```ini
+# .env.production
+APP_ENV = production
+APP_DEBUG = false
+APP_URL = https://minha-api.com
+
+# Banco de dados para produção
+DB_CONNECTION = pgsql
+DB_HOST = prod-db-host
+DB_PORT = 5432
+DB_DATABASE = prod_db
+DB_USERNAME = usuario_prod
+DB_PASSWORD = senha_prod
+
+# Minio em produção
+FILESYSTEM_DISK = minio
+MINIO_ENDPOINT = https://prod-minio-endpoint
+MINIO_KEY = chave_prod
+MINIO_SECRET = segredo_prod
+MINIO_REGION = us-east-1
+MINIO_BUCKET = prod-bucket
+
+```
+
+```ini
+# .env.testing
+APP_ENV = testing
+APP_DEBUG = true
+APP_URL = http://localhost:8000
+
+# Banco de dados para testes
+DB_CONNECTION = pgsql
+DB_HOST = 127.0.0.1
+DB_PORT = 5432
+DB_DATABASE = test_db
+DB_USERNAME = usuario_test
+DB_PASSWORD = senha_test
+
+# Minio para testes (necessário para testes E2E que envolvam upload/armazenamento)
+FILESYSTEM_DISK = minio
+MINIO_ENDPOINT = http://localhost:9000
+MINIO_KEY = fbsTUsEB4GvFdkf4686N
+MINIO_SECRET = hGYIXxty8eUvPccj5iJtwS5spr3ts3uuSCXPjZjt
+MINIO_REGION = us-east-1
+MINIO_BUCKET = my-bucket
+
+```
+
+#### Como Utilizar
+
+- **Desenvolvimento**:  
+  Copie o arquivo mínimo de desenvolvimento para `.env`:
+  ```bash
+  cp .env.development .env
+  ```
+- **Produção**:  
+  Para implantar a aplicação em produção, copie o ambiente de produção para o `.env` e ajuste conforme necessário:
+  ```bash
+  cp .env.production .env
+  ```
+- **Testes E2E**:  
+  Lembre-se que os testes end-to-end (E2E) também precisam de um ambiente configurado. Certifique-se de que o arquivo
+  `.env.testing` esteja corretamente configurado. Para executar os testes, faça:
+  ```bash
+  php artisan migrate --env=testing
+  php artisan test
+  ```
+  Isso garante que o ambiente de testes utilize as variáveis do `.env.testing`.
 
 ---
 
 ## **Changelog**
 
 ### **Versão 1.0.0**
+
 - Implementação de:
     - Autenticação com Laravel Sanctum.
     - CRUD completo para:
