@@ -66,7 +66,7 @@ cd api-seplag
 cp .env.example .env
 docker-compose up -d
 
-compose install
+composer install
 
 php artisan migrate
 php artisan key:generate
