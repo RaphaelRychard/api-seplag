@@ -23,10 +23,10 @@ A **Seplag API** é uma solução back-end robusta desenvolvida em **Laravel**, 
 
 ## **Dados da Inscrição**
 
+- **Concurso**: SEPLAG - PSS 02/2025/SEPLAG (Analista de TI - Perfis Júnior, Pleno e Sênior)
 - **Nome**: Raphael Rychard Soares de Almeida Souza
 - **E-mail**: raph.rych@gmail.com
-- **Concurso**: SEPLAG - PSS 02/2025/SEPLAG (Analista de TI - Perfis Júnior, Pleno e Sênior)
-- **Identificador**: 8463
+- **Número da inscrição**: 8463
 - **Perfil**: Desenvolvedor PHP - Júnior
 
 ---
