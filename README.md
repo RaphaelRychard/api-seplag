@@ -82,8 +82,8 @@ armazenamento e outras dependências que são gerenciadas via Docker. Confira os
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seplag/api.git
-   cd api
+   git clone https://github.com/RaphaelRychard/api-seplag
+   cd api-seplag
    ```
 
 2. Configure o arquivo `.env`:
