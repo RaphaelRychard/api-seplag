@@ -21,13 +21,25 @@ Projeto construído como parte da inscrição para o concurso **SEPLAG - PSS 02/
 
 ## Índice
 
-1. [Requisitos do Sistema](#requisitos-do-sistema)
-2. [Configuração do Ambiente](#configuração-do-ambiente)
+- [Seplag API](#seplag-api)
+  - [Descrição Geral](#descrição-geral)
+  - [Dados da Inscrição](#dados-da-inscrição)
+  - [Índice](#índice)
+  - [Requisitos do Sistema](#requisitos-do-sistema)
+    - [Principais Dependências](#principais-dependências)
+    - [Extensões PHP Necessárias](#extensões-php-necessárias)
+  - [Configuração do Ambiente](#configuração-do-ambiente)
     - [Com Docker Compose](#com-docker-compose)
-3. [Configuração de Ambiente Laravel](#configuração-de-ambiente-laravel)
-4. [Documentação da API (Swagger)](#documentação-da-api-swagger)
-5. [Testes Automatizados](#testes-automatizados)
-6. [Changelog](#changelog)
+  - [Configuração de Ambiente Laravel](#configuração-de-ambiente-laravel)
+    - [Exemplo de `.env.example`](#exemplo-de-envexample)
+    - [Desenvolvimento](#desenvolvimento)
+    - [Produção](#produção)
+    - [Testes](#testes)
+  - [Documentação da API (Swagger)](#documentação-da-api-swagger)
+  - [Testes Automatizados](#testes-automatizados)
+    - [Comandos:](#comandos)
+  - [Changelog](#changelog)
+    - [Versão 1.0.0](#versão-100)
 
 ---
 
@@ -63,27 +75,21 @@ Siga os passos para subir o projeto com Docker:
 git clone https://github.com/RaphaelRychard/api-seplag
 cd api-seplag
 
-# Sobe os containers e constrói a imagem
-docker compose up -d --build
+cp .env.example .env
+docker-compose up -d
 
-# Instala dependências
-docker compose exec php composer install
+composer install
 
-# Copia env e configurações iniciais
-docker compose exec php cp .env.example .env
-docker compose exec php php artisan key:generate
-docker compose exec php php artisan config:clear
-docker compose exec php php artisan cache:clear
-
-# Migração do banco
-docker compose exec php php artisan migrate
+php artisan migrate:fresh --seed 
+php artisan key:generate
+php artisan serve
 ```
 
 Acesse a interface do MinIO (armazenamento de fotos):
 
 - http://localhost:9001
 - Use as credenciais definidas no `.env`
-- Crie o bucket com o nome configurado em `seplag` se não existir
+- Crie o bucket com o nome configurado em `MINIO_BUCKET`
 
 ---
 
@@ -102,20 +108,18 @@ APP_URL=http://localhost:8000
 APP_KEY=
 
 DB_CONNECTION=pgsql
-DB_HOST=pg
+DB_HOST=127.0.0.1
 DB_PORT=5432
-DB_DATABASE=seplag
-DB_USERNAME=docker
-DB_PASSWORD=docker
+DB_DATABASE=nome_do_banco
+DB_USERNAME=usuario
+DB_PASSWORD=senha
 
 FILESYSTEM_DISK=minio
-
-# MinIO Config
-MINIO_ENDPOINT=http://minio:9000
-MINIO_KEY=myadmin
-MINIO_SECRET=mysecurepassword
+MINIO_ENDPOINT=http://localhost:9000
+MINIO_KEY=sua_chave
+MINIO_SECRET=seu_segredo
 MINIO_REGION=us-east-1
-MINIO_BUCKET=seplag
+MINIO_BUCKET=nome-do-bucket
 ```
 
 ###  Desenvolvimento
@@ -140,8 +144,8 @@ php artisan config:cache
 Laravel usa automaticamente `.env.testing`, se existir:
 
 ```bash
-docker compose exec php php artisan migrate --env=testing
-docker compose exec php php artisan test
+php artisan migrate --env=testing
+php artisan test
 ```
 
 Ou sobrescreva temporariamente o `.env` para testes.
