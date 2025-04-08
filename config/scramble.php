@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 use Dedoc\Scramble\Http\Middleware\RestrictedDocsAccess;
 
+
+
 return [
     /*
      * Your API path. By default, all routes starting with this path will be added to the docs.
@@ -26,12 +28,12 @@ return [
         /*
          * API version.
          */
-        'version' => env('API_VERSION', '0.0.1'),
+        'version' => env('API_VERSION', '1.0.0'), // Versão da API, atualize conforme necessário
 
         /*
          * Description rendered on the home page of the API documentation (`/docs/api`).
          */
-        'description' => '',
+        'description' => file_get_contents(__DIR__ . '/../README.md'),
     ],
 
     /*
@@ -41,7 +43,7 @@ return [
         /*
          * Define the title of the documentation's website. App name is used when this config is `null`.
          */
-        'title' => null,
+        'title' => 'DOCS - API Seplag',
 
         /*
          * Define the theme of the documentation. Available options are `light` and `dark`.
@@ -56,12 +58,12 @@ return [
         /*
          * Hide the schemas in the Table of Contents. Enabled by default.
          */
-        'hide_schemas' => false,
+        'hide_schemas' => true,
 
         /*
          * URL to an image that displays as a small square logo next to the title, above the table of contents.
          */
-        'logo' => '',
+        'logo' => 'https://www.google.com/s2/favicons?domain=dev.to&sz=128',
 
         /*
          * Use to fetch the credential policy for the Try It feature. Options are: omit, include (default), and same-origin
@@ -99,7 +101,7 @@ return [
      * - 'description' – Case descriptions are stored as the enum schema's description using table formatting.
      * - 'extension' – Case descriptions are stored in the `x-enumDescriptions` enum schema extension.
      *
-     *    @see https://redocly.com/docs-legacy/api-reference-docs/specification-extensions/x-enum-descriptions
+     * @see https://redocly.com/docs-legacy/api-reference-docs/specification-extensions/x-enum-descriptions
      * - false - Case descriptions are ignored.
      */
     'enum_cases_description_strategy' => 'description',

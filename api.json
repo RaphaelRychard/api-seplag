@@ -1,12 +1,18 @@
 {
     "openapi": "3.1.0",
     "info": {
-        "title": "Laravel",
-        "version": "0.0.1"
+        "title": "DOCS - API Seplag",
+        "version": "1.0.0",
+        "description": "A Seplag API, constru\u00edda em Laravel, oferece gerenciamento completo\nde recursos humanos e administrativos, incluindo:\n\n* Servidores (efetivos e tempor\u00e1rios)\n* Unidades administrativas\n* Lota\u00e7\u00f5es\n* Fotografias\n\nA autentica\u00e7\u00e3o via Sanctum garante seguran\u00e7a.\nDocumenta\u00e7\u00e3o completa dispon\u00edvel."
     },
     "servers": [
         {
             "url": "http:\/\/localhost:8000\/api"
+        }
+    ],
+    "security": [
+        {
+            "http": []
         }
     ],
     "paths": {
@@ -373,97 +379,6 @@
                 }
             }
         },
-        "\/functional-address\/search": {
-            "get": {
-                "operationId": "functional-address.search",
-                "tags": [
-                    "FunctionalAddress"
-                ],
-                "parameters": [
-                    {
-                        "name": "nome",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "minLength": 3
-                        }
-                    },
-                    {
-                        "name": "per_page",
-                        "in": "query",
-                        "schema": {
-                            "type": "integer",
-                            "default": 10
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application\/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#\/components\/schemas\/FunctionalAddressResource"
-                                            }
-                                        },
-                                        "pagination": {
-                                            "type": "object",
-                                            "properties": {
-                                                "total": {
-                                                    "type": "string"
-                                                },
-                                                "per_page": {
-                                                    "type": "string"
-                                                },
-                                                "current_page": {
-                                                    "type": "string"
-                                                },
-                                                "last_page": {
-                                                    "type": "string"
-                                                },
-                                                "from": {
-                                                    "type": "string"
-                                                },
-                                                "to": {
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "total",
-                                                "per_page",
-                                                "current_page",
-                                                "last_page",
-                                                "from",
-                                                "to"
-                                            ]
-                                        }
-                                    },
-                                    "required": [
-                                        "data",
-                                        "pagination"
-                                    ]
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "$ref": "#\/components\/responses\/AuthenticationException"
-                    },
-                    "422": {
-                        "$ref": "#\/components\/responses\/ValidationException"
-                    },
-                    "403": {
-                        "$ref": "#\/components\/responses\/AuthorizationException"
-                    }
-                }
-            }
-        },
         "\/permanent-servants": {
             "get": {
                 "operationId": "permanent-servants.index",
@@ -733,6 +648,98 @@
                                     },
                                     "required": [
                                         "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    },
+                    "422": {
+                        "$ref": "#\/components\/responses\/ValidationException"
+                    },
+                    "403": {
+                        "$ref": "#\/components\/responses\/AuthorizationException"
+                    }
+                }
+            }
+        },
+        "\/permanent-servants\/functional-address\/search": {
+            "get": {
+                "operationId": "functional-address.search",
+                "tags": [
+                    "ServantFunctionalAddress"
+                ],
+                "parameters": [
+                    {
+                        "name": "nome",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "minLength": 2,
+                            "maxLength": 255
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "default": 10
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#\/components\/schemas\/FunctionalAddressResource"
+                                            }
+                                        },
+                                        "pagination": {
+                                            "type": "object",
+                                            "properties": {
+                                                "total": {
+                                                    "type": "string"
+                                                },
+                                                "per_page": {
+                                                    "type": "string"
+                                                },
+                                                "current_page": {
+                                                    "type": "string"
+                                                },
+                                                "last_page": {
+                                                    "type": "string"
+                                                },
+                                                "from": {
+                                                    "type": "string"
+                                                },
+                                                "to": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "total",
+                                                "per_page",
+                                                "current_page",
+                                                "last_page",
+                                                "from",
+                                                "to"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "data",
+                                        "pagination"
                                     ]
                                 }
                             }
@@ -1206,6 +1213,12 @@
         }
     },
     "components": {
+        "securitySchemes": {
+            "http": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        },
         "schemas": {
             "AssignmentResource": {
                 "type": "object",
@@ -1410,7 +1423,47 @@
                 "title": "FileUploadRequest"
             },
             "FunctionalAddressResource": {
-                "type": "string",
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string"
+                    },
+                    "unidade": {
+                        "type": "string"
+                    },
+                    "endereco": {
+                        "type": "object",
+                        "properties": {
+                            "tipo_logradouro": {
+                                "type": "string"
+                            },
+                            "logradouro": {
+                                "type": "string"
+                            },
+                            "numero": {
+                                "type": "string"
+                            },
+                            "bairro": {
+                                "type": "string"
+                            },
+                            "cidade": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "tipo_logradouro",
+                            "logradouro",
+                            "numero",
+                            "bairro",
+                            "cidade"
+                        ]
+                    }
+                },
+                "required": [
+                    "nome",
+                    "unidade",
+                    "endereco"
+                ],
                 "title": "FunctionalAddressResource"
             },
             "LoginRequest": {
