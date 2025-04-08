@@ -1,7 +1,3 @@
-Tá bem escrito no geral! Só precisa de uns ajustes de gramática, consistência e fluidez. Aqui vai a versão revisada com correções pontuais:
-
----
-
 # **Seplag API**
 
 ## **Descrição Geral**
@@ -251,7 +247,3 @@ MINIO_BUCKET=my-bucket
 1. Nenhum commit deve ser enviado após o prazo de entrega.
 2. Apenas dependências declaradas no `composer.json` foram utilizadas.
 3. O projeto segue boas práticas de segurança e escalabilidade.
-
----
-
-Se quiser, posso gerar uma versão em PDF ou markdown puro pro README do GitHub. Quer isso?
