@@ -1,6 +1,6 @@
-# 🛡️ Seplag API
+# Seplag API
 
-## 📘️ Descrição Geral
+## Descrição Geral
 
 A **Seplag API** é uma solução back-end desenvolvida em **Laravel**, que oferece recursos para gerenciamento de servidores efetivos, temporários, unidades administrativas e operações como lotação e upload de fotografias.
 
@@ -63,21 +63,27 @@ Siga os passos para subir o projeto com Docker:
 git clone https://github.com/RaphaelRychard/api-seplag
 cd api-seplag
 
-cp .env.example .env
-docker-compose up -d
+# Sobe os containers e constrói a imagem
+docker compose up -d --build
 
-composer install
+# Instala dependências
+docker compose exec php composer install
 
-php artisan migrate
-php artisan key:generate
-php artisan serve
+# Copia env e configurações iniciais
+docker compose exec php cp .env.example .env
+docker compose exec php php artisan key:generate
+docker compose exec php php artisan config:clear
+docker compose exec php php artisan cache:clear
+
+# Migração do banco
+docker compose exec php php artisan migrate
 ```
 
 Acesse a interface do MinIO (armazenamento de fotos):
 
 - http://localhost:9001
 - Use as credenciais definidas no `.env`
-- Crie o bucket com o nome configurado em `MINIO_BUCKET`
+- Crie o bucket com o nome configurado em `seplag` se não existir
 
 ---
 
@@ -96,18 +102,20 @@ APP_URL=http://localhost:8000
 APP_KEY=
 
 DB_CONNECTION=pgsql
-DB_HOST=127.0.0.1
+DB_HOST=pg
 DB_PORT=5432
-DB_DATABASE=nome_do_banco
-DB_USERNAME=usuario
-DB_PASSWORD=senha
+DB_DATABASE=seplag
+DB_USERNAME=docker
+DB_PASSWORD=docker
 
 FILESYSTEM_DISK=minio
-MINIO_ENDPOINT=http://localhost:9000
-MINIO_KEY=sua_chave
-MINIO_SECRET=seu_segredo
+
+# MinIO Config
+MINIO_ENDPOINT=http://minio:9000
+MINIO_KEY=myadmin
+MINIO_SECRET=mysecurepassword
 MINIO_REGION=us-east-1
-MINIO_BUCKET=nome-do-bucket
+MINIO_BUCKET=seplag
 ```
 
 ###  Desenvolvimento
@@ -132,8 +140,8 @@ php artisan config:cache
 Laravel usa automaticamente `.env.testing`, se existir:
 
 ```bash
-php artisan migrate --env=testing
-php artisan test
+docker compose exec php php artisan migrate --env=testing
+docker compose exec php php artisan test
 ```
 
 Ou sobrescreva temporariamente o `.env` para testes.
