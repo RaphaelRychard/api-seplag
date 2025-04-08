@@ -501,8 +501,8 @@ DB_PASSWORD = senha_dev
 # Configuração do Minio (com variáveis separadas)
 FILESYSTEM_DISK = minio
 MINIO_ENDPOINT = http://localhost:9000
-MINIO_KEY = fbsTUsEB4GvFdkf4686N
-MINIO_SECRET = hGYIXxty8eUvPccj5iJtwS5spr3ts3uuSCXPjZjt
+MINIO_KEY = chave_dev
+MINIO_SECRET = segredo_dev
 MINIO_REGION = us-east-1
 MINIO_BUCKET = my-bucket
 
@@ -549,8 +549,8 @@ DB_PASSWORD = senha_test
 # Minio para testes (necessário para testes E2E que envolvam upload/armazenamento)
 FILESYSTEM_DISK = minio
 MINIO_ENDPOINT = http://localhost:9000
-MINIO_KEY = fbsTUsEB4GvFdkf4686N
-MINIO_SECRET = hGYIXxty8eUvPccj5iJtwS5spr3ts3uuSCXPjZjt
+MINIO_KEY = chave_test
+MINIO_SECRET = segredo_test
 MINIO_REGION = us-east-1
 MINIO_BUCKET = my-bucket
 
