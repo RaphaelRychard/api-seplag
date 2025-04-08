@@ -62,7 +62,9 @@ Antes de configurar e executar o projeto, certifique-se de que as dependências 
 - **Composer**: Para gerenciamento de pacotes PHP
 - **Banco de Dados**: **PostgreSQL** (ou compatível)
 - **Laravel**: Versão **^12.0**
-- **Docker** *(Opcional)*: Para configuração rápida do ambiente
+- **Node.js**: Versão recomendada **18+**
+    - Necessário para a execução de scripts via `npx` (como `concurrently`).
+- **Docker**: Para configuração rápida do ambiente
 - **Extensões PHP necessárias**:
     - `pdo_pgsql`
     - `mbstring`
