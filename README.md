@@ -81,7 +81,7 @@ docker exec -it php composer install
 
 # Gere chave da aplicação e rode as migrations com seeds
 docker exec -it php php artisan key:generate
-docker exec -it php php artisan migrate:fresh --seed
+docker exec -it php php artisan migrate:fresh --seed:fresh --seed
 ```
 
 ### Configuração do .env
@@ -146,7 +146,7 @@ Os testes utilizam **PestPHP**.
 ### Comandos:
 
 ```bash
-docker exec -it php php artisan migrate --env=testing
+docker exec -it php php artisan migrate:fresh --seed --env=testing
 docker exec -it php php artisan test
 ```
 
