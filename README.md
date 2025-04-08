@@ -22,24 +22,20 @@ Projeto construído como parte da inscrição para o concurso **SEPLAG - PSS 02/
 ## Índice
 
 - [Seplag API](#seplag-api)
-  - [Descrição Geral](#descrição-geral)
-  - [Dados da Inscrição](#dados-da-inscrição)
-  - [Índice](#índice)
-  - [Requisitos do Sistema](#requisitos-do-sistema)
-    - [Principais Dependências](#principais-dependências)
-    - [Extensões PHP Necessárias](#extensões-php-necessárias)
-  - [Configuração do Ambiente](#configuração-do-ambiente)
-    - [Com Docker Compose](#com-docker-compose)
-  - [Configuração de Ambiente Laravel](#configuração-de-ambiente-laravel)
-    - [Exemplo de `.env.example`](#exemplo-de-envexample)
-    - [Desenvolvimento](#desenvolvimento)
-    - [Produção](#produção)
-    - [Testes](#testes)
-  - [Documentação da API (Swagger)](#documentação-da-api-swagger)
-  - [Testes Automatizados](#testes-automatizados)
-    - [Comandos:](#comandos)
-  - [Changelog](#changelog)
-    - [Versão 1.0.0](#versão-100)
+    - [Descrição Geral](#descrição-geral)
+    - [Dados da Inscrição](#dados-da-inscrição)
+    - [Índice](#índice)
+    - [Requisitos do Sistema](#requisitos-do-sistema)
+        - [Principais Dependências](#principais-dependências)
+        - [Extensões PHP Necessárias](#extensões-php-necessárias)
+    - [Configuração do Ambiente](#configuração-do-ambiente)
+        - [Com Docker Compose](#com-docker-compose)
+        - [Configuração do .env](#configuração-do-env)
+        - [Acessos](#acessos)
+        - [Parar os Serviços](#parar-os-serviços)
+    - [Documentação da API (Swagger)](#documentação-da-api-swagger)
+    - [Testes Automatizados](#testes-automatizados)
+    - [Changelog](#changelog)
 
 ---
 
@@ -69,91 +65,60 @@ Projeto construído como parte da inscrição para o concurso **SEPLAG - PSS 02/
 
 ### Com Docker Compose
 
-Siga os passos para subir o projeto com Docker:
-
 ```bash
+# Clone o repositório
 git clone https://github.com/RaphaelRychard/api-seplag
 cd api-seplag
 
+# Copie o .env base e configure se necessário
 cp .env.example .env
+
+# Suba os containers (PHP, NGINX, Postgres, MinIO)
 docker-compose up -d
 
-composer install
+# Instale as dependências PHP via container
+docker exec -it php composer install
 
-php artisan migrate:fresh --seed 
-php artisan key:generate
-php artisan serve
+# Gere chave da aplicação e rode as migrations com seeds
+docker exec -it php php artisan key:generate
+docker exec -it php php artisan migrate:fresh --seed
 ```
 
-Acesse a interface do MinIO (armazenamento de fotos):
+### Configuração do .env
 
-- http://localhost:9001
-- Use as credenciais definidas no `.env`
-- Crie o bucket com o nome configurado em `MINIO_BUCKET`
-
----
-
-## Configuração de Ambiente Laravel
-
-O Laravel utiliza um único arquivo `.env` com todas as variáveis de ambiente.
-
-Mantenha um `.env.example` sempre atualizado no repositório para servir de base para todos os ambientes.
-
-### Exemplo de `.env.example`
-
-```ini
-APP_ENV=local
-APP_DEBUG=true
-APP_URL=http://localhost:8000
-APP_KEY=
-
+```env
 DB_CONNECTION=pgsql
-DB_HOST=127.0.0.1
+DB_HOST=pg
 DB_PORT=5432
-DB_DATABASE=nome_do_banco
-DB_USERNAME=usuario
-DB_PASSWORD=senha
+DB_DATABASE=seplag
+DB_USERNAME=docker
+DB_PASSWORD=docker
 
-FILESYSTEM_DISK=minio
-MINIO_ENDPOINT=http://localhost:9000
-MINIO_KEY=sua_chave
-MINIO_SECRET=seu_segredo
+# Minio
+MINIO_ENDPOINT=http://minio:9000
+MINIO_KEY=myadmin
+MINIO_SECRET=mysecurepassword
 MINIO_REGION=us-east-1
-MINIO_BUCKET=nome-do-bucket
+MINIO_BUCKET=seplag
 ```
 
-###  Desenvolvimento
+### Acessos
 
-```bash
-cp .env.example .env
-php artisan key:generate
+- **Sistema**: http://localhost
+- **MinIO Console**: http://localhost:9001
+    - Usuário: `myadmin`
+    - Senha: `mysecurepassword`
+
+**Após acessar o MinIO, crie um bucket com o nome:**
+
+```txt
+seplag
 ```
 
-### Produção
+### Parar os Serviços
 
 ```bash
-cp .env.example .env
-# Edite os valores com os dados de produção
-php artisan config:cache
-```
-
-> Defina `APP_ENV=production` e `APP_DEBUG=false`
-
-### Testes
-
-Laravel usa automaticamente `.env.testing`, se existir:
-
-```bash
-php artisan migrate --env=testing
-php artisan test
-```
-
-Ou sobrescreva temporariamente o `.env` para testes.
-
-Sempre que editar o `.env`, rode:
-
-```bash
-php artisan config:clear
+docker-compose down
 ```
 
 ---
@@ -162,7 +127,7 @@ php artisan config:clear
 
 Documentação interativa disponível em:
 
-[http://localhost:8000/docs/api](http://localhost:8000/docs/api)
+[http://localhost/docs/api](http://localhost/docs/api)
 
 Nela é possível:
 
@@ -174,13 +139,21 @@ Nela é possível:
 
 ## Testes Automatizados
 
+> Laravel usará automaticamente um arquivo `.env.testing` se estiver presente.
+
 Os testes utilizam **PestPHP**.
 
 ### Comandos:
 
 ```bash
-php artisan migrate --env=testing
-php artisan test
+docker exec -it php php artisan migrate --env=testing
+docker exec -it php php artisan test
+```
+
+Para garantir o uso correto de configurações após edições no `.env`:
+
+```bash
+docker exec -it php php artisan config:clear
 ```
 
 > Certifique-se que o banco de dados de testes está configurado corretamente.
@@ -204,3 +177,4 @@ php artisan test
 ---
 
 👉 Projeto mantido por Raphael Rychard • [raph.rych@gmail.com](mailto:raph.rych@gmail.com)
+
