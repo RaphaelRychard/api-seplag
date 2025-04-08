@@ -108,16 +108,6 @@ A documentação está disponível em:
 
 > Nela, você pode testar requisições, visualizar endpoints, schemas e exemplos de respostas.
 
-**Códigos de Status Comuns**:
-
-- `200`: Sucesso
-- `201`: Criado
-- `400`: Erro de validação
-- `401`: Não autorizado
-- `403`: Acesso proibido
-- `404`: Recurso não encontrado
-- `500`: Erro interno do servidor
-
 ---
 
 ## **Testes Automatizados**
