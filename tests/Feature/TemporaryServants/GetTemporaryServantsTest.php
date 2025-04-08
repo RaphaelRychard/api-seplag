@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 
 beforeEach(fn (): Authenticatable => login());
 
-it('should be able to transform temporary servant resource correctly', function () {
+it('should be able to transform temporary servant resource correctly', function (): void {
     Storage::shouldReceive('disk->temporaryUrl')
         ->once()
         ->andReturn('https://fake-minio-url.com/foto.jpg');
@@ -72,7 +72,7 @@ it('should be able to transform temporary servant resource correctly', function 
     ]);
 });
 
-it('should be able to return null for fotografia when person has no photo', function () {
+it('should be able to return null for fotografia when person has no photo', function (): void {
     $unit = Unit::factory()->create();
 
     $assignment = Assignment::factory()->create([
@@ -106,7 +106,7 @@ it('should be able to return null for fotografia when person has no photo', func
     ]);
 });
 
-it('should be able to return null for unidade and lotacao when person has no assignment', function () {
+it('should be able to return null for unidade and lotacao when person has no assignment', function (): void {
     $person = Person::factory()->create([
         'nome'            => 'Carlos Sem Lotação',
         'data_nascimento' => now()->subYears(40)->toDateString(),

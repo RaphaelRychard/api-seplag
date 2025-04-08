@@ -15,7 +15,7 @@ use function Pest\Laravel\getJson;
 beforeEach(fn (): Authenticatable => login());
 
 it('should be able to fetch temporary servants with pagination and structure', function (): void {
-    Person::factory()->count(15)->create()->each(function ($person) {
+    Person::factory()->count(15)->create()->each(function ($person): void {
         TemporaryServants::factory()->create(['pes_id' => $person->id]);
     });
 
@@ -50,7 +50,7 @@ it('should be able to filter temporary servants by unit id', function (): void {
     $unitA = Unit::factory()->create(['nome' => 'Unit A']);
     $unitB = Unit::factory()->create(['nome' => 'Unit B']);
 
-    Person::factory()->count(10)->create()->each(function ($person) use ($unitB) {
+    Person::factory()->count(10)->create()->each(function ($person) use ($unitB): void {
         Assignment::factory()->create([
             'pes_id'  => $person->id,
             'unid_id' => $unitB->id,
@@ -83,7 +83,7 @@ it('should be able to include person relationship when requested', function (): 
 });
 
 it('should be able to navigate to a specific page in pagination', function (): void {
-    Person::factory()->count(25)->create()->each(function ($person) {
+    Person::factory()->count(25)->create()->each(function ($person): void {
         TemporaryServants::factory()->create(['pes_id' => $person->id]);
     });
 

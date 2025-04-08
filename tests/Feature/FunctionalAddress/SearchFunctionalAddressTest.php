@@ -35,16 +35,15 @@ it('should be able to return functional address for a matching permanent servant
         'cid_id'          => $city->id,
     ]);
 
-    $addressUnit = AddressUnit::factory()->create([
-        'end_id' => $address->id,
-    ]);
-
     $unit = Unit::factory()->create([
         'nome'  => 'Unidade Central',
         'sigla' => 'UC',
     ]);
 
-    $addressUnit->update(['unid_id' => $unit->id]);
+    AddressUnit::factory()->create([
+        'end_id'  => $address->id,
+        'unid_id' => $unit->id,
+    ]);
 
     $person = Person::factory()->create([
         'nome'            => 'João da Silva',
@@ -114,7 +113,7 @@ it('should return only matching functional addresses (4 out of 15)', function ()
         'unid_id' => $unit->id,
     ]);
 
-    Person::factory()->count(11)->create()->each(function ($person) use ($unit) {
+    Person::factory()->count(11)->create()->each(function ($person) use ($unit): void {
         Assignment::factory()->create([
             'pes_id'  => $person->id,
             'unid_id' => $unit->id,
@@ -122,7 +121,7 @@ it('should return only matching functional addresses (4 out of 15)', function ()
         PermanentServants::factory()->create(['pes_id' => $person->id]);
     });
 
-    Person::factory()->count(4)->create(['nome' => 'João da Silva'])->each(function ($person) use ($unit) {
+    Person::factory()->count(4)->create(['nome' => 'João da Silva'])->each(function ($person) use ($unit): void {
         Assignment::factory()->create([
             'pes_id'  => $person->id,
             'unid_id' => $unit->id,
@@ -148,7 +147,7 @@ it('should return paginated results with per_page set to 5', function (): void {
 
     Person::factory()->count(10)->create([
         'nome' => 'João Teste',
-    ])->each(function ($person) use ($unit) {
+    ])->each(function ($person) use ($unit): void {
         Assignment::factory()->create([
             'pes_id'  => $person->id,
             'unid_id' => $unit->id,
@@ -178,7 +177,7 @@ it('should return correct second page when paginating results', function (): voi
         'unid_id' => $unit->id,
     ]);
 
-    Person::factory()->count(8)->create(['nome' => 'João Teste'])->each(function ($person) use ($unit) {
+    Person::factory()->count(8)->create(['nome' => 'João Teste'])->each(function ($person) use ($unit): void {
         Assignment::factory()->create([
             'pes_id'  => $person->id,
             'unid_id' => $unit->id,

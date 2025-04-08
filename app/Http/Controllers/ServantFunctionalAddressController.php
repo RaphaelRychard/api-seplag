@@ -8,12 +8,12 @@ use App\Http\Requests\SearchFunctionalAddressRequest;
 use App\Http\Resources\FunctionalAddressResource;
 use App\Models\Person;
 
-class FunctionalAddressController extends Controller
+class ServantFunctionalAddressController extends Controller
 {
     public function search(SearchFunctionalAddressRequest $request)
     {
         $nameQuery = $request->validated('nome');
-        $perPage   = $request->integer('per_page', 10); // valor padrão
+        $perPage   = $request->integer('per_page', 10);
 
         $paginatedResults = $this->getMatchingServants($nameQuery, $perPage);
 

@@ -24,7 +24,7 @@ class SearchFunctionalAddressRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome' => ['required', 'string', 'min:3'],
+            'nome' => ['required', 'string', 'min:2', 'max:255'],
         ];
     }
 }

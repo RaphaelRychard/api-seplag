@@ -14,14 +14,11 @@ class FunctionalAddressResource extends JsonResource
      *
      * @return array<string, mixed>
      */
+    #[\Override]
     public function toArray(Request $request): array
     {
         $addressUnit = optional($this->assignment->unit->addressUnit ?? null);
         $address     = optional($addressUnit->address ?? null);
-
-        if (! $address->exists) {
-            return [];
-        }
 
         return [
             'nome'     => $this->nome,

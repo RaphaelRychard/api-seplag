@@ -1,0 +1,1999 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Laravel",
+        "version": "0.0.1"
+    },
+    "servers": [
+        {
+            "url": "http:\/\/localhost:8000\/api"
+        }
+    ],
+    "paths": {
+        "\/assignment": {
+            "get": {
+                "operationId": "assignment.index",
+                "tags": [
+                    "Assignment"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#\/components\/schemas\/AssignmentResource"
+                                            }
+                                        },
+                                        "pagination": {
+                                            "type": "object",
+                                            "properties": {
+                                                "total": {
+                                                    "type": "string"
+                                                },
+                                                "per_page": {
+                                                    "type": "string"
+                                                },
+                                                "current_page": {
+                                                    "type": "string"
+                                                },
+                                                "last_page": {
+                                                    "type": "string"
+                                                },
+                                                "from": {
+                                                    "type": "string"
+                                                },
+                                                "to": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "total",
+                                                "per_page",
+                                                "current_page",
+                                                "last_page",
+                                                "from",
+                                                "to"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "data",
+                                        "pagination"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    }
+                }
+            },
+            "post": {
+                "operationId": "assignment.store",
+                "tags": [
+                    "Assignment"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/StoreAssignmentRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "`AssignmentResource`",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#\/components\/schemas\/AssignmentResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    },
+                    "422": {
+                        "$ref": "#\/components\/responses\/ValidationException"
+                    },
+                    "403": {
+                        "$ref": "#\/components\/responses\/AuthorizationException"
+                    }
+                }
+            }
+        },
+        "\/assignment\/{assignment}": {
+            "get": {
+                "operationId": "assignment.show",
+                "tags": [
+                    "Assignment"
+                ],
+                "parameters": [
+                    {
+                        "name": "assignment",
+                        "in": "path",
+                        "required": true,
+                        "description": "The assignment ID",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "`AssignmentResource`",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#\/components\/schemas\/AssignmentResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#\/components\/responses\/ModelNotFoundException"
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    }
+                }
+            },
+            "put": {
+                "operationId": "assignment.update",
+                "tags": [
+                    "Assignment"
+                ],
+                "parameters": [
+                    {
+                        "name": "assignment",
+                        "in": "path",
+                        "required": true,
+                        "description": "The assignment ID",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/UpdateAssignmentRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "`AssignmentResource`",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#\/components\/schemas\/AssignmentResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#\/components\/responses\/ModelNotFoundException"
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    },
+                    "422": {
+                        "$ref": "#\/components\/responses\/ValidationException"
+                    },
+                    "403": {
+                        "$ref": "#\/components\/responses\/AuthorizationException"
+                    }
+                }
+            }
+        },
+        "\/assignment\/{assignment}\/remove": {
+            "patch": {
+                "operationId": "assignment.remove",
+                "tags": [
+                    "Assignment"
+                ],
+                "parameters": [
+                    {
+                        "name": "assignment",
+                        "in": "path",
+                        "required": true,
+                        "description": "The assignment ID",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/RemoveAssignmentRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "`AssignmentResource`",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#\/components\/schemas\/AssignmentResource"
+                                        },
+                                        "mensagem": {
+                                            "type": "string",
+                                            "example": "Remo\u00e7\u00e3o feita com sucesso."
+                                        }
+                                    },
+                                    "required": [
+                                        "data",
+                                        "mensagem"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#\/components\/responses\/ModelNotFoundException"
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    },
+                    "422": {
+                        "$ref": "#\/components\/responses\/ValidationException"
+                    },
+                    "403": {
+                        "$ref": "#\/components\/responses\/AuthorizationException"
+                    }
+                }
+            }
+        },
+        "\/login": {
+            "post": {
+                "operationId": "auth.login",
+                "tags": [
+                    "Auth"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/LoginRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "token": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "token"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#\/components\/responses\/ValidationException"
+                    }
+                }
+            }
+        },
+        "\/register": {
+            "post": {
+                "operationId": "auth.register",
+                "tags": [
+                    "Auth"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/RegisterRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "token": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "token"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#\/components\/responses\/ValidationException"
+                    }
+                }
+            }
+        },
+        "\/functional-address\/search": {
+            "get": {
+                "operationId": "functional-address.search",
+                "tags": [
+                    "FunctionalAddress"
+                ],
+                "parameters": [
+                    {
+                        "name": "nome",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "minLength": 3
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "default": 10
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#\/components\/schemas\/FunctionalAddressResource"
+                                            }
+                                        },
+                                        "pagination": {
+                                            "type": "object",
+                                            "properties": {
+                                                "total": {
+                                                    "type": "string"
+                                                },
+                                                "per_page": {
+                                                    "type": "string"
+                                                },
+                                                "current_page": {
+                                                    "type": "string"
+                                                },
+                                                "last_page": {
+                                                    "type": "string"
+                                                },
+                                                "from": {
+                                                    "type": "string"
+                                                },
+                                                "to": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "total",
+                                                "per_page",
+                                                "current_page",
+                                                "last_page",
+                                                "from",
+                                                "to"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "data",
+                                        "pagination"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    },
+                    "422": {
+                        "$ref": "#\/components\/responses\/ValidationException"
+                    },
+                    "403": {
+                        "$ref": "#\/components\/responses\/AuthorizationException"
+                    }
+                }
+            }
+        },
+        "\/permanent-servants": {
+            "get": {
+                "operationId": "permanent-servants.index",
+                "tags": [
+                    "PermanentServants"
+                ],
+                "parameters": [
+                    {
+                        "name": "unid_id",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "with",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "default": 10
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#\/components\/schemas\/FetchPermanentServantResource"
+                                            }
+                                        },
+                                        "pagination": {
+                                            "type": "object",
+                                            "properties": {
+                                                "total": {
+                                                    "type": "string"
+                                                },
+                                                "per_page": {
+                                                    "type": "string"
+                                                },
+                                                "current_page": {
+                                                    "type": "string"
+                                                },
+                                                "last_page": {
+                                                    "type": "string"
+                                                },
+                                                "from": {
+                                                    "type": "string"
+                                                },
+                                                "to": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "total",
+                                                "per_page",
+                                                "current_page",
+                                                "last_page",
+                                                "from",
+                                                "to"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "data",
+                                        "pagination"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    }
+                }
+            },
+            "post": {
+                "operationId": "permanent-servants.store",
+                "tags": [
+                    "PermanentServants"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/StorePermanentServantRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "`StorePermanentServantResource`",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#\/components\/schemas\/StorePermanentServantResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    },
+                    "422": {
+                        "$ref": "#\/components\/responses\/ValidationException"
+                    },
+                    "403": {
+                        "$ref": "#\/components\/responses\/AuthorizationException"
+                    }
+                }
+            }
+        },
+        "\/permanent-servants\/{permanentServant}": {
+            "get": {
+                "operationId": "permanent-servants.show",
+                "tags": [
+                    "PermanentServants"
+                ],
+                "parameters": [
+                    {
+                        "name": "permanentServant",
+                        "in": "path",
+                        "required": true,
+                        "description": "The permanent servant ID",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "`DetailsPermanentServantResource`",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#\/components\/schemas\/DetailsPermanentServantResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#\/components\/responses\/ModelNotFoundException"
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    }
+                }
+            },
+            "put": {
+                "operationId": "permanent-servants.update",
+                "tags": [
+                    "PermanentServants"
+                ],
+                "parameters": [
+                    {
+                        "name": "permanentServant",
+                        "in": "path",
+                        "required": true,
+                        "description": "The permanent servant ID",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/UpdatePermanentServantsRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "`UpdatePermanentServantResource`",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#\/components\/schemas\/UpdatePermanentServantResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#\/components\/responses\/ModelNotFoundException"
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    },
+                    "422": {
+                        "$ref": "#\/components\/responses\/ValidationException"
+                    },
+                    "403": {
+                        "$ref": "#\/components\/responses\/AuthorizationException"
+                    }
+                }
+            }
+        },
+        "\/photograph": {
+            "post": {
+                "operationId": "photograph.upload",
+                "tags": [
+                    "PhotographUpload"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart\/form-data": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/FileUploadRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "`UploadPhotographResource`",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#\/components\/schemas\/UploadPhotographResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    },
+                    "422": {
+                        "$ref": "#\/components\/responses\/ValidationException"
+                    },
+                    "403": {
+                        "$ref": "#\/components\/responses\/AuthorizationException"
+                    }
+                }
+            }
+        },
+        "\/temporary-servants": {
+            "get": {
+                "operationId": "temporary-servants.index",
+                "tags": [
+                    "TemporaryServants"
+                ],
+                "parameters": [
+                    {
+                        "name": "unid_id",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "with",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "default": 10
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#\/components\/schemas\/FetchTemporaryServantResource"
+                                            }
+                                        },
+                                        "pagination": {
+                                            "type": "object",
+                                            "properties": {
+                                                "total": {
+                                                    "type": "string"
+                                                },
+                                                "per_page": {
+                                                    "type": "string"
+                                                },
+                                                "current_page": {
+                                                    "type": "string"
+                                                },
+                                                "last_page": {
+                                                    "type": "string"
+                                                },
+                                                "from": {
+                                                    "type": "string"
+                                                },
+                                                "to": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "total",
+                                                "per_page",
+                                                "current_page",
+                                                "last_page",
+                                                "from",
+                                                "to"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "data",
+                                        "pagination"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    }
+                }
+            },
+            "post": {
+                "operationId": "temporary-servants.store",
+                "tags": [
+                    "TemporaryServants"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/StoreTemporaryServantRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "`StoreTemporaryServantResource`",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#\/components\/schemas\/StoreTemporaryServantResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    },
+                    "422": {
+                        "$ref": "#\/components\/responses\/ValidationException"
+                    },
+                    "403": {
+                        "$ref": "#\/components\/responses\/AuthorizationException"
+                    }
+                }
+            }
+        },
+        "\/temporary-servants\/{temporaryServant}": {
+            "get": {
+                "operationId": "temporary-servants.show",
+                "tags": [
+                    "TemporaryServants"
+                ],
+                "parameters": [
+                    {
+                        "name": "temporaryServant",
+                        "in": "path",
+                        "required": true,
+                        "description": "The temporary servant ID",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "`DetailsTemporaryServantResource`",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#\/components\/schemas\/DetailsTemporaryServantResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#\/components\/responses\/ModelNotFoundException"
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    }
+                }
+            },
+            "put": {
+                "operationId": "temporary-servants.update",
+                "tags": [
+                    "TemporaryServants"
+                ],
+                "parameters": [
+                    {
+                        "name": "temporaryServant",
+                        "in": "path",
+                        "required": true,
+                        "description": "The temporary servant ID",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/UpdateTemporaryServantRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "`UpdateTemporaryServantResource`",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#\/components\/schemas\/UpdateTemporaryServantResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#\/components\/responses\/ModelNotFoundException"
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    },
+                    "422": {
+                        "$ref": "#\/components\/responses\/ValidationException"
+                    },
+                    "403": {
+                        "$ref": "#\/components\/responses\/AuthorizationException"
+                    }
+                }
+            }
+        },
+        "\/units": {
+            "get": {
+                "operationId": "units.index",
+                "tags": [
+                    "Unit"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#\/components\/schemas\/UnitResource"
+                                            }
+                                        },
+                                        "pagination": {
+                                            "type": "object",
+                                            "properties": {
+                                                "total": {
+                                                    "type": "string"
+                                                },
+                                                "per_page": {
+                                                    "type": "string"
+                                                },
+                                                "current_page": {
+                                                    "type": "string"
+                                                },
+                                                "last_page": {
+                                                    "type": "string"
+                                                },
+                                                "from": {
+                                                    "type": "string"
+                                                },
+                                                "to": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "total",
+                                                "per_page",
+                                                "current_page",
+                                                "last_page",
+                                                "from",
+                                                "to"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "data",
+                                        "pagination"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    }
+                }
+            },
+            "post": {
+                "operationId": "units.store",
+                "tags": [
+                    "Unit"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/StoreUnitRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "`UnitResource`",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#\/components\/schemas\/UnitResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    },
+                    "422": {
+                        "$ref": "#\/components\/responses\/ValidationException"
+                    },
+                    "403": {
+                        "$ref": "#\/components\/responses\/AuthorizationException"
+                    }
+                }
+            }
+        },
+        "\/units\/{unit}": {
+            "get": {
+                "operationId": "units.show",
+                "tags": [
+                    "Unit"
+                ],
+                "parameters": [
+                    {
+                        "name": "unit",
+                        "in": "path",
+                        "required": true,
+                        "description": "The unit ID",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "`UnitResource`",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#\/components\/schemas\/UnitResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#\/components\/responses\/ModelNotFoundException"
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    }
+                }
+            },
+            "put": {
+                "operationId": "units.update",
+                "tags": [
+                    "Unit"
+                ],
+                "parameters": [
+                    {
+                        "name": "unit",
+                        "in": "path",
+                        "required": true,
+                        "description": "The unit ID",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/UpdateUnitRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "`UnitResource`",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#\/components\/schemas\/UnitResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#\/components\/responses\/ModelNotFoundException"
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    },
+                    "422": {
+                        "$ref": "#\/components\/responses\/ValidationException"
+                    },
+                    "403": {
+                        "$ref": "#\/components\/responses\/AuthorizationException"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "AssignmentResource": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "pes_id": {
+                        "type": "integer"
+                    },
+                    "unid_id": {
+                        "type": "integer"
+                    },
+                    "data_lotacao": {
+                        "type": "string"
+                    },
+                    "data_remocao": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "portaria": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "pes_id",
+                    "unid_id",
+                    "data_lotacao",
+                    "data_remocao",
+                    "portaria"
+                ],
+                "title": "AssignmentResource"
+            },
+            "DetailsPermanentServantResource": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "pes_id": {
+                        "type": "string"
+                    },
+                    "nome": {
+                        "type": "string"
+                    },
+                    "idade": {
+                        "type": "string"
+                    },
+                    "fotografia": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "unidade": {
+                        "type": "string"
+                    },
+                    "lotacao": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "pes_id",
+                    "nome",
+                    "idade",
+                    "fotografia",
+                    "unidade",
+                    "lotacao"
+                ],
+                "title": "DetailsPermanentServantResource"
+            },
+            "DetailsTemporaryServantResource": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "pes_id": {
+                        "type": "string"
+                    },
+                    "nome": {
+                        "type": "string"
+                    },
+                    "idade": {
+                        "type": "string"
+                    },
+                    "fotografia": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "unidade": {
+                        "type": "string"
+                    },
+                    "lotacao": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "pes_id",
+                    "nome",
+                    "idade",
+                    "fotografia",
+                    "unidade",
+                    "lotacao"
+                ],
+                "title": "DetailsTemporaryServantResource"
+            },
+            "FetchPermanentServantResource": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "pes_id": {
+                        "type": "string"
+                    },
+                    "nome": {
+                        "type": "string"
+                    },
+                    "idade": {
+                        "type": "string"
+                    },
+                    "fotografia": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "unidade_lotacao": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "pes_id",
+                    "nome",
+                    "idade",
+                    "fotografia",
+                    "unidade_lotacao"
+                ],
+                "title": "FetchPermanentServantResource"
+            },
+            "FetchTemporaryServantResource": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "pes_id": {
+                        "type": "string"
+                    },
+                    "nome": {
+                        "type": "string"
+                    },
+                    "idade": {
+                        "type": "string"
+                    },
+                    "fotografia": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "unidade_lotacao": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "pes_id",
+                    "nome",
+                    "idade",
+                    "fotografia",
+                    "unidade_lotacao"
+                ],
+                "title": "FetchTemporaryServantResource"
+            },
+            "FileUploadRequest": {
+                "type": "object",
+                "properties": {
+                    "file": {
+                        "type": "string",
+                        "format": "binary",
+                        "contentMediaType": "application\/octet-stream",
+                        "maxLength": 4096
+                    },
+                    "pes_id": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "file",
+                    "pes_id"
+                ],
+                "title": "FileUploadRequest"
+            },
+            "FunctionalAddressResource": {
+                "type": "string",
+                "title": "FunctionalAddressResource"
+            },
+            "LoginRequest": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "email",
+                    "password"
+                ],
+                "title": "LoginRequest"
+            },
+            "RegisterRequest": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "maxLength": 255
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "password_confirmation": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "name",
+                    "email",
+                    "password",
+                    "password_confirmation"
+                ],
+                "title": "RegisterRequest"
+            },
+            "RemoveAssignmentRequest": {
+                "type": "object",
+                "properties": {
+                    "data_remocao": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "required": [
+                    "data_remocao"
+                ],
+                "title": "RemoveAssignmentRequest"
+            },
+            "StoreAssignmentRequest": {
+                "type": "object",
+                "properties": {
+                    "pes_id": {
+                        "type": "string"
+                    },
+                    "unid_id": {
+                        "type": "string"
+                    },
+                    "data_lotacao": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "data_remocao": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "portaria": {
+                        "type": "string",
+                        "minLength": 3,
+                        "maxLength": 100
+                    }
+                },
+                "required": [
+                    "pes_id",
+                    "unid_id",
+                    "data_lotacao",
+                    "portaria"
+                ],
+                "title": "StoreAssignmentRequest"
+            },
+            "StorePermanentServantRequest": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string",
+                        "minLength": 3,
+                        "maxLength": 255
+                    },
+                    "data_nascimento": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "sexo": {
+                        "type": "string",
+                        "enum": [
+                            "Masculino",
+                            "Feminino",
+                            "Outros"
+                        ]
+                    },
+                    "mae": {
+                        "type": "string",
+                        "minLength": 3,
+                        "maxLength": 255
+                    },
+                    "pai": {
+                        "type": "string",
+                        "minLength": 3,
+                        "maxLength": 255
+                    },
+                    "se_matricula": {
+                        "type": "string",
+                        "maxLength": 255
+                    }
+                },
+                "required": [
+                    "nome",
+                    "data_nascimento",
+                    "sexo",
+                    "mae",
+                    "pai",
+                    "se_matricula"
+                ],
+                "title": "StorePermanentServantRequest"
+            },
+            "StorePermanentServantResource": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "pes_id": {
+                        "type": "string"
+                    },
+                    "se_matricula": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "pes_id",
+                    "se_matricula"
+                ],
+                "title": "StorePermanentServantResource"
+            },
+            "StoreTemporaryServantRequest": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string",
+                        "minLength": 3,
+                        "maxLength": 255
+                    },
+                    "data_nascimento": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "sexo": {
+                        "type": "string",
+                        "enum": [
+                            "Masculino",
+                            "Feminino",
+                            "Outros"
+                        ]
+                    },
+                    "mae": {
+                        "type": "string",
+                        "minLength": 3,
+                        "maxLength": 255
+                    },
+                    "pai": {
+                        "type": "string",
+                        "minLength": 3,
+                        "maxLength": 255
+                    },
+                    "data_admissao": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "data_demissao": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "required": [
+                    "nome",
+                    "data_nascimento",
+                    "sexo",
+                    "mae",
+                    "pai",
+                    "data_admissao",
+                    "data_demissao"
+                ],
+                "title": "StoreTemporaryServantRequest"
+            },
+            "StoreTemporaryServantResource": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "pes_id": {
+                        "type": "string"
+                    },
+                    "data_admissao": {
+                        "type": "string"
+                    },
+                    "data_demissao": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "pes_id",
+                    "data_admissao",
+                    "data_demissao"
+                ],
+                "title": "StoreTemporaryServantResource"
+            },
+            "StoreUnitRequest": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string",
+                        "minLength": 5,
+                        "maxLength": 200
+                    },
+                    "sigla": {
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 20
+                    }
+                },
+                "required": [
+                    "nome",
+                    "sigla"
+                ],
+                "title": "StoreUnitRequest"
+            },
+            "UnitResource": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "nome": {
+                        "type": "string"
+                    },
+                    "sigla": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "nome",
+                    "sigla"
+                ],
+                "title": "UnitResource"
+            },
+            "UpdateAssignmentRequest": {
+                "type": "object",
+                "properties": {
+                    "data_lotacao": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "portaria": {
+                        "type": "string",
+                        "minLength": 3,
+                        "maxLength": 100
+                    }
+                },
+                "required": [
+                    "data_lotacao",
+                    "portaria"
+                ],
+                "title": "UpdateAssignmentRequest"
+            },
+            "UpdatePermanentServantResource": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string"
+                    },
+                    "data_nascimento": {
+                        "type": "string"
+                    },
+                    "sexo": {
+                        "type": "string"
+                    },
+                    "mae": {
+                        "type": "string"
+                    },
+                    "pai": {
+                        "type": "string"
+                    },
+                    "se_matricula": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "nome",
+                    "data_nascimento",
+                    "sexo",
+                    "mae",
+                    "pai",
+                    "se_matricula"
+                ],
+                "title": "UpdatePermanentServantResource"
+            },
+            "UpdatePermanentServantsRequest": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string",
+                        "minLength": 3,
+                        "maxLength": 255
+                    },
+                    "data_nascimento": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "sexo": {
+                        "type": "string",
+                        "enum": [
+                            "Masculino",
+                            "Feminino",
+                            "Outros"
+                        ]
+                    },
+                    "mae": {
+                        "type": "string",
+                        "minLength": 3,
+                        "maxLength": 255
+                    },
+                    "pai": {
+                        "type": "string",
+                        "minLength": 3,
+                        "maxLength": 255
+                    },
+                    "se_matricula": {
+                        "type": "string",
+                        "maxLength": 255
+                    }
+                },
+                "required": [
+                    "nome",
+                    "data_nascimento",
+                    "sexo",
+                    "mae",
+                    "pai",
+                    "se_matricula"
+                ],
+                "title": "UpdatePermanentServantsRequest"
+            },
+            "UpdateTemporaryServantRequest": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string",
+                        "minLength": 3,
+                        "maxLength": 255
+                    },
+                    "data_nascimento": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "sexo": {
+                        "type": "string",
+                        "enum": [
+                            "Masculino",
+                            "Feminino",
+                            "Outros"
+                        ]
+                    },
+                    "mae": {
+                        "type": "string",
+                        "minLength": 3,
+                        "maxLength": 255
+                    },
+                    "pai": {
+                        "type": "string",
+                        "minLength": 3,
+                        "maxLength": 255
+                    },
+                    "data_admissao": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "data_demissao": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "required": [
+                    "nome",
+                    "data_nascimento",
+                    "sexo",
+                    "mae",
+                    "pai",
+                    "data_admissao",
+                    "data_demissao"
+                ],
+                "title": "UpdateTemporaryServantRequest"
+            },
+            "UpdateTemporaryServantResource": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string"
+                    },
+                    "data_nascimento": {
+                        "type": "string"
+                    },
+                    "sexo": {
+                        "type": "string"
+                    },
+                    "mae": {
+                        "type": "string"
+                    },
+                    "pai": {
+                        "type": "string"
+                    },
+                    "data_admissao": {
+                        "type": "string"
+                    },
+                    "data_demissao": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "nome",
+                    "data_nascimento",
+                    "sexo",
+                    "mae",
+                    "pai",
+                    "data_admissao",
+                    "data_demissao"
+                ],
+                "title": "UpdateTemporaryServantResource"
+            },
+            "UpdateUnitRequest": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string",
+                        "minLength": 5,
+                        "maxLength": 200
+                    },
+                    "sigla": {
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 20
+                    }
+                },
+                "required": [
+                    "nome",
+                    "sigla"
+                ],
+                "title": "UpdateUnitRequest"
+            },
+            "UploadPhotographResource": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "path": {
+                        "type": "string"
+                    },
+                    "url": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "path",
+                    "url"
+                ],
+                "title": "UploadPhotographResource"
+            }
+        },
+        "responses": {
+            "AuthenticationException": {
+                "description": "Unauthenticated",
+                "content": {
+                    "application\/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Error overview."
+                                }
+                            },
+                            "required": [
+                                "message"
+                            ]
+                        }
+                    }
+                }
+            },
+            "ValidationException": {
+                "description": "Validation error",
+                "content": {
+                    "application\/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Errors overview."
+                                },
+                                "errors": {
+                                    "type": "object",
+                                    "description": "A detailed description of each field that failed validation.",
+                                    "additionalProperties": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "required": [
+                                "message",
+                                "errors"
+                            ]
+                        }
+                    }
+                }
+            },
+            "AuthorizationException": {
+                "description": "Authorization error",
+                "content": {
+                    "application\/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Error overview."
+                                }
+                            },
+                            "required": [
+                                "message"
+                            ]
+                        }
+                    }
+                }
+            },
+            "ModelNotFoundException": {
+                "description": "Not found",
+                "content": {
+                    "application\/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Error overview."
+                                }
+                            },
+                            "required": [
+                                "message"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
