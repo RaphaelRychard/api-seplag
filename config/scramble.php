@@ -4,8 +4,6 @@ declare(strict_types = 1);
 
 use Dedoc\Scramble\Http\Middleware\RestrictedDocsAccess;
 
-
-
 return [
     /*
      * Your API path. By default, all routes starting with this path will be added to the docs.
@@ -63,7 +61,7 @@ return [
         /*
          * URL to an image that displays as a small square logo next to the title, above the table of contents.
          */
-        'logo' => 'https://www.google.com/s2/favicons?domain=dev.to&sz=128',
+        'logo' => asset('code.png'),
 
         /*
          * Use to fetch the credential policy for the Try It feature. Options are: omit, include (default), and same-origin
