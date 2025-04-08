@@ -21,7 +21,7 @@ class AddressPersonsFactory extends Factory
     public function definition(): array
     {
         return [
-            'id'     => Person::factory(),
+            'pes_id' => Person::factory(),
             'end_id' => Address::factory(),
         ];
     }

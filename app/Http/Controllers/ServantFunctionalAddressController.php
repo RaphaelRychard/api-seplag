@@ -12,7 +12,7 @@ class ServantFunctionalAddressController extends Controller
 {
     public function search(SearchFunctionalAddressRequest $request)
     {
-        $nameQuery = $request->validated('nome');
+        $nameQuery = $request->input('nome', '');
         $perPage   = $request->integer('per_page', 10);
 
         $paginatedResults = $this->getMatchingServants($nameQuery, $perPage);

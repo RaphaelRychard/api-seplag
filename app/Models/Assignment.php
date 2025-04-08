@@ -8,6 +8,7 @@ use Database\Factories\AssignmentFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Assignment extends Model
 {
@@ -26,5 +27,10 @@ class Assignment extends Model
     public function unit(): BelongsTo
     {
         return $this->belongsTo(Unit::class, 'unid_id');
+    }
+
+    public function address(): HasOne
+    {
+        return $this->unit->address();
     }
 }
