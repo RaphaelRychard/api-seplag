@@ -31,7 +31,10 @@ return [
         /*
          * Description rendered on the home page of the API documentation (`/docs/api`).
          */
-        'description' => file_get_contents(__DIR__ . '/../README.md'),
+        'description' => <<<MARKDOWN
+        A **Seplag API** é uma API RESTful em **Laravel** para gerenciamento de servidores, unidades administrativas e lotações, com upload de imagens via MinIO. Projeto para o concurso **SEPLAG - PSS 02/2025/SEPLAG**
+        MARKDOWN,
+
     ],
 
     /*
