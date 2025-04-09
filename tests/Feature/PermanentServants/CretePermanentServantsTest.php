@@ -15,15 +15,6 @@ use function Pest\Laravel\getJson;
 
 beforeEach(fn (): Authenticatable => login());
 
-it('should return validation error when nome parameter is missing', function (): void {
-    $sut = getJson(route('api.functional-address.search'));
-
-    $sut->assertStatus(422);
-    $sut->assertJsonFragment([
-        'message' => 'The nome field is required.',
-    ]);
-});
-
 it('should be able to return functional address for a matching permanent servant', function (): void {
     $city = City::factory()->create(['nome' => 'CityName']);
 

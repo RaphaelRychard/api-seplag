@@ -25,12 +25,12 @@ class DetailsPermanentServantResource extends JsonResource
             'nome'       => $this->person->nome,
             'idade'      => Carbon::parse($this->person->data_nascimento)->age,
             'fotografia' => $this->getFotoUrl(),
-            'unidade'    => optional($this->person->assignment)->unit?->only([
+            'unidade'    => optional($this->person->latestActiveAssignment)->unit?->only([
                 'id',
                 'nome',
                 'sigla',
             ]),
-            'lotacao' => optional($this->person->assignment)?->only([
+            'lotacao' => optional($this->person->latestActiveAssignment)?->only([
                 'id',
                 'pes_id',
                 'unid_id',

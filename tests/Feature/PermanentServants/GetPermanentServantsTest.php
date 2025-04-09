@@ -62,7 +62,7 @@ it('should be able to return detailed information of a permanent servant', funct
                 ],
             ],
         ])
-        ->assertJsonPath('data.fotografia', fn ($url): bool => str_contains((string) $url, 'foto123.jpg'));
+        ->assertJsonPath('data.fotografia', fn ($url): bool => str_contains((string)$url, 'foto123.jpg'));
 });
 
 it('should be able to return null for unit and assignment when there is no active assignment', function (): void {
@@ -97,7 +97,7 @@ it('should be able to return null for unit and assignment when there is no activ
                 'lotacao' => null,
             ],
         ])
-        ->assertJsonPath('data.fotografia', fn ($url): bool => str_contains((string) $url, 'foto_maria.jpg'));
+        ->assertJsonPath('data.fotografia', fn ($url): bool => str_contains((string)$url, 'foto_maria.jpg'));
 });
 
 it('should be able to return null photo when person has no photo registered', function (): void {

@@ -33,6 +33,13 @@ class Person extends Model
         return $this->hasOne(Assignment::class, 'pes_id');
     }
 
+    public function latestActiveAssignment(): HasOne
+    {
+        return $this->hasOne(Assignment::class, 'pes_id')
+            ->whereNull('data_remocao')
+            ->latest('data_lotacao');
+    }
+
     public function personsPhoto(): HasOne
     {
         return $this->hasOne(PersonsPhoto::class, 'pes_id');
