@@ -81,7 +81,7 @@ docker exec -it php composer install
 
 # Gere chave da aplicação e rode as migrations com seeds
 docker exec -it php php artisan key:generate
-docker exec -it php php artisan migrate:fresh --seed:fresh --seed
+docker exec -it php php artisan migrate:fresh --seed
 ```
 
 ### Configuração do .env
@@ -139,11 +139,11 @@ Nela é possível:
 
 ## Testes Automatizados
 
-> Laravel usará automaticamente um arquivo `.env.testing` se estiver presente.
-
 Os testes utilizam **PestPHP**.
 
 ### Comandos:
+
+> Laravel usará automaticamente um arquivo `.env.testing` se estiver presente.
 
 ```bash
 docker exec -it php php artisan migrate:fresh --seed --env=testing
