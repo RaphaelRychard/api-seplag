@@ -6,7 +6,7 @@ use App\Models\User;
 
 use function Pest\Laravel\postJson;
 
-it('should be able to authenticate and return a token', function () {
+it('should be able to authenticate and return a token', function (): void {
     User::factory()->create([
         'email'    => 'raph@example.com',
         'password' => bcrypt('password'),
@@ -20,7 +20,7 @@ it('should be able to authenticate and return a token', function () {
     $response->assertStatus(200)->assertJsonStructure(['token']);
 });
 
-it('should be able to fail with invalid credentials', function () {
+it('should be able to fail with invalid credentials', function (): void {
     $response = postJson('/api/login', [
         'email'    => 'wrong@example.com',
         'password' => 'invalid',

@@ -6,12 +6,12 @@ use function Pest\Laravel\postJson;
 
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $user       = login();
     $this->user = $user;
 });
 
-it('should be able to log out and invalidate the token', function () {
+it('should be able to log out and invalidate the token', function (): void {
     $token = JWTAuth::fromUser($this->user);
 
     $response = postJson('/api/logout', [], [

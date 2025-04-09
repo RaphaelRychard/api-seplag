@@ -11,7 +11,6 @@ use Illuminate\Contracts\Auth\Authenticatable;
 
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\patchJson;
-use function Pest\Laravel\postJson;
 
 beforeEach(fn (): Authenticatable => login());
 

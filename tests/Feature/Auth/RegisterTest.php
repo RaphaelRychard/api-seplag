@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 use function Pest\Laravel\postJson;
 
-it('should be able to register a new user and return a token', function () {
+it('should be able to register a new user and return a token', function (): void {
     $response = postJson('/api/register', [
         'name'                  => 'John Doe',
         'email'                 => 'johndoe@example.com',

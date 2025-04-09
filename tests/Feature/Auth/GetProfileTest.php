@@ -8,7 +8,7 @@ use function Pest\Laravel\getJson;
 
 beforeEach(fn (): Authenticatable => login());
 
-it('should be able to return authenticated user data', function () {
+it('should be able to return authenticated user data', function (): void {
     $response = getJson('/api/user');
 
     $response->assertStatus(200)

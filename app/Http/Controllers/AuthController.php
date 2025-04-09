@@ -25,7 +25,7 @@ class AuthController extends Controller
 
         $token = JWTAuth::fromUser($user);
 
-        return response()->json(compact('token'));
+        return response()->json(['token' => $token]);
     }
 
     public function login(LoginRequest $request): JsonResponse
@@ -36,7 +36,7 @@ class AuthController extends Controller
             return response()->json(['error' => 'Invalid credentials'], 401);
         }
 
-        return response()->json(compact('token'));
+        return response()->json(['token' => $token]);
     }
 
     public function refresh(): ?JsonResponse
@@ -45,7 +45,7 @@ class AuthController extends Controller
             $newToken = JWTAuth::parseToken()->refresh();
 
             return response()->json(['token' => $newToken]);
-        } catch (JWTException $e) {
+        } catch (JWTException) {
             return response()->json(['error' => 'Could not refresh token'], 401);
         }
     }
