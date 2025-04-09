@@ -6,7 +6,7 @@ A **Seplag API** é uma solução back-end desenvolvida em **Laravel**, que ofer
 
 Utiliza autenticação via **Laravel jwt-auth**, com arquitetura segura e moderna.  
 A autenticação usa **JSON Web Tokens (JWT)** via `tymon/jwt-auth`.  
-Ao fazer login, um `access_token` é gerado com validade de 5 minutos.  
+Ao fazer login, um `access token` é gerado com validade de 5 minutos.  
 É possível renová-lo usando o endpoint de **refresh**.
 
 > Utilize o header:  
