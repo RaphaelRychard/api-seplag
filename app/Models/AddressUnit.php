@@ -12,7 +12,7 @@ class AddressUnit extends Model
     /** @use HasFactory<\Database\Factories\AddressUnitFactory> */
     use HasFactory;
 
-    protected $primaryKey = null;
+    protected $primaryKey;
 
     public $incrementing = false;
 

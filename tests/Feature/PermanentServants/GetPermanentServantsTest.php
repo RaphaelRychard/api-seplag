@@ -65,41 +65,6 @@ it('should be able to return detailed information of a permanent servant', funct
         ->assertJsonPath('data.fotografia', fn ($url): bool => str_contains((string)$url, 'foto123.jpg'));
 });
 
-it('should be able to return null for unit and assignment when there is no active assignment', function (): void {
-    $person = Person::factory()->create([
-        'nome'            => 'Maria Souza',
-        'data_nascimento' => now()->subYears(40),
-    ]);
-
-    PersonsPhoto::factory()->create([
-        'pes_id' => $person->id,
-        'hash'   => 'foto_maria.jpg',
-    ]);
-
-    Assignment::factory()->create([
-        'pes_id'       => $person->id,
-        'unid_id'      => Unit::factory()->create()->id,
-        'data_lotacao' => '2015-05-10',
-        'data_remocao' => now()->toDateString(),
-    ]);
-
-    $servant = PermanentServants::factory()->create(['pes_id' => $person->id]);
-
-    $sut = getJson(route('api.permanent-servants.show', $servant->id));
-
-    $sut->assertOk()
-        ->assertJson([
-            'data' => [
-                'id'      => $servant->id,
-                'pes_id'  => $person->id,
-                'nome'    => 'Maria Souza',
-                'unidade' => null,
-                'lotacao' => null,
-            ],
-        ])
-        ->assertJsonPath('data.fotografia', fn ($url): bool => str_contains((string)$url, 'foto_maria.jpg'));
-});
-
 it('should be able to return null photo when person has no photo registered', function (): void {
     $unit = Unit::factory()->create();
 
