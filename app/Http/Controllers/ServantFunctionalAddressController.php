@@ -7,10 +7,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SearchFunctionalAddressRequest;
 use App\Http\Resources\FunctionalAddressResource;
 use App\Models\Person;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ServantFunctionalAddressController extends Controller
 {
-    public function search(SearchFunctionalAddressRequest $request)
+    public function search(SearchFunctionalAddressRequest $request): JsonResponse
     {
         $nameQuery = $request->input('nome', '');
         $perPage   = $request->integer('per_page', 10);

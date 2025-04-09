@@ -13,7 +13,5 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth:api')->group(function () {
     Route::post('/api/refresh', [AuthController::class, 'refresh']);
     Route::post('/api/logout', [AuthController::class, 'logout']);
-
-    Route::get('/api/user', fn (Request $request) => $request->user())
-        ->middleware('auth:sanctum');
+    Route::get('/api/user', [AuthController::class, 'me']);
 });

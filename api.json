@@ -392,26 +392,25 @@
                     "Auth"
                 ],
                 "responses": {
-                    "401": {
-                        "$ref": "#\/components\/responses\/AuthenticationException"
-                    },
                     "200": {
                         "description": "",
                         "content": {
                             "application\/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "token": {
-                                            "type": "string"
+                                    "anyOf": [
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "object"
                                         }
-                                    },
-                                    "required": [
-                                        "token"
                                     ]
                                 }
                             }
                         }
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
                     }
                 }
             }
@@ -438,6 +437,29 @@
                                     "required": [
                                         "message"
                                     ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    }
+                }
+            }
+        },
+        "\/user": {
+            "get": {
+                "operationId": "auth.me",
+                "tags": [
+                    "Auth"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "`UserResource`",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/UserResource"
                                 }
                             }
                         }
@@ -2024,6 +2046,26 @@
                     "url"
                 ],
                 "title": "UploadPhotographResource"
+            },
+            "UserResource": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name",
+                    "email"
+                ],
+                "title": "UserResource"
             }
         },
         "responses": {

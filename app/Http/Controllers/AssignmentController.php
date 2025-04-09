@@ -13,7 +13,7 @@ use Illuminate\Http\JsonResponse;
 
 class AssignmentController extends Controller
 {
-    public function index()
+    public function index(): JsonResponse
     {
         $paginatedResults = Assignment::paginate(10);
 

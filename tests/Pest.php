@@ -55,7 +55,13 @@ function login(): User | Authenticatable
     /** @var User|Authenticatable $user */
     $user = User::factory()->create();
 
+    $token = JWTAuth::fromUser($user);
+
     actingAs($user);
+
+    test()->withHeaders([
+        'Authorization' => "Bearer $token",
+    ]);
 
     return $user;
 }
