@@ -4,7 +4,18 @@
 
 A **Seplag API** é uma solução back-end desenvolvida em **Laravel**, que oferece recursos para gerenciamento de servidores efetivos, temporários, unidades administrativas e operações como lotação e upload de fotografias.
 
-Utiliza autenticação via **Laravel Sanctum**, com arquitetura segura e moderna.  
+Utiliza autenticação via **Laravel jwt-auth**, com arquitetura segura e moderna.  
+A autenticação usa **JSON Web Tokens (JWT)** via `tymon/jwt-auth`.  
+Ao fazer login, um `access_token` é gerado com validade de 5 minutos.  
+É possível renová-lo usando o endpoint de **refresh**.
+
+> Utilize o header:  
+> `Authorization: Bearer {token}`  
+> em todas as requisições autenticadas.
+
+> Para mais detalhes e testes interativos, acesse:  
+> [http://localhost/docs/api](http://localhost/docs/api)
+
 Projeto construído como parte da inscrição para o concurso **SEPLAG - PSS 02/2025/SEPLAG**.
 
 ---
@@ -81,6 +92,7 @@ docker exec -it php composer install
 
 # Gere chave da aplicação e rode as migrations com seeds
 docker exec -it php php artisan key:generate
+docker exec -it php php artisan jwt:secret
 docker exec -it php php artisan migrate:fresh --seed
 ```
 
@@ -100,7 +112,17 @@ MINIO_KEY=myadmin
 MINIO_SECRET=mysecurepassword
 MINIO_REGION=us-east-1
 MINIO_BUCKET=seplag
+
+# JWT
+JWT_SECRET=
+JWT_TTL=5
+JWT_REFRESH_TTL=60
 ```
+
+> Após configurar o `.env`, execute o comando abaixo para gerar a chave secreta usada na assinatura dos tokens JWT:
+> ```bash
+> php artisan jwt:secret
+> ```
 
 ### Acessos
 

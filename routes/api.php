@@ -10,7 +10,7 @@ use App\Http\Controllers\TemporaryServantsController;
 use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
 
-Route::name('api.')->middleware('auth:sanctum')->group(function (): void {
+Route::name('api.')->middleware('auth:api')->group(function (): void {
     Route::apiResource('/permanent-servants', PermanentServantsController::class)
         ->only(['index', 'store', 'show', 'update']);
 
